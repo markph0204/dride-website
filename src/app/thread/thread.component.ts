@@ -72,7 +72,6 @@ export class ThreadComponent implements OnInit {
 
   send(){
 
-      this.auth.login()
       
       // login.verifyLoggedIn().then(
       //  function(result) {

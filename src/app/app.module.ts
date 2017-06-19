@@ -19,6 +19,7 @@ import { NgSwitchModule } from 'ng2-switch';
 import { AppComponent } from './app.component';
 
 import { AuthService, NgbdModalContent } from './auth.service';
+import { UserService } from './user.service';
 
 import { MainComponent } from './main/main.component';
 import { CloudComponent } from './cloud/cloud.component';
@@ -60,7 +61,7 @@ const appRoutes: Routes = [
     ElasticModule,
     FormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, UserService],
   bootstrap: [AppComponent],
   entryComponents: [NgbdModalContent],
 })
