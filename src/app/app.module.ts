@@ -26,6 +26,7 @@ import { CloudComponent } from './cloud/cloud.component';
 import { ForumComponent, NgbdModalAskInForum} from './forum/forum.component';
 import { ThreadComponent } from './thread/thread.component';
 import { DocumentationComponent } from './documentation/documentation.component';
+import { InnerDocsComponent } from './documentation/inner-docs/inner-docs.component';
 
 
 const appRoutes: Routes = [
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
   { path: 'thread', redirectTo: 'forum' },
   { path: 'thread/:slug', component: ThreadComponent },
   { path: 'documentation', component: DocumentationComponent },
+  { path: 'c/:slug', component: InnerDocsComponent },
  
   //{ path: '**', component: PageNotFoundComponent }
 ];
@@ -50,7 +52,8 @@ const appRoutes: Routes = [
     ThreadComponent,
     NgbdModalLogin,
     NgbdModalAskInForum,
-    DocumentationComponent
+    DocumentationComponent,
+    InnerDocsComponent
   ],
   imports: [
     BrowserModule,
