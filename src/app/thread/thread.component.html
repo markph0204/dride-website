@@ -11,7 +11,7 @@
 
 			<div class="chatBox">
 
-			    <div *ngFor="let node of conversation | async"  class="animBox">
+			    <div *ngFor="let node of conversation | async; index as key"  class="animBox">
 			        <div class="bubble">
 			            <div class="auther float-left pl">
 			                <img src="{{node.pic}}" alt="{{node.auther}}" />
@@ -20,13 +20,13 @@
 			            <div class="bdy" markdown-to-html [data]="node.body" ></div>
 			            <div class="ago">{{node.timestamp | amTimeAgo}}</div>
 			        </div>
-			        <div class="connectorLine" ng-if="conversationPreviusIsMine[key]"></div>
+			        <div class="connectorLine" *ngIf="conversationPreviusIsMine[key]"></div>
 			    </div>
 
 			</div>
 
 			<div class="wrapReplyBox">
-				<span class="bold">@{{firebaseUser.displayName}}</span>
+<!-- 				<span class="bold">@{{firebaseUser.displayName}}</span> -->
 				<textarea ctrl-enter="send()" class="form-control replyBox" fz-elastic ng-model="replyBox" type="text" name="reply" placeholder="What's on your mind?"></textarea>
 				<button class="btn btn-dride-black sendBtn pull-right" ng-click="send()">Send</button>
 				<label class="hint">Use ctrl+Enter to post | markdown enabled</label>

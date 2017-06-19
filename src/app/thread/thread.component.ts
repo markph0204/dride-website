@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
@@ -14,27 +15,57 @@ export class ThreadComponent implements OnInit {
   currentThread: FirebaseObjectObservable<any[]>;
   conversation: FirebaseListObservable<any[]>;
   threadId: string;
+  public conversationPreviusIsMine: Array<boolean> = [];
   private sub: any;
   
-  constructor(private route: ActivatedRoute, private db: AngularFireDatabase) {
+  constructor(private route: ActivatedRoute, private db: AngularFireDatabase, private location:Location, private router:Router) {
 
 
   }
 
   ngOnInit() {
 
-  	   this.sub = this.route.params.subscribe(params => {
-       this.threadId = params['slug'].split('__').pop(); 
+  	 this.sub = this.route.params.subscribe(params => {
+     this.threadId = params['slug'].split('__').pop(); 
+
 
 	   this.currentThread = this.db.object('/threads/' + this.threadId);
 	   this.conversation = this.db.list('/conversations/' + this.threadId);
 
+     this.conversation.subscribe(snapshot => {
+       console.log(this.conversationPreviusIsMine)
+        this.sideThreadByAuther(snapshot, this.conversationPreviusIsMine)
+     })
        console.log(this.threadId)
 
     });
 
 
   }
+
+
+  sideThreadByAuther(threadData, conversationPreviusIsMine) {
+
+          var previusKey = null;
+          threadData.forEach(function(k, key) {
+
+              if (!previusKey) {
+                  previusKey = key;
+                  return;
+              }
+
+              //if same author posted again
+              if (threadData[key].autherId == threadData[previusKey].autherId) {
+                  conversationPreviusIsMine[previusKey] = true;
+              } else {
+                  conversationPreviusIsMine[previusKey] = false;
+              }
+              previusKey = key;
+          });
+
+         
+  }
+
 
   ngOnDestroy() {
     this.sub.unsubscribe();

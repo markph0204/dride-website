@@ -25,6 +25,7 @@ const appRoutes: Routes = [
   { path: '', component: MainComponent },
   { path: 'cloud', component: CloudComponent },
   { path: 'forum', component: ForumComponent },
+  { path: 'thread', redirectTo: 'forum' },
   { path: 'thread/:slug', component: ThreadComponent },
  
   //{ path: '**', component: PageNotFoundComponent }
