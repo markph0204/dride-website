@@ -15,7 +15,7 @@
 			            <div class="auther float-left pl">
 			                <img src="{{node.pic}}" alt="{{node.auther}}" />
 			            </div>
-			            <a class="bold" href="profile/{{node.autherId}}">@{{node.autherId}}</a>
+			            <a class="bold" href="profile/{{node.autherId}}">@{{node.auther}}</a>
 			            <div class="bdy" markdown-to-html [data]="node.body" ></div>
 			            <div class="ago">{{node.timestamp | amTimeAgo}}</div>
 			        </div>
@@ -25,7 +25,7 @@
 			</div>
 
 			<div class="wrapReplyBox">
-<!-- 				<span class="bold">@{{firebaseUser.displayName}}</span> -->
+				<span class="bold">@{{firebaseUser.displayName}}</span>
 				<textarea (keydown.control.Enter)="send()" class="form-control replyBox" fz-elastic [(ngModel)]="replyBox" type="text" name="reply" placeholder="What's on your mind?"></textarea>
 				<button class="btn btn-dride-black sendBtn float-right" (click)="send()">Send</button>
 				<label class="hint">Use ctrl+Enter to post | markdown enabled</label>

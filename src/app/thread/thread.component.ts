@@ -6,8 +6,10 @@ import { AuthService } from '../auth.service';
 import { UserService } from '../user.service';
 
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 
- 
+
+
 @Component({
   selector: 'app-thread',
   templateUrl: './thread.component.html',
@@ -23,8 +25,16 @@ export class ThreadComponent implements OnInit {
   public replyBox: string;
   public firebaseUser: any;
   
-  constructor(private route: ActivatedRoute, public db: AngularFireDatabase, private location:Location, private router:Router, private auth: AuthService, public user: UserService) {
+  constructor(private route: ActivatedRoute, public db: AngularFireDatabase, private location:Location, private router:Router, private auth: AuthService, public user: UserService, private afAuth: AngularFireAuth) {
 
+    afAuth.authState.subscribe(user => {
+      if (!user) {
+        this.firebaseUser = null;        
+        return;
+      }
+      this.firebaseUser = user; 
+  
+    });
 
   }
 
@@ -32,7 +42,6 @@ export class ThreadComponent implements OnInit {
 
   	 this.sub = this.route.params.subscribe(params => {
      this.threadId = params['slug'].split('__').pop(); 
-
 
 	   this.currentThread = this.db.object('/threads/' + this.threadId);
 	   this.conversation = this.db.list('/conversations/' + this.threadId);
@@ -51,7 +60,7 @@ export class ThreadComponent implements OnInit {
   sideThreadByAuther(threadData, conversationPreviusIsMine) {
 
           var previusKey = null;
-          console.log(threadData)
+
           threadData.forEach(function(k, key) {
 
               if (!key) {
@@ -76,7 +85,6 @@ export class ThreadComponent implements OnInit {
   send(){
      
       this.auth.verifyLoggedIn().then( res => {
-         console.log(this.replyBox)
            this.firebaseUser = this.user.getUser()
            this.db.list("conversations/" +this.threadId).push({
                'autherId': this.firebaseUser.uid,
