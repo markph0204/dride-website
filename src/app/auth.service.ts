@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 import { UserService } from './user.service';
 
@@ -13,14 +14,45 @@ export class AuthService {
 
   closeResult: string;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, public afAuth: AngularFireAuth) { }
 
   openLogin() {
 
-    const modalRef = this.modalService.open(NgbdModalContent);
+    return this.modalService.open(NgbdModalContent);
 
 
   }
+
+
+  logOut(){
+
+      this.afAuth.auth.signOut().then(function() {
+        // Sign-out successful.
+        alert('ok!')
+      }, function(error) {
+        // An error happened.
+      });
+
+
+    };
+
+  verifyLoggedIn(){
+    return new Promise((resolve: any, reject) => {
+
+            this.afAuth.authState.subscribe(user => {
+              if (!user) {
+                return this.openLogin()
+              }
+              resolve(user)
+           
+            });
+
+
+    });
+  }
+
+
+
 
 }
 
@@ -39,8 +71,10 @@ export class NgbdModalContent {
   onWelcome:boolean = false;
   anonymous:boolean = false;
   public loginError:string;
+  userData: FirebaseListObservable<any[]>;
 
-  constructor(public activeModal: NgbActiveModal, public afAuth: AngularFireAuth, user: UserService) { 
+
+  constructor(public activeModal: NgbActiveModal, public afAuth: AngularFireAuth, user: UserService, public db: AngularFireDatabase) { 
     this.user = afAuth.authState;
   }
 
@@ -58,83 +92,53 @@ export class NgbdModalContent {
 
   connectWithFacebook = function () {
 
+    this.connectWithProvider(new firebase.auth.FacebookAuthProvider())
+
+  };
+
+  connectWithGoogle = function () {
+
+    this.connectWithProvider(new firebase.auth.GoogleAuthProvider())
+
+  };
+
+  connectWithProvider = function (provider: any) {
+
     // login with Facebook
-    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res =>  {
-      //TODO: //$mixpanel.track('successful login');
-      //TODO: //$rootScope.uid = firebaseUser.user.uid;
-
-      //ensure push token
-      //TODO: //pushNotification.getPushToken($rootScope.uid)
-
-      //TODO: // userData($rootScope.uid).$loaded(function (data) {
-      //   if (data.showedAnonymous == true) {
-      //     $scope.closeModal();
-      //   } else {
-      //     //first time logged in
-      //     mixpanel.alias($rootScope.uid)
-      //     $scope.onWelcome = true;
-      //     firebase.database().ref('userData').child($rootScope.uid).set({ showedAnonymous: true });
-      //   }
-
-      // });
-
-
-    })
+    this.afAuth.auth.signInWithPopup(provider)
     .catch(error => {
       this.loginError = error.message;
       console.log("Authentication failed:", error);
       //TODO: Show friendly message and log
-
-
     });
 
+    this.afAuth.authState.subscribe(user => {
 
-  };
-
-
-  connectWithGoogle = function () {
-
-    // login with Facebook
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(res =>  {
-
+      if (!user)
+        return;
       //TODO: //$mixpanel.track('successful login');
-      //TODO: //$rootScope.uid = firebaseUser.user.uid;
+
       //ensure push token
-      //TODO: //pushNotification.getPushToken($rootScope.uid)
+      //TODO: //pushNotification.getPushToken(res.uid)
 
-      //TODO: // userData($rootScope.uid).$loaded(function (data) {
-      //   if (data.showedAnonymous == true) {
-      //     $scope.closeModal();
-      //   } else {
-      //     //first time logged in
-      //     mixpanel.alias($rootScope.uid)
-      //     $scope.onWelcome = true;
-      //     firebase.database().ref('userData').child($rootScope.uid).update({ showedAnonymous: true });
-      //   }
+      this.db.object('/userData/' + user.uid).subscribe(data => {
+        if (data.showedAnonymous == true) {
+          this.closeModal();
+        } else {
+          //first time logged in
+          //mixpanel.alias(data.uid)
+          this.onWelcome = true;
+          firebase.database().ref('userData').child(user.uid).update({ showedAnonymous: true });
+        }
 
-      // });
-
-
-
-    }).catch(error => {
-      this.loginError = error.message;
-      console.log("Authentication failed:", error);
-      //TODO: Show friendly message and log
+      });
 
 
-    });
+
+    })
 
 
   };
-
-
-
-  closeAfterWelcome = function () {
-
-    //firebase functions will take it from there..
-    //TODO: //firebase.database().ref('userData').child($rootScope.uid).update({ anonymous: $scope.anonymous });
-    this.activeModal.closeModal()
-  }
 
 
 

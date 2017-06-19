@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
 import { AuthService } from '../auth.service';
+import { UserService } from '../user.service';
 
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
@@ -16,12 +17,13 @@ export class ThreadComponent implements OnInit {
 
   currentThread: FirebaseObjectObservable<any[]>;
   conversation: FirebaseListObservable<any[]>;
-  threadId: string;
+  public threadId: string;
   public conversationPreviusIsMine: Array<boolean> = [];
   private sub: any;
   public replyBox: string;
+  public firebaseUser: any;
   
-  constructor(private route: ActivatedRoute, private db: AngularFireDatabase, private location:Location, private router:Router, private auth: AuthService) {
+  constructor(private route: ActivatedRoute, public db: AngularFireDatabase, private location:Location, private router:Router, private auth: AuthService, public user: UserService) {
 
 
   }
@@ -36,10 +38,9 @@ export class ThreadComponent implements OnInit {
 	   this.conversation = this.db.list('/conversations/' + this.threadId);
 
      this.conversation.subscribe(snapshot => {
-       console.log(this.conversationPreviusIsMine)
         this.sideThreadByAuther(snapshot, this.conversationPreviusIsMine)
      })
-       console.log(this.threadId)
+
 
     });
 
@@ -50,13 +51,13 @@ export class ThreadComponent implements OnInit {
   sideThreadByAuther(threadData, conversationPreviusIsMine) {
 
           var previusKey = null;
+          console.log(threadData)
           threadData.forEach(function(k, key) {
 
-              if (!previusKey) {
+              if (!key) {
                   previusKey = key;
                   return;
               }
-
               //if same author posted again
               if (threadData[key].autherId == threadData[previusKey].autherId) {
                   conversationPreviusIsMine[previusKey] = true;
@@ -69,25 +70,26 @@ export class ThreadComponent implements OnInit {
          
   }
 
-
+  /*
+  *  Will push a new conversation object to DB (Add a comment in threadId)
+  */
   send(){
+     
+      this.auth.verifyLoggedIn().then( res => {
+         console.log(this.replyBox)
+           this.firebaseUser = this.user.getUser()
+           this.db.list("conversations/" +this.threadId).push({
+               'autherId': this.firebaseUser.uid,
+               'auther': this.firebaseUser.displayName,
+               'pic': this.firebaseUser.photoURL,
+               'body': this.replyBox,
+               'timestamp': (new Date).getTime()
+           });
 
-      
-      // login.verifyLoggedIn().then(
-      //  function(result) {
+           this.replyBox = '';
+           //TODO: //$mixpanel.track('posted a comment');
 
-      //      firebase.database().ref("conversations").child(this.threadId).push({
-      //          'autherId': $rootScope.firebaseUser.uid,
-      //          'auther': $rootScope.firebaseUser.displayName,
-      //          'pic': $rootScope.firebaseUser.photoURL,
-      //          'body': $scope.replyBox,
-      //          'timestamp': (new Date).getTime()
-      //      });
-
-      //      this.replyBox = '';
-      //      //$mixpanel.track('posted a comment');
-
-      //  })
+       })
 
 
 

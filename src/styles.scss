@@ -395,7 +395,7 @@ $color: #333333,
     background-size: contain;
 }
 
-.navbar-default .navbar-brand:focus {
+.navbar-light .navbar-brand:focus {
     background-color: #333 !important;
 }
 
@@ -910,7 +910,7 @@ $item-size) {
 
 //navbar
 
-.navbar-default .navbar-nav > .active > a {
+.navbar-light .navbar-nav > .active > a {
     background: none !important;
     border-bottom: 1px dashed #555555;
     display: inline;
@@ -943,7 +943,7 @@ $item-size) {
     cursor: pointer;
 }
 
-.navbar-default .navbar-brand:hover {
+.navbar-light .navbar-brand:hover {
     background-color: #333;
 }
 

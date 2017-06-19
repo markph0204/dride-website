@@ -6,9 +6,7 @@
 
 		<div class="col-md-12">
 			
-<button class="btn btn-lg btn-outline-primary" (click)="openLogin()">Launch demo modal</button>
-
-			<h1 class="text-center" (click)="openLogin()">{{(currentThread | async)?.title}}</h1>
+			<h1 class="text-center">{{(currentThread | async)?.title}}</h1>
 
 			<div class="chatBox">
 
@@ -17,7 +15,7 @@
 			            <div class="auther float-left pl">
 			                <img src="{{node.pic}}" alt="{{node.auther}}" />
 			            </div>
-			            <a class="bold" href="profile/{{node.autherId}}">@{{node.auther}}</a>
+			            <a class="bold" href="profile/{{node.autherId}}">@{{node.autherId}}</a>
 			            <div class="bdy" markdown-to-html [data]="node.body" ></div>
 			            <div class="ago">{{node.timestamp | amTimeAgo}}</div>
 			        </div>
