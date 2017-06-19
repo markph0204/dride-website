@@ -52,8 +52,9 @@ export class ForumComponent implements OnInit {
 })
 export class NgbdModalAskInForum {
   @Input() name;
-
-
+  qTitle: any;
+  isLoaded: boolean = true;
+  
   constructor(public activeModal: NgbActiveModal, public db: AngularFireDatabase, private auth: AuthService, public user: UserService,private router: Router, private route: ActivatedRoute) { 
 
   }

@@ -13,7 +13,6 @@ import { MomentModule } from 'angular2-moment';
 import { TruncateModule } from 'ng2-truncate';
 import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import { ElasticModule } from 'angular2-elastic';
-import { NgSwitchModule } from 'ng2-switch';
 
 
 import { AppComponent } from './app.component';
@@ -26,6 +25,7 @@ import { MainComponent } from './main/main.component';
 import { CloudComponent } from './cloud/cloud.component';
 import { ForumComponent, NgbdModalAskInForum} from './forum/forum.component';
 import { ThreadComponent } from './thread/thread.component';
+import { DocumentationComponent } from './documentation/documentation.component';
 
 
 const appRoutes: Routes = [
@@ -34,6 +34,7 @@ const appRoutes: Routes = [
   { path: 'forum', component: ForumComponent },
   { path: 'thread', redirectTo: 'forum' },
   { path: 'thread/:slug', component: ThreadComponent },
+  { path: 'documentation', component: DocumentationComponent },
  
   //{ path: '**', component: PageNotFoundComponent }
 ];
@@ -48,7 +49,8 @@ const appRoutes: Routes = [
     ForumComponent,
     ThreadComponent,
     NgbdModalLogin,
-    NgbdModalAskInForum
+    NgbdModalAskInForum,
+    DocumentationComponent
   ],
   imports: [
     BrowserModule,

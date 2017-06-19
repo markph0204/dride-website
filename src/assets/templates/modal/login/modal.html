@@ -1,7 +1,7 @@
 <div class="loginBox" [ngClass]="{'regBox': onWelcome}">
 
     <div class="modal-header">
-        <h3 class="modal-title" *ngIf="!switchToVarification"><span class="f50 icon-cloud"></span></h3>
+        <h3 class="modal-title"><span class="f50 icon-cloud"></span></h3>
         <p class="float-right closeModal" (click)="dismissModal()">x</p>
     </div>
     <span class="icon-toyCar-1" [class]="isLoaded ? 'animatedCar' : ''" *ngIf="!onWelcome"></span>
