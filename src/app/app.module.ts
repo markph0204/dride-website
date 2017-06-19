@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
+import { FormsModule } from '@angular/forms';
 
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -12,9 +13,13 @@ import { MomentModule } from 'angular2-moment';
 import { TruncateModule } from 'ng2-truncate';
 import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import { ElasticModule } from 'angular2-elastic';
+import { NgSwitchModule } from 'ng2-switch';
 
 
 import { AppComponent } from './app.component';
+
+import { AuthService, NgbdModalContent } from './auth.service';
+
 import { MainComponent } from './main/main.component';
 import { CloudComponent } from './cloud/cloud.component';
 import { ForumComponent } from './forum/forum.component';
@@ -39,7 +44,8 @@ const appRoutes: Routes = [
     MainComponent,
     CloudComponent,
     ForumComponent,
-    ThreadComponent
+    ThreadComponent,
+    NgbdModalContent
   ],
   imports: [
     BrowserModule,
@@ -51,10 +57,11 @@ const appRoutes: Routes = [
     MomentModule,
     TruncateModule,
     MarkdownToHtmlModule.forRoot(),
-    ElasticModule
-
+    ElasticModule,
+    FormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthService],
+  bootstrap: [AppComponent],
+  entryComponents: [NgbdModalContent],
 })
 export class AppModule { }

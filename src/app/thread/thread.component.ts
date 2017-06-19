@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
+import { AuthService } from '../auth.service';
+
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
-
+ 
 @Component({
   selector: 'app-thread',
   templateUrl: './thread.component.html',
@@ -17,8 +19,9 @@ export class ThreadComponent implements OnInit {
   threadId: string;
   public conversationPreviusIsMine: Array<boolean> = [];
   private sub: any;
+  public replyBox: string;
   
-  constructor(private route: ActivatedRoute, private db: AngularFireDatabase, private location:Location, private router:Router) {
+  constructor(private route: ActivatedRoute, private db: AngularFireDatabase, private location:Location, private router:Router, private auth: AuthService) {
 
 
   }
@@ -64,6 +67,36 @@ export class ThreadComponent implements OnInit {
           });
 
          
+  }
+
+
+  send(){
+
+      this.auth.login()
+      
+      // login.verifyLoggedIn().then(
+      //  function(result) {
+
+      //      firebase.database().ref("conversations").child(this.threadId).push({
+      //          'autherId': $rootScope.firebaseUser.uid,
+      //          'auther': $rootScope.firebaseUser.displayName,
+      //          'pic': $rootScope.firebaseUser.photoURL,
+      //          'body': $scope.replyBox,
+      //          'timestamp': (new Date).getTime()
+      //      });
+
+      //      this.replyBox = '';
+      //      //$mixpanel.track('posted a comment');
+
+      //  })
+
+
+
+
+  }
+
+  openLogin(){
+    this.auth.openLogin();
   }
 
 

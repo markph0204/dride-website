@@ -6,8 +6,9 @@
 
 		<div class="col-md-12">
 			
+<button class="btn btn-lg btn-outline-primary" (click)="openLogin()">Launch demo modal</button>
 
-			<h1 class="text-center">{{(currentThread | async)?.title}}</h1>
+			<h1 class="text-center" (click)="openLogin()">{{(currentThread | async)?.title}}</h1>
 
 			<div class="chatBox">
 
@@ -27,8 +28,8 @@
 
 			<div class="wrapReplyBox">
 <!-- 				<span class="bold">@{{firebaseUser.displayName}}</span> -->
-				<textarea ctrl-enter="send()" class="form-control replyBox" fz-elastic ng-model="replyBox" type="text" name="reply" placeholder="What's on your mind?"></textarea>
-				<button class="btn btn-dride-black sendBtn pull-right" ng-click="send()">Send</button>
+				<textarea (keydown.control.Enter)="send()" class="form-control replyBox" fz-elastic [(ngModel)]="replyBox" type="text" name="reply" placeholder="What's on your mind?"></textarea>
+				<button class="btn btn-dride-black sendBtn float-right" (click)="send()">Send</button>
 				<label class="hint">Use ctrl+Enter to post | markdown enabled</label>
 			</div>
 
@@ -41,4 +42,3 @@
 
 
 </div>
-
