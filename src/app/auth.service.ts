@@ -18,7 +18,7 @@ export class AuthService {
 
   openLogin() {
 
-    return this.modalService.open(NgbdModalContent);
+    return this.modalService.open(NgbdModalLogin, {size: 'lg'});
 
 
   }
@@ -61,10 +61,10 @@ export class AuthService {
 
 @Component({
   selector: 'ngbd-modal-content',
-  templateUrl: '../assets/templates/modal/modal.html',
-  styleUrls: ['../assets/templates/modal/modal.scss']
+  templateUrl: '../assets/templates/modal/login/modal.html',
+  styleUrls: ['../assets/templates/modal/login/modal.scss']
 })
-export class NgbdModalContent {
+export class NgbdModalLogin {
   @Input() name;
 
   isLoaded:boolean = false;

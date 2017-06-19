@@ -18,12 +18,13 @@ import { NgSwitchModule } from 'ng2-switch';
 
 import { AppComponent } from './app.component';
 
-import { AuthService, NgbdModalContent } from './auth.service';
+import { AuthService, NgbdModalLogin } from './auth.service';
+
 import { UserService } from './user.service';
 
 import { MainComponent } from './main/main.component';
 import { CloudComponent } from './cloud/cloud.component';
-import { ForumComponent } from './forum/forum.component';
+import { ForumComponent, NgbdModalAskInForum} from './forum/forum.component';
 import { ThreadComponent } from './thread/thread.component';
 
 
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     CloudComponent,
     ForumComponent,
     ThreadComponent,
-    NgbdModalContent
+    NgbdModalLogin,
+    NgbdModalAskInForum
   ],
   imports: [
     BrowserModule,
@@ -63,6 +65,6 @@ const appRoutes: Routes = [
   ],
   providers: [AuthService, UserService],
   bootstrap: [AppComponent],
-  entryComponents: [NgbdModalContent],
+  entryComponents: [NgbdModalLogin, NgbdModalAskInForum],
 })
 export class AppModule { }
