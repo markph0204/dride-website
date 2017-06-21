@@ -82,12 +82,12 @@ export class NgbdModalAskInForum {
 
 				this.auth.verifyLoggedIn().then( result => {
 					this.firebaseUser = this.user.getUser()
-                    //add a new thread on Firebase
-                    var list = this.db.list("/conversations")
-                    list.push({ 'title': title, 'created': new Date().getTime(), 'views': 0, 'participants': [this.firebaseUser.uid], 'description': '', 'cmntsCount': 1, 'lastUpdate': (new Date).getTime() }).then(ref => {
+            //add a new thread on Firebase
+            var list = this.db.list("/threads")
+            list.push({ 'title': title, 'created': new Date().getTime(), 'views': 0, 'participants': [this.firebaseUser.uid], 'description': '', 'cmntsCount': 1, 'lastUpdate': (new Date).getTime() }).then(ref => {
 
 
-						this.db.object('/conversations/' + ref.key).update({ slug: this.slugify(title, ref.key) }).then(res =>{
+						this.db.object('/threads/' + ref.key).update({ slug: this.slugify(title, ref.key) }).then(res =>{
 							this.closeModal();
 							//$location.path('thread/' + $scope.slugify(title, ref.key));
 							this.router.navigate(['/thread/' + this.slugify(title, ref.key)], { relativeTo: this.route });

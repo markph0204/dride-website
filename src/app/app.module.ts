@@ -27,6 +27,7 @@ import { ForumComponent, NgbdModalAskInForum} from './forum/forum.component';
 import { ThreadComponent } from './thread/thread.component';
 import { DocumentationComponent } from './documentation/documentation.component';
 import { InnerDocsComponent } from './documentation/inner-docs/inner-docs.component';
+import { Dride1Component } from './content/dride1/dride1.component';
 
 
 const appRoutes: Routes = [
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
   { path: 'thread', redirectTo: 'forum' },
   { path: 'thread/:slug', component: ThreadComponent },
   { path: 'documentation', component: DocumentationComponent },
+  { path: 'features', component: Dride1Component },
   { path: 'c/:slug', component: InnerDocsComponent },
  
   //{ path: '**', component: PageNotFoundComponent }
@@ -53,7 +55,8 @@ const appRoutes: Routes = [
     NgbdModalLogin,
     NgbdModalAskInForum,
     DocumentationComponent,
-    InnerDocsComponent
+    InnerDocsComponent,
+    Dride1Component
   ],
   imports: [
     BrowserModule,
