@@ -229,24 +229,24 @@
 
         <div class="text-center preOrderFooter buy">
 
-            <div ng-if="preSubmit">
+            <div *ngIf="preSubmit">
                 <h3>Subscribe for updates</h3>
 
 
-                <div >
+                <div class="row">
 
-                  <div class="col-md-offset-3 col-md-6 col-xs-12">
+                  <div class="mx-auto col-md-offset-3 col-md-6 col-xs-12">
                     <div class="input-group">
-                      <input type="email" class="form-control" placeholder="Email" ng-model="email">
+                      <input type="email" class="form-control" placeholder="Email" [(ngModel)]="email">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" ng-click="sendDetails(email)">Send</button>
+                        <button class="btn btn-default" type="button" (click)="sendDetails(email)">Send</button>
                       </span>
                     </div><!-- /input-group -->
                   </div><!-- /.col-lg-6 -->
                 </div><!-- /.row -->
             </div>
 
-            <div ng-if="!preSubmit" class="submitted">
+            <div *ngIf="!preSubmit" class="submitted">
                 <h3>See you soon</h3>
                 <img class="img-fluid" src="assets/images/thanks.svg" alt="kiss" />
 

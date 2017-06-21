@@ -13,6 +13,7 @@ import { MomentModule } from 'angular2-moment';
 import { TruncateModule } from 'ng2-truncate';
 import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import { ElasticModule } from 'angular2-elastic';
+import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
 
 
 import { AppComponent } from './app.component';
@@ -28,6 +29,14 @@ import { ThreadComponent } from './thread/thread.component';
 import { DocumentationComponent } from './documentation/documentation.component';
 import { InnerDocsComponent } from './documentation/inner-docs/inner-docs.component';
 import { Dride1Component } from './content/dride1/dride1.component';
+import { AdasComponent } from './documentation/inner-docs/pages/adas/adas.component';
+import { AssistantComponent } from './documentation/inner-docs/pages/assistant/assistant.component';
+import { ConnectivityComponent } from './documentation/inner-docs/pages/connectivity/connectivity.component';
+import { DrideCloudComponent } from './documentation/inner-docs/pages/dride-cloud/dride-cloud.component';
+import { GettingStartedComponent } from './documentation/inner-docs/pages/getting-started/getting-started.component';
+import { IndicatorsComponent } from './documentation/inner-docs/pages/indicators/indicators.component';
+import { ManualSetupComponent } from './documentation/inner-docs/pages/manual-setup/manual-setup.component';
+import { PublishComponent } from './documentation/inner-docs/pages/publish/publish.component';
 
 
 const appRoutes: Routes = [
@@ -56,7 +65,15 @@ const appRoutes: Routes = [
     NgbdModalAskInForum,
     DocumentationComponent,
     InnerDocsComponent,
-    Dride1Component
+    Dride1Component,
+    AdasComponent,
+    AssistantComponent,
+    ConnectivityComponent,
+    DrideCloudComponent,
+    GettingStartedComponent,
+    IndicatorsComponent,
+    ManualSetupComponent,
+    PublishComponent
   ],
   imports: [
     BrowserModule,
@@ -69,9 +86,10 @@ const appRoutes: Routes = [
     TruncateModule,
     MarkdownToHtmlModule.forRoot(),
     ElasticModule,
-    FormsModule
+    FormsModule,
+    HighlightJsModule
   ],
-  providers: [AuthService, UserService],
+  providers: [AuthService, UserService, HighlightJsService],
   bootstrap: [AppComponent],
   entryComponents: [NgbdModalLogin, NgbdModalAskInForum],
 })
