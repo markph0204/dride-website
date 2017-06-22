@@ -44,6 +44,8 @@ import { CodeComponent } from './shared/code/code.component';
 import { AboutComponent } from './content/about/about.component';
 import { NavComponent } from './layout/nav/nav.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { StoreComponent } from './store/store.component';
+import { ProductComponent } from './store/product.component';
 
 
 const appRoutes: Routes = [
@@ -56,6 +58,8 @@ const appRoutes: Routes = [
   { path: 'features', component: Dride1Component },
   { path: 'documentation', component: DocumentationComponent },
   { path: 'documentation/:slug', component: DocumentationComponent },
+  { path: 'store', component: StoreComponent },
+  { path: 'product/:productSlug', component: ProductComponent },
  
   //{ path: '**', component: PageNotFoundComponent }
 ];
@@ -88,7 +92,9 @@ const appRoutes: Routes = [
     CodeComponent,
     AboutComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    StoreComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

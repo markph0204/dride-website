@@ -10,7 +10,9 @@
     top: 9px;
 }
 
-
+.nav{
+    background-color: #fff;
+}
 
 .navbar-brand {
     color: #fff !important;
@@ -45,4 +47,14 @@
     margin-left: 19px;
     float: right !important;
     cursor: pointer;
+}
+.buyBtn{
+    background-color: #333;
+    color: #fff;
+    margin-top: 19px;
+    font-size: 14px;
+    height: 33px;
+    width: 53px;
+    text-align: center;
+    padding: 0;
 }
