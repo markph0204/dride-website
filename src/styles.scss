@@ -2,6 +2,10 @@
 
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+@import url(https://fonts.googleapis.com/css?family=Raleway:100,400,700);
+@import url(https://fonts.googleapis.com/css?family=Comfortaa:300,400);
+
+
 /* icons */
 
 @font-face {
@@ -954,3 +958,15 @@ $item-size) {
     border-radius: 50%;
     margin-top: -17px;
 }
+
+
+
+
+
+
+@media (max-width: 720px) {
+    .content{
+        padding: 0 !important;
+    }
+}
+
