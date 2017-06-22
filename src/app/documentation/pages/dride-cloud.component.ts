@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-dride-cloud',
   templateUrl: './dride-cloud.component.html',
-  styleUrls: ['./dride-cloud.component.scss']
+  styleUrls: ['../documentation.component.scss']
 })
 export class DrideCloudComponent implements OnInit {
 

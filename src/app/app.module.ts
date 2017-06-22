@@ -27,16 +27,19 @@ import { CloudComponent } from './cloud/cloud.component';
 import { ForumComponent, NgbdModalAskInForum} from './forum/forum.component';
 import { ThreadComponent } from './thread/thread.component';
 import { DocumentationComponent } from './documentation/documentation.component';
-import { InnerDocsComponent } from './documentation/inner-docs/inner-docs.component';
 import { Dride1Component } from './content/dride1/dride1.component';
-import { AdasComponent } from './documentation/inner-docs/pages/adas/adas.component';
-import { AssistantComponent } from './documentation/inner-docs/pages/assistant/assistant.component';
-import { ConnectivityComponent } from './documentation/inner-docs/pages/connectivity/connectivity.component';
-import { DrideCloudComponent } from './documentation/inner-docs/pages/dride-cloud/dride-cloud.component';
-import { GettingStartedComponent } from './documentation/inner-docs/pages/getting-started/getting-started.component';
-import { IndicatorsComponent } from './documentation/inner-docs/pages/indicators/indicators.component';
-import { ManualSetupComponent } from './documentation/inner-docs/pages/manual-setup/manual-setup.component';
-import { PublishComponent } from './documentation/inner-docs/pages/publish/publish.component';
+import { DocsMainComponent, ShowOnHomePage } from './documentation/pages/main.component';
+import { AdasComponent } from './documentation/pages/adas.component';
+import { AssistantComponent } from './documentation/pages/assistant.component';
+import { ConnectivityComponent } from './documentation/pages/connectivity.component';
+import { DrideCloudComponent } from './documentation/pages/dride-cloud.component';
+import { GettingStartedComponent } from './documentation/pages/getting-started.component';
+import { IndicatorsComponent } from './documentation/pages/indicators.component';
+import { ManualSetupComponent } from './documentation/pages/manual-setup.component';
+import { PublishComponent } from './documentation/pages/publish.component';
+import { SideNavComponent } from './documentation/layout/side-nav.component';
+import { PageService } from './documentation/pages.service';
+import { DocsPageDirective } from './documentation/pages.directive';
 
 
 const appRoutes: Routes = [
@@ -45,9 +48,9 @@ const appRoutes: Routes = [
   { path: 'forum', component: ForumComponent },
   { path: 'thread', redirectTo: 'forum' },
   { path: 'thread/:slug', component: ThreadComponent },
-  { path: 'documentation', component: DocumentationComponent },
   { path: 'features', component: Dride1Component },
-  { path: 'c/:slug', component: InnerDocsComponent },
+  { path: 'documentation', component: DocumentationComponent },
+  { path: 'documentation/:slug', component: DocumentationComponent },
  
   //{ path: '**', component: PageNotFoundComponent }
 ];
@@ -64,8 +67,8 @@ const appRoutes: Routes = [
     NgbdModalLogin,
     NgbdModalAskInForum,
     DocumentationComponent,
-    InnerDocsComponent,
     Dride1Component,
+    DocsMainComponent,
     AdasComponent,
     AssistantComponent,
     ConnectivityComponent,
@@ -73,7 +76,10 @@ const appRoutes: Routes = [
     GettingStartedComponent,
     IndicatorsComponent,
     ManualSetupComponent,
-    PublishComponent
+    PublishComponent,
+    SideNavComponent,
+    DocsPageDirective,
+    ShowOnHomePage
   ],
   imports: [
     BrowserModule,
@@ -89,8 +95,19 @@ const appRoutes: Routes = [
     FormsModule,
     HighlightJsModule
   ],
-  providers: [AuthService, UserService, HighlightJsService],
+  providers: [AuthService, UserService, HighlightJsService, SideNavComponent, PageService],
   bootstrap: [AppComponent],
-  entryComponents: [NgbdModalLogin, NgbdModalAskInForum],
+  entryComponents: [NgbdModalLogin,
+                    NgbdModalAskInForum,
+                    DocsMainComponent,
+                    AdasComponent,
+                    AssistantComponent,
+                    ConnectivityComponent,
+                    DrideCloudComponent,
+                    GettingStartedComponent,
+                    IndicatorsComponent,
+                    ManualSetupComponent,
+                    PublishComponent
+    ],
 })
 export class AppModule { }

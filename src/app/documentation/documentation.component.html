@@ -1,41 +1,24 @@
-    <div class="docs">
-        <div class="container-fluid">
-            <div class="row">
-                <!-- dev menu -->
-                <div class="col-xl-2 hidden-lg-down bg-faded sidebar float-left">
-                    <ul class="sidebar-nav">
-                        <li *ngFor="let node of docMenu">
-                            <a routerLink="/c/{{node.url}}" class="{{'/c/' + node.url==currentPage ? 'activeNav' : ''}}">{{node.ttl}}</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-xl-10 col-sm-12 offset-xl-2 pt-3">
-                    <div class="content">
-                        <div class="textBox paddedTtl">
-                            <h1 ng-click="showDevMenu()">Developer Center</h1>
-                            <br>
-                            <p>Dride is built for simplicity. We believe the easier we make the process of designing for dride, the larger the community will be.</p>
-                            <p>Dride is built on Node.js. Every API is a Node module. Find out how you can integrate, test and publish apps on the features below. Also, make sure you visit our <a href="https://github.com/dride">GitHub page</a></p>
-                            <br>
-                            <p><i>This page is under active development.</i></p>
-                        </div>
-                        <ul class="apisBox">
-                            <li class="col-lg-4 col-xs-12 p-2 text-center featureBox" *ngFor="let node of docMenu">
-                                <a routerLink="/c/{{node.url}}">
-                                    <span class="{{node.icon}}"></span>
-                                    <div class="desc" ng-class="node.url=='getting_started' ? 'mptpToFx' : ''">
-                                        <p>
-                                            <b class="docsTtl">{{node.ttl}}</b>
-                                        </p>
-                                        <p class="more">{{node.more ? node.more : '&nbsp;'}}</p>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="clear"></div>
-                    </div>
+<div class="docs">
+    <div class="container-fluid full-height">
+        <div class="row">
+            <!-- dev menu -->
+            <docs-side-nav ></docs-side-nav>
+
+            <div class="col-xl-10 col-sm-12 offset-xl-2 pt-3 greyBg">
+                <div class="content">
+
+                    <ng-template docs-page></ng-template>
+
+<!--                 <docs-main></docs-main> -->
+<!--                 <docs-adas></docs-adas> -->
+
+
+
+
+                    <div class="clear"></div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 

@@ -1,72 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, ComponentFactoryResolver, ViewEncapsulation, OnInit  } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+
+import { DocsPageDirective } from './pages.directive';
+import { PageComponent } from './page.component';
+import { PageService } from './pages.service';
+import { PageItem } from './page-item';
+import { SideNavComponent } from './layout/side-nav.component';
+
+
 
 @Component({
   selector: 'app-documentation',
   templateUrl: './documentation.component.html',
-  styleUrls: ['./documentation.component.scss']
+  styleUrls: ['./documentation.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class DocumentationComponent implements OnInit {
+	//@Input() pages: PageItem[];
+	@Input() pages: Object;
 
+	@ViewChild(DocsPageDirective) pageHost: DocsPageDirective;
 
-  public docMenu: any[]
-  constructor() { }
+	public docMenu: any[]
 
-  ngOnInit() {
+	constructor(sideNav: SideNavComponent, private _componentFactoryResolver: ComponentFactoryResolver, private pageService: PageService, private route: ActivatedRoute) { 
+		this.docMenu = sideNav.docMenu;
+	}
 
-  	this.docMenu = [
-                  {
-                    "url": "getting_started",
-                    "ttl": "Getting Started",
-                    "icon": "icon-toyCar-1",
-                    "more": '',
-                    'hp': true
-                  },
-                  {
-                    "url": "dride_cloud",
-                    "ttl": "Dride Cloud",
-                    "icon": "icon-cloud",
-                    "more": "A network of driving footage",
-                    'hp': true
-                  },
-                  {
-                    "url": "adas",
-                    "ttl": "ADAS",
-                    "icon": "icon-camera",
-                    "more": "Access the road programmatically",
-                    'hp': true
-                  },
-                  {
-                    "url": "assistant",
-                    "ttl": "Assistant",
-                    "icon": "icon-mic",
-                    "more": "Use Dride’s voice engine",
-                    'hp': true
-                  },
-                  {
-                    "url": "connectivity",
-                    "ttl": "Connectivity",
-                    "icon": "icon-wifi",
-                    "more": "GPS, Bluetooth & Wifi",
-                    'hp': true
-                  },
-                  {
-                    "url": "indicators",
-                    "ttl": "Indicators",
-                    "icon": "icon-indicator",
-                    "more": "Control Dride’s light indicators",
-                    'hp': true
-                  },
-                  {
-                    "url": "publish",
-                    "ttl": "Publish",
-                    "icon": "icon-app",
-                    "more": "Learn how to publish an app to Dride",
-                    'hp': false
-                  }
+	ngOnInit() {
+		this.pages = this.pageService.getPages();
+		this.route.params.subscribe(params => {
+			if (params.slug)
+				this.loadComponent(params.slug);
+			else
+				this.loadComponent('DocsMainComponent');
+		})
+	}
 
-                ];
+	loadComponent(currentAddIndex: string) {
 
-  }
+		let adItem = this.pages[currentAddIndex];
+		let componentFactory = this._componentFactoryResolver.resolveComponentFactory(adItem.component);
+
+		let viewContainerRef = this.pageHost.viewContainerRef;
+		viewContainerRef.clear();
+
+		let componentRef = viewContainerRef.createComponent(componentFactory);
+		(<PageComponent>componentRef.instance).data = adItem.data;
+	}
+
 
 }

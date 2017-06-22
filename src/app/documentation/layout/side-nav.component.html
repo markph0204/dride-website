@@ -1,0 +1,7 @@
+<div class="col-xl-2 hidden-lg-down bg-faded sidebar">
+    <ul class="sidebar-nav">
+        <li *ngFor="let node of docMenu">
+            <a routerLink="/documentation/{{node.url}}" [ngClass]="{ 'activeNav': node.url == currentPage }">{{node.ttl}}</a>
+        </li>
+    </ul>
+</div>
