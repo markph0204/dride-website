@@ -20,6 +20,7 @@ a {
     color: inherit !important;
     text-decoration: inherit !important;
 }
+router-outlet { display:block; }
 
 [class^="icon-"],
 [class*=" icon-"] {
@@ -235,12 +236,6 @@ body {
     margin: auto auto;
 }
 
-.navbar {
-    margin: 0;
-    border: 0 !important;
-    background: 0;
-    z-index: 100;
-}
 
 .no-padding {
     padding: 0;
@@ -264,55 +259,8 @@ body {
     background: #c5c5c5;
 }
 
-.navbar-default .navbar-nav > .active > a {
-    background: none !important;
-    border-bottom: 1px dashed #555555;
-    display: inline;
-    padding: 20px 15px 20px 15px;
-    position: relative;
-    top: 14px;
-}
-
-.nav li {
-    margin-top: -19px;
-    padding-right: 0;
-    padding-left: 0;
-}
 
 
-.navbar-header {
-    padding: 0;
-}
-
-.navbar-brand {
-    color: #fff !important;
-    height: 70px;
-    padding: 28px 15px;
-    font-size: 26px;
-    font-weight: 100;
-    line-height: 20px;
-    background-color: #333;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
-    cursor: pointer;
-}
-
-.navbar-default .navbar-brand:hover {
-    background-color: #333;
-}
-
-.navbar-nav {
-    margin-top: 35px;
-    padding: 0;
-    padding-left: 16px;
-}
-
-.profilePicM {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-top: -17px;
-}
 
 .preOrder, .uploadVideo, .login{
     float: right !important;
@@ -412,12 +360,7 @@ $color: #333333,
     transform: translate(-50%, -50%);
 }
 
-.login {
-    margin-top: 20px !important;
-    margin-left: 19px;
-    float: right !important;
-    cursor: pointer;
-}
+
 .dropdown-menu {
     margin-left: -109px;
     margin-top: 10px;
@@ -905,61 +848,6 @@ $item-size) {
 .full-height-footer-profile {
     height: calc(100% - 67px) !important;
 }
-
-
-//navbar
-
-.navbar-light .navbar-nav > .active > a {
-    background: none !important;
-    border-bottom: 1px dashed #555555;
-    display: inline;
-    padding: 20px 15px 20px 15px;
-    position: relative;
-    top: 14px;
-}
-
-.nav li {
-    margin-top: -19px;
-    padding-right: 0;
-    padding-left: 0;
-}
-
-
-.navbar-header {
-    padding: 0;
-}
-
-.navbar-brand {
-    color: #fff !important;
-    height: 70px;
-    padding: 28px 15px;
-    font-size: 26px;
-    font-weight: 100;
-    line-height: 20px;
-    background-color: #333;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
-    cursor: pointer;
-}
-
-.navbar-light .navbar-brand:hover {
-    background-color: #333;
-}
-
-.navbar-nav {
-    margin-top: 35px;
-    padding: 0;
-    padding-left: 16px;
-}
-
-.profilePicM {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-top: -17px;
-}
-
-
 
 
 

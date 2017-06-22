@@ -42,6 +42,8 @@ import { DocsPageDirective } from './documentation/pages.directive';
 
 import { CodeComponent } from './shared/code/code.component';
 import { AboutComponent } from './content/about/about.component';
+import { NavComponent } from './layout/nav/nav.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 
 const appRoutes: Routes = [
@@ -84,7 +86,9 @@ const appRoutes: Routes = [
     DocsPageDirective,
     ShowOnHomePage,
     CodeComponent,
-    AboutComponent
+    AboutComponent,
+    NavComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

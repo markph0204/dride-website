@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { AngularFireAuth } from 'angularfire2/auth';
-import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,16 +8,12 @@ import { UserService } from './user.service';
 })
 export class AppComponent {
   title: string = 'app';
-  firebaseUser: any;
 
-  constructor(private afAuth: AngularFireAuth) {
-    afAuth.authState.subscribe(user => {
-      if (!user) {
-        this.firebaseUser = null;        
-        return;
-      }
-      this.firebaseUser = user; 
-   
-    });
+
+  constructor() {
+
   }
+
+
+
 }
