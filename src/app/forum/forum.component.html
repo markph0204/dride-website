@@ -15,20 +15,20 @@
         <div class="col-md-12">
             <div class="posts">
                 <a class="post animBox row" *ngFor="let post of threads | async" routerLink="/thread/{{post.slug}}">
-                    <div class="col-md-2 hidden-xs usr pad10 partRow1">
+                    <div class="col-md-2 hidden-sm-down usr pad10 partRow1">
                         <span class="cmntCount">{{post.cmntsCount}}</span>
                         <span>Comments</span>
                     </div>
-                    <div class="col-md-8 col-xs-12 padS40 partRow2">
+                    <div class="col-md-8 col-sm-12 padS40 partRow2">
                         <h2>
 							{{post.title}}
-							<span class="ago hidden-xs">{{post.lastUpdate | amTimeAgo}}</span>
+							<span class="ago hidden-xs-down">{{post.lastUpdate | amTimeAgo}}</span>
 						</h2>
                         <p class="promoDesc" >
                             {{post.description | truncate : 200 : "…" }}
                         </p>
                     </div>
-                    <div class="col-md-2 hidden-xs readMore partRow3" >
+                    <div class="col-md-2 hidden-sm-down readMore partRow3" >
                         <span class="icon-moreArrow"></span>
                         <span class="readMore">Read More</span>
                     </div>

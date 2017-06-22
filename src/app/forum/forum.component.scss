@@ -186,3 +186,26 @@
         min-height: 63px;
     }
 }
+
+
+@media (max-width: 620px) {
+
+
+    .thread{
+        padding-top: 10px;
+        h1{
+            font-size: 16px;
+        }
+    }
+    .forum{
+        padding-top: 10px;
+        .padS40{
+            padding: 0 10px 0 10px;
+        }
+        .sorter li {
+            font-size: 15px;
+            padding-bottom: 21px;
+        }
+    }
+
+}
