@@ -41,6 +41,7 @@ import { PageService } from './documentation/pages.service';
 import { DocsPageDirective } from './documentation/pages.directive';
 
 import { CodeComponent } from './shared/code/code.component';
+import { AboutComponent } from './content/about/about.component';
 
 
 const appRoutes: Routes = [
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
   { path: 'forum', component: ForumComponent },
   { path: 'thread', redirectTo: 'forum' },
   { path: 'thread/:slug', component: ThreadComponent },
+  { path: 'about', component: AboutComponent },
   { path: 'features', component: Dride1Component },
   { path: 'documentation', component: DocumentationComponent },
   { path: 'documentation/:slug', component: DocumentationComponent },
@@ -81,7 +83,8 @@ const appRoutes: Routes = [
     SideNavComponent,
     DocsPageDirective,
     ShowOnHomePage,
-    CodeComponent
+    CodeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
