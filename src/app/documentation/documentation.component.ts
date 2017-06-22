@@ -1,13 +1,11 @@
-import { Component, Input, ViewChild, ComponentFactoryResolver, ViewEncapsulation, OnInit  } from '@angular/core';
+import { Component, Input, ViewChild, ComponentFactoryResolver, ViewEncapsulation, OnInit, Directive, ElementRef  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
 
 import { DocsPageDirective } from './pages.directive';
 import { PageComponent } from './page.component';
 import { PageService } from './pages.service';
 import { PageItem } from './page-item';
 import { SideNavComponent } from './layout/side-nav.component';
-
 
 
 @Component({
@@ -53,3 +51,5 @@ export class DocumentationComponent implements OnInit {
 
 
 }
+
+

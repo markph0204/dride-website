@@ -10,12 +10,12 @@
 		            <p>Download our pre-installed pre-configured <b><a ng-click="trackDownload()" target="_BLANK" href="https://s3.amazonaws.com/dride/image_2017-05-10-drideOS-lite.zip"><b>drideOS (Raspbian Jessie)</b></a></b> image with all the software needed.
 		           Or use the <a href="c/manual_setup">Manual Installation Guide</a>. </p>
 					<br><br>
-					<h2 class="text-center regCase">Download drideOS</h2>
+					<h2 class="text-center regCase pb-40">Download drideOS</h2>
 					<div class="row">
 					    <div class="col-md-3 col-sm-0"></div>
 					    <div class="col-md-3">
 					        <h2 class="text-center regCase">For RaspberryPi 3</h2>
-					        <div class="getDride" ng-click="trackDownload()">
+					        <div class="getDride" >
 					            <a class="text-center" target="_BLANK" href="https://s3.amazonaws.com/dride/image_2017-05-10-drideOS-lite.zip">
 					                <p>drideOS</p>
 					                <p class="smallTag">v0.3.3 Alpha</p>
@@ -24,10 +24,10 @@
 					    </div>
 					    <div class="col-md-3">
 					        <h2 class="text-center regCase">For RaspberryPi Zero W</h2>
-					        <div class="getDride disabled" ng-click="trackDownload()">
-					            <a class="text-center">
+					        <div class="getDride" >
+					            <a class="text-center" target="_BLANK" href="https://s3.amazonaws.com/dride/image_2017-06-21-drideOSZ.zip">
 					                <p>drideOSZ</p>
-					                <p class="smallTag">Coming soon</p>
+					                <p class="smallTag">v0.3.3 Alpha</p>
 					            </a>
 					        </div>
 					    </div>
@@ -64,21 +64,7 @@
 		        <div class="textBox" edit-page>
 		            <p>Dride is based on Node.js. It is controlled by an array of native and custom modules.</p>
 
-<div hljs hljs-language="bash">dride/&#13;&#10;
-├── package.json&#13;&#10;
-│&#13;&#10;
-├── node_modules/&#13;&#10;
-│   ├── dride-ws/&#13;&#10;
-│   ├── dride-core/&#13;&#10;
-│   ├── dride-connectivity/&#13;&#10;
-│   ├── dride-indicators/&#13;&#10;
-│   ├── dride-cloud/&#13;&#10;
-│   ├── dride-alexa/&#13;&#10;
-│   └── ...&#13;&#10;
-├── startup.js&#13;&#10;
-│&#13;&#10;
-└── ...&#13;&#10;
-</div>
+				<hljs [code]="data[0]"></hljs>
 
 
 

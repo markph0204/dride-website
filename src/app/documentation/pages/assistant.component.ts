@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssistantComponent implements OnInit {
 
+  data: any = [];
+
   constructor() { }
 
   ngOnInit() {
+  		this.data = [
+  			`var assistant = require('dride-alexa')`
+  		]
   }
 
 }

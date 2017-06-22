@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndicatorsComponent implements OnInit {
 
+  data: any = [];
   constructor() { }
 
   ngOnInit() {
+
+  	this.data = [
+  					`var indicators = require('dride-indicators')`,
+  					`indicators.startLoading();`,
+  					`indicators.stopLoading();`
+  	]
   }
 
 }

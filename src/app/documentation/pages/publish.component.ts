@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublishComponent implements OnInit {
 
+  data: any = [];
+
   constructor() { }
 
   ngOnInit() {
+
+  	  	this.data = [
+  					`$ dride publish`
+  		]
+
   }
 
 }

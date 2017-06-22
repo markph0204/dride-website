@@ -13,7 +13,6 @@ import { MomentModule } from 'angular2-moment';
 import { TruncateModule } from 'ng2-truncate';
 import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import { ElasticModule } from 'angular2-elastic';
-import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
 
 
 import { AppComponent } from './app.component';
@@ -40,6 +39,8 @@ import { PublishComponent } from './documentation/pages/publish.component';
 import { SideNavComponent } from './documentation/layout/side-nav.component';
 import { PageService } from './documentation/pages.service';
 import { DocsPageDirective } from './documentation/pages.directive';
+
+import { CodeComponent } from './shared/code/code.component';
 
 
 const appRoutes: Routes = [
@@ -79,7 +80,8 @@ const appRoutes: Routes = [
     PublishComponent,
     SideNavComponent,
     DocsPageDirective,
-    ShowOnHomePage
+    ShowOnHomePage,
+    CodeComponent
   ],
   imports: [
     BrowserModule,
@@ -92,10 +94,9 @@ const appRoutes: Routes = [
     TruncateModule,
     MarkdownToHtmlModule.forRoot(),
     ElasticModule,
-    FormsModule,
-    HighlightJsModule
+    FormsModule
   ],
-  providers: [AuthService, UserService, HighlightJsService, SideNavComponent, PageService],
+  providers: [AuthService, UserService, SideNavComponent, PageService],
   bootstrap: [AppComponent],
   entryComponents: [NgbdModalLogin,
                     NgbdModalAskInForum,
