@@ -845,10 +845,6 @@ $item-size) {
 .mouseWiggle {
     color: #333;
 }
-.full-height-footer-profile {
-    height: calc(100% - 67px) !important;
-}
-
 
 
 
@@ -858,3 +854,36 @@ $item-size) {
     }
 }
 
+    .player{
+        font-family: 'icomoon' !important;
+        vg-overlay-play {
+            margin-left: -100%;
+        }
+        .vg-icon-pause:before {
+            content: "\e919";
+        } 
+        .vg-icon-fullscreen:before {
+            content: "\e91a";
+        }
+        vg-overlay-play .vg-icon-play_arrow:before {
+            font-size: 50px;
+            content: "\e91b";
+        }
+        vg-controls{
+            background-color: initial;
+            vg-scrub-bar-current-time .background {
+                border: 1px solid #F06060;
+                background-color: #F06060;
+            }
+        }
+        vg-scrub-bar-buffering-time .background {
+            background-color: rgba(255, 0, 0, 0.14);
+        }
+        .vg-buffering .loadingSpinner {
+            box-shadow: none;
+        }
+        .divider{
+            color: #fff;
+            margin-top: 12px;
+        }
+    }

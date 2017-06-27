@@ -13,7 +13,11 @@ import { MomentModule } from 'angular2-moment';
 import { TruncateModule } from 'ng2-truncate';
 import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import { ElasticModule } from 'angular2-elastic';
-
+import { VgCoreModule } from 'videogular2/core';
+import { VgControlsModule } from 'videogular2/controls';
+import { VgOverlayPlayModule } from 'videogular2/overlay-play';
+import { VgBufferingModule } from 'videogular2/buffering';
+import { AgmCoreModule, AgmPolygon } from '@agm/core';
 
 import { AppComponent } from './app.component';
 
@@ -47,6 +51,7 @@ import { NavComponent } from './layout/nav/nav.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { StoreComponent } from './store/store.component';
 import { ProductComponent } from './store/product.component';
+import { ProfileComponent, ShowClips, KeysPipe } from './profile/profile.component';
 
 
 const appRoutes: Routes = [
@@ -61,8 +66,13 @@ const appRoutes: Routes = [
   { path: 'documentation/:slug', component: DocumentationComponent },
   { path: 'store', component: StoreComponent },
   { path: 'product/:productSlug', component: ProductComponent },
- 
-  //{ path: '**', component: PageNotFoundComponent }
+  { path: 'profile/:uid/:videoId', component: ProfileComponent },
+  { path: 'profile/:uid', component: ProfileComponent },
+
+
+
+  { path: 'page-not-found', component: MainComponent },
+   //{ path: '**', component: PageNotFoundComponent }
 ];
 
 
@@ -96,7 +106,10 @@ const appRoutes: Routes = [
     NavComponent,
     FooterComponent,
     StoreComponent,
-    ProductComponent
+    ProductComponent,
+    ProfileComponent,
+    ShowClips,
+    KeysPipe
   ],
   imports: [
     BrowserModule,
@@ -109,7 +122,14 @@ const appRoutes: Routes = [
     TruncateModule,
     MarkdownToHtmlModule.forRoot(),
     ElasticModule,
-    FormsModule
+    FormsModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyD_9g0R-z2-NpCQpiQrFrJ7_NzWK6rRyRM'
+    })
   ],
   providers: [AuthService, UserService, SideNavComponent, PageService],
   bootstrap: [AppComponent],
@@ -124,7 +144,7 @@ const appRoutes: Routes = [
                     GettingStartedComponent,
                     IndicatorsComponent,
                     ManualSetupComponent,
-                    PublishComponent
+                    PublishComponent,
     ],
 })
 export class AppModule { }
