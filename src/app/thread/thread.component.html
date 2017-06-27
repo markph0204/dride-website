@@ -15,7 +15,7 @@
 			            <div class="auther float-left pl">
 			                <img src="{{node.pic}}" alt="{{node.auther}}" />
 			            </div>
-			            <a class="bold" href="profile/{{node.autherId}}">@{{node.auther}}</a>
+			            <a class="bold" routerLink="/profile/{{node.autherId}}">@{{node.auther}}</a>
 			            <div class="bdy" markdown-to-html [data]="node.body" ></div>
 			            <div class="ago">{{node.timestamp | amTimeAgo}}</div>
 			        </div>

@@ -58,7 +58,10 @@ export class ProfileComponent implements OnInit {
                     .get(url)
                     .map(response => response.json())
                     .subscribe(data => {
-                        this.router.navigate(['/profile/' + this.uid + '/' + Object.keys(data)[0]]);
+                        if (data)
+                            this.router.navigate(['/profile/' + this.uid + '/' + Object.keys(data)[0]]);
+                        else
+                            this.userHaveNoVideos = true
                     },
                     error => {
                         this.userHaveNoVideos = true;

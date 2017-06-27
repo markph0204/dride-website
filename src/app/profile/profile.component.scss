@@ -1,6 +1,5 @@
 .profile {
     color: #666666;
-
     .headerBg {
         background-color: #333;
         background-image: url(../../assets/images/profile/defaultBg.jpg);
@@ -237,5 +236,58 @@
     agm-map {
         height: 400px;
         display: inline-block;
+    }
+}
+
+
+@media (max-width: 442px) {
+    .profile{
+        .videogular-container {
+            height: 253px !important;
+        }
+        .views{
+            font-size: 13px;
+        }
+        .actions{
+            padding-left: 0;
+            li{
+                margin-right: 10px;
+                margin-top: -7px;
+                font-size: 15.6px;
+            }
+        }
+        .postBox .wrapReplyBox textarea {
+            width: 67%;
+        }
+        .cmntsBox {
+            .ago {
+                width: 106px;
+                font-size: 10px;
+            }
+            .auther {
+                margin-top: 0px;
+                position: relative;
+                top: 56px;
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 2px;
+                    margin-top: -92px;
+                }
+            }
+            .pl {
+                margin-left: -14px;
+            }
+            .bubble {
+                a{
+                    display: inline-block;
+                }
+                .bdy{
+                    margin-top: 0px;
+                    min-height: 35px;
+                    padding-bottom: 17px;
+                }
+             }
+        }
     }
 }

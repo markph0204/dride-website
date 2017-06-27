@@ -89,7 +89,7 @@
 						                        <img src="{{comments[commentId].pic}}" alt="{{comments[commentId].auther}}" />
 						                    </div>
 						                    <div class="ago">{{comments[commentId].timestamp | amTimeAgo}}</div>
-						                    <a class="bold" href="profile/{{comments[commentId].autherId}}">@{{comments[commentId].auther}}</a>
+						                    <a class="bold" routerLink="/profile/{{comments[commentId].autherId}}">@{{comments[commentId].auther}}</a>
 						                    <div class="bdy">{{comments[commentId].body}}</div>
 						                </div>
 						                <div class="connectorLine" *ngIf="conversationPreviusIsMine[commentId]"></div>
@@ -144,10 +144,10 @@
     </div>
 
     <div class="container-fluid greyBg full-height" *ngIf="userHaveNoVideos">
-        <div class="col-md-12 no-padding">
+        <div class="col-md-12 p-0">
             <div class="clearfix container">
                 <div class="row">
-                    <h3 class="noVideos">This user doesn't have any videos yet..</h3>
+                    <h3 class="noVideos mx-auto">This user doesn't have any videos yet..</h3>
                 </div>
             </div>
         </div>
