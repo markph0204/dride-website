@@ -1,7 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+
+import { AuthService } from '../auth.service';
+import { UserService } from '../user.service';
+import { NgbdModalPayement } from './payment.modal';
+import { AngularFireAuth } from 'angularfire2/auth';
+
+
 
 
 @Component({
@@ -11,13 +20,28 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 export class ProductComponent implements OnInit {
 
-  productData: FirebaseListObservable<any[]>;
+  productData: FirebaseObjectObservable<any[]>;
+  mainImageIndex: string = "0"
+  public firebaseUser: any;
 
-  constructor(db: AngularFireDatabase, private route: ActivatedRoute) {
+  constructor(db: AngularFireDatabase, private route: ActivatedRoute, private auth: AuthService, private afAuth: AngularFireAuth, private modalService: NgbModal) {
+
+
+
+    afAuth.authState.subscribe(user => {
+      if (!user) {
+        this.firebaseUser = null;        
+        return;
+      }
+      this.firebaseUser = user; 
+  
+    });
+
 
 		this.route.params.subscribe(params => {
 
-		    this.productData = db.list('content/' + params['productSlug']);
+      if (params['productSlug'])
+         this.productData = db.object('content/' + params['productSlug']);
 
 		});
 
@@ -25,5 +49,31 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  /*
+  * Update current picture in gallery 
+  */
+  updateMainPicture(key){
+    this.mainImageIndex = key
+  }
+
+
+  purchase =function(){
+
+
+          this.auth.verifyLoggedIn().then( res => {
+       
+
+              this.modalService.open(NgbdModalPayement, {size: 'lg'});
+
+
+              //payment.makePayment($scope.data.price, $scope.data.key, $scope.data.actionBtn)
+              //TODO: track
+            
+          })
+
+    }
+
+
 
 }

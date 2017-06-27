@@ -24,6 +24,7 @@ import { UserService } from './user.service';
 import { MainComponent } from './main/main.component';
 import { CloudComponent } from './cloud/cloud.component';
 import { ForumComponent, NgbdModalAskInForum} from './forum/forum.component';
+import { NgbdModalPayement} from './store/payment.modal';
 import { ThreadComponent } from './thread/thread.component';
 import { DocumentationComponent } from './documentation/documentation.component';
 import { Dride1Component } from './content/dride1/dride1.component';
@@ -75,6 +76,7 @@ const appRoutes: Routes = [
     ThreadComponent,
     NgbdModalLogin,
     NgbdModalAskInForum,
+    NgbdModalPayement,
     DocumentationComponent,
     Dride1Component,
     DocsMainComponent,
@@ -113,6 +115,7 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent],
   entryComponents: [NgbdModalLogin,
                     NgbdModalAskInForum,
+                    NgbdModalPayement,
                     DocsMainComponent,
                     AdasComponent,
                     AssistantComponent,

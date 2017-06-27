@@ -1,21 +1,21 @@
-<div class="product" >
+<div class="product">
 
 	<div class="container-fluid greyBg">
 	    <div class="container productHead">
-	        <div class="col-md-12">
+	        <div class="col-md-12" >
 	            <div class="row productHeader">
-	                <div class="i col-md-6 info animBox" ng-show="data">
-	                    <h2>{{productData.key}}</h2>
-	                    <h3>{{productData.title}}</h3>
-	                    <p class="price">${{productData.price}}</p>
+	                <div class="i col-md-6 info animBox" *ngIf="(productData | async)?.title">
+	                    <h2>{{(productData | async)?.key}}</h2>
+	                    <h3>{{(productData | async)?.title}}</h3>
+	                    <p class="price">${{(productData | async)?.price}}</p>
 	                    <div class="divider"></div>
-	                    <a ng-click="purchase()" class="btn btn-buy">{{productData.actionBtn}}</a>
+	                    <a (click)="purchase()" class="btn btn-buy">{{(productData | async)?.actionBtn}}</a>
 	                </div>
-	                <div class="col-md-6 gallery" ng-show="data">
-	                    <img class="productMain img-responsive" src="{{mainPic}}" alt="dride" />
+	                <div class="col-md-6 gallery text-center" *ngIf="(productData | async)?.title">
+	                    <img class="productMain img-fluid" src="{{(productData | async)?.images[mainImageIndex].url}}" alt="dride" />
 	                    <ul class="productPics">
-	                    	<li ng-repeat="(key,i) in productData.images">
-	                    		<img ng-click="updateMainPicture(key)" class="img-responsive" src="{{i.url}}" alt="dride" />
+	                    	<li *ngFor="let product of (productData | async)?.images; index as key">
+	                    		<img (click)="updateMainPicture(key)" class="img-responsive" src="{{product.url}}" alt="dride" />                  
 	                    	</li>
 
 
@@ -28,10 +28,11 @@
 	</div>
 	<div class="container specs">
 	    <h2>Product Information</h2>
-	    <div class="productInfo animBox" ng-repeat="node in productData.productInfo">
-		    <div class="row">
+
+	    <div class="productInfo animBox" *ngFor="let node of (productData | async)?.productInfo">
+		    <div class="row" *ngIf="node">
 		        <div class="col-md-2 upper">{{node.title}}</div>
-		        <div class="col-md-10 txtFnt" ng-bind-html="node.body"></div>
+		        <div class="col-md-10 txtFnt" [innerHTML]="node.body"></div>
 		    </div>
 	    </div>
 	    <br>
