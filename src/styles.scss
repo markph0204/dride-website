@@ -874,10 +874,20 @@ $item-size) {
             vg-scrub-bar-current-time .background {
                 border: 1px solid #F06060;
                 background-color: #F06060;
+                margin-top: -8px;
+                margin-left: -3px;
+                border-radius: 0;
+                height: 1px;
             }
         }
         vg-scrub-bar-buffering-time .background {
             background-color: rgba(255, 0, 0, 0.14);
+        }
+        vg-scrub-bar{
+            margin-top: 25px;
+            height: 19px;
+            border-top: 2px dashed #fff;
+            position: relative;
         }
         .vg-buffering .loadingSpinner {
             box-shadow: none;
