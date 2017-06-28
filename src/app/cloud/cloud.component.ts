@@ -10,13 +10,10 @@ import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable }
 import { AngularFireAuth } from 'angularfire2/auth';
 
 
-
-
-
 @Component({
-  selector: 'app-cloud',
-  templateUrl: './cloud.component.html',
-  styleUrls: ['./cloud.component.scss']
+	selector: 'app-cloud',
+	templateUrl: './cloud.component.html',
+	styleUrls: ['./cloud.component.scss']
 })
 export class CloudComponent implements OnInit {
 	hpClips: any;
@@ -26,113 +23,116 @@ export class CloudComponent implements OnInit {
 
 		this.hpClips = this.dCloud
 
-    	//get Auth state
-	    afAuth.authState.subscribe(user => {
-	      if (!user) {
-	        this.firebaseUser = null;        
-	        return;
-	      }
-	      this.firebaseUser = user; 
-	  
-	    });
+		//get Auth state
+		afAuth.authState.subscribe(user => {
+			if (!user) {
+				this.firebaseUser = null;
+				return;
+			}
+			this.firebaseUser = user;
+
+		});
 
 
 	}
 
 	ngOnInit() {
+		//load first batch
+		//this.hpClips.nextPage()
+
 	}
 
 
-	fbShare = function(uid, videoId) {
-	    window.open(
-	        "https://www.facebook.com/sharer/sharer.php?u=https://dride.io/profile/" +
-	            uid +
-	            "/" +
-	            videoId,
-	        "Facebook",
-	        "toolbar=0,status=0,resizable=yes,width=" +
-	            500 +
-	            ",height=" +
-	            600 +
-	            ",top=" +
-	            (window.innerHeight - 600) / 2 +
-	            ",left=" +
-	            (window.innerWidth - 500) / 2
-	    );
+	fbShare = function (uid, videoId) {
+		window.open(
+			"https://www.facebook.com/sharer/sharer.php?u=https://dride.io/profile/" +
+			uid +
+			"/" +
+			videoId,
+			"Facebook",
+			"toolbar=0,status=0,resizable=yes,width=" +
+			500 +
+			",height=" +
+			600 +
+			",top=" +
+			(window.innerHeight - 600) / 2 +
+			",left=" +
+			(window.innerWidth - 500) / 2
+		);
 	};
-	twShare = function(uid, videoId) {
-	    var url = "https://dride.io/profile/" + uid + "/" + videoId;
-	    var txt = encodeURIComponent("You need to see this! #dride " + url);
-	    window.open(
-	        "https://www.twitter.com/intent/tweet?text=" + txt,
-	        "Twitter",
-	        "toolbar=0,status=0,resizable=yes,width=" +
-	            500 +
-	            ",height=" +
-	            600 +
-	            ",top=" +
-	            (window.innerHeight - 600) / 2 +
-	            ",left=" +
-	            (window.innerWidth - 500) / 2
-	    );
+	twShare = function (uid, videoId) {
+		var url = "https://dride.io/profile/" + uid + "/" + videoId;
+		var txt = encodeURIComponent("You need to see this! #dride " + url);
+		window.open(
+			"https://www.twitter.com/intent/tweet?text=" + txt,
+			"Twitter",
+			"toolbar=0,status=0,resizable=yes,width=" +
+			500 +
+			",height=" +
+			600 +
+			",top=" +
+			(window.innerHeight - 600) / 2 +
+			",left=" +
+			(window.innerWidth - 500) / 2
+		);
 	};
 
-    isOwner(uid){
-    	return uid == this.firebaseUser.uid
-    }
+	isOwner(uid) {
+		return uid && uid == this.firebaseUser.uid
+	}
 
 
-    removeClip = function(op, vId, index) {
+	removeClip = function (op, vId, index) {
 
-    	if (!op || !vId){
-    		console.error('Error: No Uid or videoId, Delete aborted')
-    		return;
-    	}
-        //TODO: prompt before remove
+		if (!op || !vId) {
+			console.error('Error: No Uid or videoId, Delete aborted')
+			return;
+		}
+		//TODO: prompt before remove
 
-        //firebase functions will take it from here..
-		this.db.object('/clips/'+op + '/' + vId).update({  'deleted': true })
+		//firebase functions will take it from here..
+		this.db.object('/clips/' + op + '/' + vId).update({ 'deleted': true })
 
 
-        this.hpClips.items.splice(index, 1)
+		this.hpClips.items.splice(index, 1)
 
-    };
+	};
 
-    commentFoucs = function(id){
+	commentFoucs = function (id) {
 		document.getElementById(id).focus();
-    }
+	}
 
-    hasComments = function(comments) {
-        return comments && Object.keys(comments).length ? true : false;
-    };
+	hasComments = function (comments) {
+		return comments && Object.keys(comments).length ? true : false;
+	};
 
-    hasMoreToLoad = function(currentVideo) {
+	hasMoreToLoad = function (currentVideo) {
 
-        if (!currentVideo.comments || typeof currentVideo.comments == "undefined")
-            return false;
+		if (!currentVideo.comments || typeof currentVideo.comments == "undefined")
+			return false;
 
-        return currentVideo &&
-            currentVideo.cmntsCount >
-                Object.keys(currentVideo.comments).length
-            ? true
-            : false;
-    };
-    loadMoreComments(op, videoId, index){
+		return currentVideo &&
+			currentVideo.cmntsCount >
+			Object.keys(currentVideo.comments).length
+			? true
+			: false;
+	};
+	loadMoreComments(op, videoId, index) {
 
 		this.http
-        .get(environment.firebase.databaseURL + "/conversations_video/" + op + "/" + videoId + ".json")
-        .map(response => response.json())
-        .subscribe(data => {
-            var items = data;
-            this.hpClips.items[index].comments = items;
-        },
-               error => {
-               	 //TODO: log this
-                 console.log("An error occurred when requesting comments.");
-				}
+			.get(environment.firebase.databaseURL + "/conversations_video/" + op + "/" + videoId + ".json")
+			.map(response => response.json())
+			.subscribe(data => {
+				var items = data;
+				this.hpClips.items[index].comments = items;
+			},
+			error => {
+				//TODO: log this
+				console.log("An error occurred when requesting comments.");
+			}
 
-		)
+			)
 
 
-    };
+	};
 }

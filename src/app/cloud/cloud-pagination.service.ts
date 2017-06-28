@@ -13,10 +13,13 @@ export class CloudPaginationService {
 	end:boolean = false;
 
    constructor(private http: Http) {
-
+   		this.nextPage();
+   		this.busy = false;
 
    }
+
    nextPage = function() {
+   	console.log('xxx')
             if (this.busy || this.end) return;
             this.busy = true;
 
