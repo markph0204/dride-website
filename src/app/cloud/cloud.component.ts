@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from "rxjs/Observable";
-import { Subject } from "rxjs/Subject";
-import "rxjs/add/observable/defer"
-import "rxjs/add/observable/zip"
-import "rxjs/add/operator/concatMap"
-import "rxjs/add/operator/filter"
-import "rxjs/add/operator/first"
-import "rxjs/add/operator/map"
-import "rxjs/add/operator/scan"
-import "rxjs/add/operator/share"
-import "rxjs/add/operator/startWith"
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Http } from "@angular/http";
+
+import { environment } from '../../environments/environment';
+import { AuthService } from '../auth.service';
+import { UserService } from '../user.service';
+import { CloudPaginationService } from '../cloud/cloud-pagination.service';
+
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+
+
+
 
 
 @Component({
@@ -20,78 +20,119 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 })
 export class CloudComponent implements OnInit {
 	hpClips: any;
-	pageSize = 100;
-	notifier = new Subject<any>();
-	last: Observable<any>;
+	public firebaseUser: any;
 
-  //https://stackoverflow.com/questions/42085296/angularfire2-infinite-scrolling
+	constructor(private db: AngularFireDatabase, public af: AngularFireDatabase, private dCloud: CloudPaginationService, private auth: AuthService, private afAuth: AngularFireAuth, private http: Http) {
 
-  constructor(public af: AngularFireDatabase) {
-	this.hpClips = Observable
+		this.hpClips = this.dCloud
 
-	  // Use zip to combine the notifier's emissions with the last
-	  // child value:
-
-	  .zip(this.notifier, Observable.defer(() => this.last))
-
-	  // Use concatMap to emit a page of children into the
-	  // composed observable (note that first is used to complete
-	  // the inner list):
-
-	  .concatMap(([unused, last]) => this.af.list("clips_homepage", {
-	      query: {
-
-	        // If there is a last value, start at that value but ask
-	        // for one more:
-
-	        limitToFirst: last ? (this.pageSize + 1) : this.pageSize,
-	        orderByChild: "lastUpdate",
-	        startAt: last
+    	//get Auth state
+	    afAuth.authState.subscribe(user => {
+	      if (!user) {
+	        this.firebaseUser = null;        
+	        return;
 	      }
-	    })
-	   .first()
-	   )
-
-	 // Use scan to accumulate the page into the infinite list:
-
-	  .scan((acc, list) => {
-
-	    // If this isn't the initial page, the page was started
-	    // at the last value, so remove it from the beginning of
-	    // the list:
-
-	    if (acc.length > 0) {
-	      list.shift();
-	    }
-	    return acc.concat(list);
-	  }, [])
-
-	  // Use share so that the last observable (see below) doesn't
-	  // result in a second subscription:
-
-	  .share();
-
-	// Each time a page is emitted, map to its last child value so
-	// that it can be fed back into the composed infinite list:
-
-	this.last = this.hpClips
-	  .filter((list) => list.length > 0)
-	  .map((list) => list[list.length - 1].date_published)
-	  .startWith(null);
-
-	this.hpClips.subscribe((list) => console.log(list));
-
-	// Each time the notifier emits, another page will be retrieved
-	// and added to the infinite list:
-
-	this.notifier.next();
-	this.notifier.next();
-	this.notifier.next();
+	      this.firebaseUser = user; 
 	  
+	    });
 
-  }
 
-  ngOnInit() {
-  }
+	}
 
+	ngOnInit() {
+	}
+
+
+	fbShare = function(uid, videoId) {
+	    window.open(
+	        "https://www.facebook.com/sharer/sharer.php?u=https://dride.io/profile/" +
+	            uid +
+	            "/" +
+	            videoId,
+	        "Facebook",
+	        "toolbar=0,status=0,resizable=yes,width=" +
+	            500 +
+	            ",height=" +
+	            600 +
+	            ",top=" +
+	            (window.innerHeight - 600) / 2 +
+	            ",left=" +
+	            (window.innerWidth - 500) / 2
+	    );
+	};
+	twShare = function(uid, videoId) {
+	    var url = "https://dride.io/profile/" + uid + "/" + videoId;
+	    var txt = encodeURIComponent("You need to see this! #dride " + url);
+	    window.open(
+	        "https://www.twitter.com/intent/tweet?text=" + txt,
+	        "Twitter",
+	        "toolbar=0,status=0,resizable=yes,width=" +
+	            500 +
+	            ",height=" +
+	            600 +
+	            ",top=" +
+	            (window.innerHeight - 600) / 2 +
+	            ",left=" +
+	            (window.innerWidth - 500) / 2
+	    );
+	};
+
+    isOwner(uid){
+    	return uid == this.firebaseUser.uid
+    }
+
+
+    removeClip = function(op, vId, index) {
+
+    	if (!op || !vId){
+    		console.error('Error: No Uid or videoId, Delete aborted')
+    		return;
+    	}
+        //TODO: prompt before remove
+
+        //firebase functions will take it from here..
+		this.db.object('/clips/'+op + '/' + vId).update({  'deleted': true })
+
+
+        this.hpClips.items.splice(index, 1)
+
+    };
+
+    commentFoucs = function(id){
+		document.getElementById(id).focus();
+    }
+
+    hasComments = function(comments) {
+        return comments && Object.keys(comments).length ? true : false;
+    };
+
+    hasMoreToLoad = function(currentVideo) {
+
+        if (!currentVideo.comments || typeof currentVideo.comments == "undefined")
+            return false;
+
+        return currentVideo &&
+            currentVideo.cmntsCount >
+                Object.keys(currentVideo.comments).length
+            ? true
+            : false;
+    };
+    loadMoreComments(op, videoId, index){
+
+		this.http
+        .get(environment.firebase.databaseURL + "/conversations_video/" + op + "/" + videoId + ".json")
+        .map(response => response.json())
+        .subscribe(data => {
+            var items = data;
+            this.hpClips.items[index].comments = items;
+        },
+               error => {
+               	 //TODO: log this
+                 console.log("An error occurred when requesting comments.");
+				}
+
+		)
+
+
+    };
 }

@@ -7,5 +7,6 @@ export const environment = {
     projectId: "dride-2384f",
     storageBucket: "dride-2384f.appspot.com",
     messagingSenderId: "802741428178"
-  }
+  },
+  googleMapsApi: "AIzaSyD_9g0R-z2-NpCQpiQrFrJ7_NzWK6rRyRM"
 };

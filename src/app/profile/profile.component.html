@@ -25,7 +25,7 @@
 
                         <div class="videogular-container">
 
-                            <vg-player vg-theme="vgConfig.theme.url" class="player" *ngIf="currentVideo">
+                            <vg-player class="player" *ngIf="currentVideo">
 
 							    <video [vgMedia]="media" #media id="current" preload="auto" crossorigin class="videoPlayer" poster="{{currentVideo.thumbs.src}}" >
 							    	<source src="{{currentVideo.clips.src}}" type="video/mp4">

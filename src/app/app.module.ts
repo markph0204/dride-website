@@ -18,6 +18,7 @@ import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 import { VgBufferingModule } from 'videogular2/buffering';
 import { AgmCoreModule, AgmPolygon } from '@agm/core';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppComponent } from './app.component';
 
@@ -27,6 +28,7 @@ import { UserService } from './user.service';
 
 import { MainComponent } from './main/main.component';
 import { CloudComponent } from './cloud/cloud.component';
+import { CloudPaginationService } from './cloud/cloud-pagination.service';
 import { ForumComponent, NgbdModalAskInForum} from './forum/forum.component';
 import { NgbdModalPayement} from './store/payment.modal';
 import { ThreadComponent } from './thread/thread.component';
@@ -128,10 +130,11 @@ const appRoutes: Routes = [
     VgOverlayPlayModule,
     VgBufferingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyD_9g0R-z2-NpCQpiQrFrJ7_NzWK6rRyRM'
-    })
+      apiKey: environment.googleMapsApi
+    }),
+    InfiniteScrollModule
   ],
-  providers: [AuthService, UserService, SideNavComponent, PageService],
+  providers: [AuthService, UserService, SideNavComponent, PageService, CloudPaginationService],
   bootstrap: [AppComponent],
   entryComponents: [NgbdModalLogin,
                     NgbdModalAskInForum,

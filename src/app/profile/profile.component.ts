@@ -1,5 +1,8 @@
 import { Component, Pipe, PipeTransform, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../environments/environment';
+
+
 import { Http } from "@angular/http";
 import { Observable } from 'rxjs/Observable';
 
@@ -51,7 +54,7 @@ export class ProfileComponent implements OnInit {
             this.uid = params['uid'];
             if (typeof params['videoId'] == "undefined") {
                 var url =
-                    "https://dride-ci.firebaseio.com/clips/" +
+                    environment.firebase.databaseURL + "/clips/" +
                     this.uid +
                     '.json?limitToLast=1&orderBy="$key"';
                 this.http
@@ -269,7 +272,7 @@ export class ProfileComponent implements OnInit {
 
 
 		this.http
-        .get("https://dride-ci.firebaseio.com/conversations_video/" + this.uid + "/" + this.videoId + ".json")
+        .get(environment.firebase.databaseURL + "/conversations_video/" + this.uid + "/" + this.videoId + ".json")
         .map(response => response.json())
         .subscribe(data => {
             var items = data;
