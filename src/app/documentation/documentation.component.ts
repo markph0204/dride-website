@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ComponentFactoryResolver, ViewEncapsulation, OnInit, Directive, ElementRef  } from '@angular/core';
+import { Component, Input, ViewChild, ComponentFactoryResolver, ViewEncapsulation, OnInit, Directive, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { DocsPageDirective } from './pages.directive';
@@ -9,10 +9,10 @@ import { SideNavComponent } from './layout/side-nav.component';
 
 
 @Component({
-  selector: 'app-documentation',
-  templateUrl: './documentation.component.html',
-  styleUrls: ['./documentation.component.scss'],
-  encapsulation: ViewEncapsulation.None
+	selector: 'app-documentation',
+	templateUrl: './documentation.component.html',
+	styleUrls: ['./documentation.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 
 export class DocumentationComponent implements OnInit {
@@ -23,7 +23,7 @@ export class DocumentationComponent implements OnInit {
 
 	public docMenu: any[]
 
-	constructor(sideNav: SideNavComponent, private _componentFactoryResolver: ComponentFactoryResolver, private pageService: PageService, private route: ActivatedRoute) { 
+	constructor(sideNav: SideNavComponent, private _componentFactoryResolver: ComponentFactoryResolver, private pageService: PageService, private route: ActivatedRoute) {
 		this.docMenu = sideNav.docMenu;
 	}
 
