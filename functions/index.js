@@ -61,8 +61,6 @@ exports.cmntsCount = functions.database.ref('/conversations/{threadId}/{conversa
                 });
 
 
-                return event.data.adminRef.root.child('threads').child(event.params.threadId).child('lastUpdate').set((new Date).getTime());
-
             });
 
 

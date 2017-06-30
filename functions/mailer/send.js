@@ -2,6 +2,7 @@ var admin = require('firebase-admin');
 
 var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill('gAfP29xLRGG6RoVW2Sx5KA');
+var marked = require('marked');
 
 mailer = {
 
@@ -41,7 +42,7 @@ mailer = {
                 "title": thread.title,
                 "subject": thread.title,
                 "cmntCount": thread.cmntCount,
-                "body": conv.body, //limit & remove html 
+                "body": marked(conv.body), //limit & remove html 
                 "profilePic": conv.pic, 
                 "timestamp": conv.timestamp,
                 "type": 'forum',

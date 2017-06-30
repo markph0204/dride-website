@@ -8,6 +8,7 @@
     "firebase-functions": "^0.5.3",
     "get-urls": "^7.0.0",
     "mandrill-api": "^1.0.45",
+    "marked": "^0.3.6",
     "mixpanel": "^0.7.0",
     "request": "^2.81.0"
   }

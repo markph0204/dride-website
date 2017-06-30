@@ -8,8 +8,6 @@ import * as firebase from 'firebase/app';
 
 import { AuthService } from '../auth.service';
 import { UserService } from '../user.service';
-
-
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 
@@ -26,20 +24,20 @@ export class ForumComponent implements OnInit {
   constructor(db: AngularFireDatabase, private modalService: NgbModal) {
 
 
-	this.threads = db.list('/threads', {
-		    query: {
-		    orderByChild: 'lastUpdate',
-		    orderByKey: true
-		  }
-		}).map( (arr) => { return arr.reverse(); } );
+    this.threads = db.list('/threads', {
+      query: {
+        orderByChild: 'lastUpdate',
+        orderByKey: true
+      }
+    }).map((arr) => arr.reverse());
 
   }
 
   ngOnInit() {
   }
 
-  ask(){
-  	this.modalService.open(NgbdModalAskInForum, {size: 'lg'});
+  ask() {
+    this.modalService.open(NgbdModalAskInForum, { size: 'lg' });
   }
 
 }
@@ -53,10 +51,14 @@ export class ForumComponent implements OnInit {
 export class NgbdModalAskInForum {
   @Input() name;
   qTitle: any;
-  isLoaded: boolean = true;
-  
-  constructor(public activeModal: NgbActiveModal, public db: AngularFireDatabase, private auth: AuthService, public user: UserService,private router: Router, private route: ActivatedRoute) { 
+  isLoaded = true;
 
+  constructor(public activeModal: NgbActiveModal,
+    public db: AngularFireDatabase,
+    private auth: AuthService,
+    public user: UserService,
+    private router: Router,
+    private route: ActivatedRoute) {
   }
 
 
@@ -71,38 +73,46 @@ export class NgbdModalAskInForum {
 
   slugify(text, id) {
 
-        return text
-            .toLowerCase()
-            .replace(/[^\w ]+/g, '')
-            .replace(/ +/g, '-') + '__' + id;;
+    return text
+      .toLowerCase()
+      .replace(/[^\w ]+/g, '')
+      .replace(/ +/g, '-') + '__' + id;
 
-    }
-   //TODO: Add animation
-   openThread = function(title) {
+  }
+  // TODO: Add animation
+  openThread = function (title) {
 
-				this.auth.verifyLoggedIn().then( result => {
-					this.firebaseUser = this.user.getUser()
-            //add a new thread on Firebase
-            var list = this.db.list("/threads")
-            list.push({ 'title': title, 'created': new Date().getTime(), 'views': 0, 'participants': [this.firebaseUser.uid], 'description': '', 'cmntsCount': 1, 'lastUpdate': (new Date).getTime() }).then(ref => {
-
-
-						this.db.object('/threads/' + ref.key).update({ slug: this.slugify(title, ref.key) }).then(res =>{
-							this.closeModal();
-							//$location.path('thread/' + $scope.slugify(title, ref.key));
-							this.router.navigate(['/thread/' + this.slugify(title, ref.key)], { relativeTo: this.route });
-	                        //TODO: //$mixpanel.track('posted a new post');
-						});
-
-
-
-                    });
-
-                });
+    this.auth.verifyLoggedIn().then(result => {
+      this.firebaseUser = this.user.getUser()
+      // add a new thread on Firebase
+      this.db.list('/threads')
+      .push({
+        'title': title,
+        'created': new Date().getTime(),
+        'views': 0,
+        'participants': [this.firebaseUser.uid],
+        'description': '',
+        'cmntsCount': 1,
+        'lastUpdate': (new Date).getTime()
+      }).then(ref => {
 
 
+        this.db.object('/threads/' + ref.key).update({ slug: this.slugify(title, ref.key) }).then(res => {
+          this.closeModal();
+          // $location.path('thread/' + $scope.slugify(title, ref.key));
+          this.router.navigate(['/thread/' + this.slugify(title, ref.key)], { relativeTo: this.route });
+          // TODO: //$mixpanel.track('posted a new post');
+        });
 
-    };
+
+
+      });
+
+    });
+
+
+
+  };
 
 
 
