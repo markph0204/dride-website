@@ -23,7 +23,9 @@ before_script:
 - ng build --prod
 
 
-script: ng test
+script:
+  - ng test --watch false
+  - ng e2e
 
 after_success:
   -  if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then firebase use default --token "${FIREBASE_TOKEN_CI}";firebase deploy --$
