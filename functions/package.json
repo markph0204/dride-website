@@ -3,6 +3,8 @@
   "description": "Firebase Functions",
   "dependencies": {
     "@google-cloud/storage": "^0.8.0",
+    "angular2-universal": "^2.1.0-rc.1",
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "firebase-admin": "^4.1.4",
     "firebase-functions": "^0.5.3",
@@ -10,6 +12,7 @@
     "mandrill-api": "^1.0.45",
     "marked": "^0.3.6",
     "mixpanel": "^0.7.0",
+    "preboot": "^5.0.0-rc.11",
     "request": "^2.81.0"
   }
 }

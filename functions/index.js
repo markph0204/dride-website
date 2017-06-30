@@ -264,35 +264,8 @@ exports.generateThumbnail = functions.storage.object().onChange(event => {
 });
 
 
-var app = express();
 
-app.get('/profile2/:uid/:vid', function (req, res) {
+// app.get('/forum', ngApp)
 
-    var uid = req.params.uid
-    var videoId = req.params.vid
-
-    //res.set('Cache-Control', 'public max-age=300, s-maxage=7200');
-    console.log('https://dride.io/profile_dynamic/'+uid+'/'+videoId)
-    request('https://dride.io/profile_dynamic/'+uid+'/'+videoId).pipe(res);
-
-    // res.send(`<!doctype html>
-    //             <html>
-    //                 <head>
-    //                     <title>Test</title>
-    //                     <meta name="twitter:title" content="${uid}">
-    //                       <script type="text/javascript">
-    //                                window.location="https://dride.io/profile/${uid}/${videoId}";
-    //                       </script>
-    //                 </head>
-    //                 <body>
-    //                         Jumping..
-    //                 </body>
-    //                 </html>
-    // `);
-
-
-
-})
-
-exports.profile = functions.https.onRequest(app);
+// exports.profile = functions.https.onRequest(app);
 
