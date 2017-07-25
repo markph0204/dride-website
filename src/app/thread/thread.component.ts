@@ -24,27 +24,34 @@ export class ThreadComponent implements OnInit {
   private sub: any;
   public replyBox: string;
   public firebaseUser: any;
-  
-  constructor(private route: ActivatedRoute, public db: AngularFireDatabase, private location:Location, private router:Router, private auth: AuthService, public user: UserService, private afAuth: AngularFireAuth) {
+
+
+  constructor(private route: ActivatedRoute,
+              public db: AngularFireDatabase,
+              private location:Location,
+              private router:Router,
+              private auth: AuthService,
+              public user: UserService,
+              private afAuth: AngularFireAuth) {
 
     afAuth.authState.subscribe(user => {
       if (!user) {
-        this.firebaseUser = null;        
+        this.firebaseUser = null;
         return;
       }
-      this.firebaseUser = user; 
-  
+      this.firebaseUser = user;
+
     });
 
   }
 
   ngOnInit() {
 
-  	 this.sub = this.route.params.subscribe(params => {
-     this.threadId = params['slug'].split('__').pop(); 
+    this.sub = this.route.params.subscribe(params => {
+     this.threadId = params['slug'].split('__').pop();
 
-	   this.currentThread = this.db.object('/threads/' + this.threadId);
-	   this.conversation = this.db.list('/conversations/' + this.threadId);
+    this.currentThread = this.db.object('/threads/' + this.threadId);
+    this.conversation = this.db.list('/conversations/' + this.threadId);
 
      this.conversation.subscribe(snapshot => {
         this.sideThreadByAuther(snapshot, this.conversationPreviusIsMine)
@@ -59,7 +66,7 @@ export class ThreadComponent implements OnInit {
 
   sideThreadByAuther(threadData, conversationPreviusIsMine) {
 
-          var previusKey = null;
+          let previusKey = null;
 
           threadData.forEach(function(k, key) {
 
@@ -67,8 +74,8 @@ export class ThreadComponent implements OnInit {
                   previusKey = key;
                   return;
               }
-              //if same author posted again
-              if (threadData[key].autherId == threadData[previusKey].autherId) {
+              // if same author posted again
+              if (threadData[key].autherId === threadData[previusKey].autherId) {
                   conversationPreviusIsMine[previusKey] = true;
               } else {
                   conversationPreviusIsMine[previusKey] = false;
@@ -76,17 +83,16 @@ export class ThreadComponent implements OnInit {
               previusKey = key;
           });
 
-         
   }
 
   /*
   *  Will push a new conversation object to DB (Add a comment in threadId)
   */
-  send(){
-     
+  send() {
+
       this.auth.verifyLoggedIn().then( res => {
            this.firebaseUser = this.user.getUser()
-           this.db.list("conversations/" +this.threadId).push({
+           this.db.list('conversations/' + this.threadId).push({
                'autherId': this.firebaseUser.uid,
                'auther': this.firebaseUser.displayName,
                'pic': this.firebaseUser.photoURL,
@@ -95,7 +101,7 @@ export class ThreadComponent implements OnInit {
            });
 
            this.replyBox = '';
-           //TODO: //$mixpanel.track('posted a comment');
+           // TODO: //$mixpanel.track('posted a comment');
 
        })
 
@@ -104,7 +110,7 @@ export class ThreadComponent implements OnInit {
 
   }
 
-  openLogin(){
+  openLogin() {
     this.auth.openLogin();
   }
 

@@ -41,8 +41,10 @@
             ".write": false
         },
         "devicesAll": {
-            ".read": false,
-            ".write": true
+            "$uuid": {
+                ".read": false,
+                ".write": "newData.child('lastSeen').isNumber() && newData.child('lastSeen').val() >= 0"
+            }
         },
         "content": {
             ".read": true,
