@@ -22,11 +22,11 @@ export class CloudComponent implements OnInit {
 	public replyBox: any = [];
 
 	constructor(private db: AngularFireDatabase,
-		public af: AngularFireDatabase,
-		private dCloud: CloudPaginationService,
-		private auth: AuthService,
-		private afAuth: AngularFireAuth,
-		private http: Http) {
+				public af: AngularFireDatabase,
+				private dCloud: CloudPaginationService,
+				private auth: AuthService,
+				private afAuth: AngularFireAuth,
+				private http: Http) {
 
 		this.hpClips = this.dCloud
 

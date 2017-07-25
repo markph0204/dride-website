@@ -13,11 +13,11 @@
 
 
                     <div class="loginBox">
-                        <div class="padWrap">
+                        <div class="padWrap form-group" [ngClass]="{'has-danger': showDanger}">
 
                             <h2 class="text-center">Title</h2>
 
-                            <input class="form-control replyBox" type="text" [(ngModel)]="qTitle" placeholder="State a meaningfull title for your question."/>
+                            <input class="form-control replyBox form-control-danger" type="text" [(ngModel)]="qTitle" placeholder="State a meaningfull title for your question."/>
                             <span class="hint">You will have plenty of space to describe your question in detail on the next screen</span>
                             <br>
                             <div class="text-center">

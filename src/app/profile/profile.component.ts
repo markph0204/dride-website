@@ -35,7 +35,12 @@ export class ProfileComponent implements OnInit {
     vgConfig: any;
     public firebaseUser: any;
 
-    constructor(private db: AngularFireDatabase, private route: ActivatedRoute, public http: Http, private router: Router, private auth: AuthService, private afAuth: AngularFireAuth) {
+    constructor(private db: AngularFireDatabase, 
+                private route: ActivatedRoute, 
+                public http: Http, 
+                private router: Router, 
+                private auth: AuthService, 
+                private afAuth: AngularFireAuth) {
 
     	//get Auth state
 	    afAuth.authState.subscribe(user => {
@@ -243,7 +248,6 @@ export class ProfileComponent implements OnInit {
 		document.getElementById("replyBox").focus();
     }
     sendComment = function() {
-    	console.log(this.replyBox)
         if (!this.replyBox) {
             alert("Please write something");              
             return;

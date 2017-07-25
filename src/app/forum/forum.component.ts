@@ -52,7 +52,8 @@ export class NgbdModalAskInForum {
   @Input() name;
   qTitle: any;
   isLoaded = true;
-
+  showDanger = false
+  
   constructor(public activeModal: NgbActiveModal,
     public db: AngularFireDatabase,
     private auth: AuthService,
@@ -83,6 +84,10 @@ export class NgbdModalAskInForum {
   openThread = function (title) {
 
     this.auth.verifyLoggedIn().then(result => {
+      if (!title){
+        this.showDanger = true;
+        return;
+      }
       this.firebaseUser = this.user.getUser()
       // add a new thread on Firebase
       this.db.list('/threads')

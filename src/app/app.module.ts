@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+
 import { MomentModule } from 'angular2-moment';
 import { TruncateModule } from 'ng2-truncate';
 import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
@@ -54,11 +55,11 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { StoreComponent } from './store/store.component';
 import { ProductComponent } from './store/product.component';
 import { ProfileComponent, ShowClips, KeysPipe } from './profile/profile.component';
+import { UploadVideoComponent } from './cloud/upload-video/upload-video.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: MainComponent },
-  { path: 'cloud', component: CloudComponent },
   { path: 'forum', component: ForumComponent },
   { path: 'thread', redirectTo: 'forum' },
   { path: 'thread/:slug', component: ThreadComponent },
@@ -70,7 +71,8 @@ const appRoutes: Routes = [
   { path: 'product/:productSlug', component: ProductComponent },
   { path: 'profile/:uid/:videoId', component: ProfileComponent },
   { path: 'profile/:uid', component: ProfileComponent },
-
+  { path: 'cloud', component: CloudComponent },
+  { path: 'uploadVideo', component: UploadVideoComponent },
 
 
   { path: 'page-not-found', component: MainComponent },
@@ -111,7 +113,8 @@ const appRoutes: Routes = [
     ProductComponent,
     ProfileComponent,
     ShowClips,
-    KeysPipe
+    KeysPipe,
+    UploadVideoComponent
   ],
   imports: [
     BrowserModule,
