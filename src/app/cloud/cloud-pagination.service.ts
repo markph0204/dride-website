@@ -19,7 +19,6 @@ export class CloudPaginationService {
    }
 
    nextPage = function() {
-   	console.log('xxx')
             if (this.busy || this.end) return;
             this.busy = true;
 
@@ -55,7 +54,7 @@ export class CloudPaginationService {
 	                        };
 	                        Object.assign(items[item], config)
 
-	                        if (items[item].comments)
+	                        if (!items[item].comments)
 	                            items[item].comments = [];
 
 	                        this.items.push(items[item]);

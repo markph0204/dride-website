@@ -14,7 +14,7 @@
 					</div>
 					<div *ngIf="hpClips.items">
 						<div class="col-md-offset-2 col-md-8 whiteBg p-0 animBox mx-auto" *ngFor="let currentVideo of hpClips.items;  index as key">
-							<span class="icon-toyCar-1 float-right" style="right: %;"></span>
+							<span class="icon-toyCar-1 float-right"></span>
 							<div class="box mainVid">
 
 								<!-- <p class="dateLabel float-right">{{currentVideo.videoId | date:'MM-dd-yyyy'}}</p>	 -->
@@ -72,11 +72,11 @@
 									<div *ngFor="let node of currentVideo.comments | keys;" class="listItem">
 										<div class="bubble">
 											<div class="auther float-left pl">
-												<img src="{{node.pic}}" alt="{{node.auther}}" />
+												<img src="{{currentVideo.comments[node].pic}}" alt="{{currentVideo.comments[node].auther}}" />
 											</div>
 											<div class="ago">{{node.timestamp | amTimeAgo}}</div>
-											<a class="bold" href="profile/{{node.autherId}}">@{{node.auther}}</a>
-											<div class="bdy" ng-bind-html2="node.body | markdown">{{node.body}}</div>
+											<a class="bold" href="profile/{{currentVideo.comments[node].autherId}}">@{{currentVideo.comments[node].auther}}</a>
+											<div class="bdy" ng-bind-html2="currentVideo.comments[node].body | markdown">{{currentVideo.comments[node].body}}</div>
 
 										</div>
 										<!-- <div class="connectorLine" *ngIf="conversationPreviusIsMine[key]"></div> -->

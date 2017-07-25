@@ -15,15 +15,21 @@ import { AngularFireAuth } from 'angularfire2/auth';
 	templateUrl: './cloud.component.html',
 	styleUrls: ['./cloud.component.scss']
 })
+
 export class CloudComponent implements OnInit {
 	hpClips: any;
 	public firebaseUser: any;
 
-	constructor(private db: AngularFireDatabase, public af: AngularFireDatabase, private dCloud: CloudPaginationService, private auth: AuthService, private afAuth: AngularFireAuth, private http: Http) {
+	constructor(private db: AngularFireDatabase,
+		public af: AngularFireDatabase,
+		private dCloud: CloudPaginationService,
+		private auth: AuthService,
+		private afAuth: AngularFireAuth,
+		private http: Http) {
 
 		this.hpClips = this.dCloud
 
-		//get Auth state
+		// get Auth state
 		afAuth.authState.subscribe(user => {
 			if (!user) {
 				this.firebaseUser = null;
@@ -37,8 +43,8 @@ export class CloudComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		//load first batch
-		//this.hpClips.nextPage()
+		// load first batch
+		// this.hpClips.nextPage()
 
 	}
 
@@ -56,29 +62,30 @@ export class CloudComponent implements OnInit {
 			600 +
 			",top=" +
 			(window.innerHeight - 600) / 2 +
-			",left=" +
+			',left=' +
 			(window.innerWidth - 500) / 2
 		);
 	};
+
 	twShare = function (uid, videoId) {
-		var url = "https://dride.io/profile/" + uid + "/" + videoId;
-		var txt = encodeURIComponent("You need to see this! #dride " + url);
+		var url = 'https://dride.io/profile/' + uid + "/" + videoId;
+		let txt = encodeURIComponent('You need to see this! #dride ' + url);
 		window.open(
-			"https://www.twitter.com/intent/tweet?text=" + txt,
-			"Twitter",
-			"toolbar=0,status=0,resizable=yes,width=" +
+			'https://www.twitter.com/intent/tweet?text=' + txt,
+			'Twitter',
+			'toolbar=0,status=0,resizable=yes,width=' +
 			500 +
-			",height=" +
+			',height=' +
 			600 +
-			",top=" +
+			',top=' +
 			(window.innerHeight - 600) / 2 +
-			",left=" +
+			',left=' +
 			(window.innerWidth - 500) / 2
 		);
 	};
 
 	isOwner(uid) {
-		return uid && uid == this.firebaseUser.uid
+		return uid && this.firebaseUser && uid === this.firebaseUser.uid
 	}
 
 
@@ -88,9 +95,9 @@ export class CloudComponent implements OnInit {
 			console.error('Error: No Uid or videoId, Delete aborted')
 			return;
 		}
-		//TODO: prompt before remove
+		// TODO: prompt before remove
 
-		//firebase functions will take it from here..
+		// firebase functions will take it from here..
 		this.db.object('/clips/' + op + '/' + vId).update({ 'deleted': true })
 
 
@@ -108,7 +115,7 @@ export class CloudComponent implements OnInit {
 
 	hasMoreToLoad = function (currentVideo) {
 
-		if (!currentVideo.comments || typeof currentVideo.comments == "undefined")
+		if (!currentVideo.comments || typeof currentVideo.comments == 'undefined')
 			return false;
 
 		return currentVideo &&
@@ -120,15 +127,15 @@ export class CloudComponent implements OnInit {
 	loadMoreComments(op, videoId, index) {
 
 		this.http
-			.get(environment.firebase.databaseURL + "/conversations_video/" + op + "/" + videoId + ".json")
+			.get(environment.firebase.databaseURL + '/conversations_video/' + op + '/' + videoId + '.json')
 			.map(response => response.json())
 			.subscribe(data => {
-				var items = data;
+				const items = data;
 				this.hpClips.items[index].comments = items;
 			},
 			error => {
-				//TODO: log this
-				console.log("An error occurred when requesting comments.");
+				// TODO: log this
+				console.log('An error occurred when requesting comments.');
 			}
 
 			)

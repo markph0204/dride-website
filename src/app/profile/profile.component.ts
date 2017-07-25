@@ -376,7 +376,7 @@ export class ShowClips {
 })
 export class KeysPipe implements PipeTransform {
     transform(value, args: string[]): any {
-        return Object.keys(value);
+        return value ? Object.keys(value) : [];
     }
 }
 
