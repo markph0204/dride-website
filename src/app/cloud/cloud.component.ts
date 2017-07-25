@@ -19,6 +19,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class CloudComponent implements OnInit {
 	hpClips: any;
 	public firebaseUser: any;
+	public replyBox: any = [];
 
 	constructor(private db: AngularFireDatabase,
 		public af: AngularFireDatabase,
@@ -142,4 +143,54 @@ export class CloudComponent implements OnInit {
 
 
 	};
+
+    sendComment = function(op, videoId, body, index) {
+            if (!body) {
+                alert("Please write something");
+                return;
+            }
+
+			this.auth.verifyLoggedIn().then( res => {
+				this.db.list('/conversations_video/' + op + '/' + videoId)
+				.push({
+					autherId: res.uid,
+					auther: res.displayName,
+					pic: res.photoURL,
+					body: body,
+					timestamp: new Date().getTime()
+				})
+				.then(res => {
+					this.loadMoreComments(op, videoId, index);
+					this.replyBox[index] = '';
+				});
+				//TODO: track
+				//$mixpanel.track("posted a comment");
+			})
+
+
+            // firebase
+            //     .database()
+            //     .ref("conversations_video")
+            //     .child(op)
+            //     .child(videoId)
+            //     .push({
+            //         autherId: $rootScope.firebaseUser.uid,
+            //         auther: $rootScope.firebaseUser.displayName,
+            //         pic: $rootScope.firebaseUser.photoURL,
+            //         body: body,
+            //         timestamp: new Date().getTime()
+            //     })
+            //     .then(function() {
+            //         $scope.loadMoreComments(videoId, op, index);
+            //         body = "";
+            //         $scope.replyBox[index] = "";
+
+            //         $scope.bindVideoToLive(op, videoId, index);
+            //     });
+
+            //$mixpanel.track("posted a comment");
+        };
+
+
+
 }

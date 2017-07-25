@@ -3,7 +3,7 @@
 
 		<div class="container-fluid">
 
-			<div class="col-md-12 p-0 mtop30">
+			<div class="col-md-12 p-0">
 
 
 				<!-- 	        	    <div class="container" infinite-scroll='hpClips.nextPage()' infinite-scroll-disabled='hpClips.busy' infinite-scroll-distance='2'> -->
@@ -89,8 +89,8 @@
 								<div class="postBox">
 									<div class="wrapReplyBox mt-0">
 										<textarea id="replyBox{{key}}" ctrl-enter="sendComment(currentVideo.op, currentVideo.videoId, replyBox[key], key)" class="form-control replyBox mt-0"
-											fz-elastic ng-model="replyBox[key]" type="text" name="reply" placeholder="What's on your mind?"></textarea>
-										<button class="btn btn-dride-black sendBtn float-right" ng-click="sendComment(currentVideo.op,currentVideo.videoId, replyBox[key], key)">Send</button>
+											fz-elastic [(ngModel)]="replyBox[key]" type="text" name="reply" placeholder="What's on your mind?"></textarea>
+										<button class="btn btn-dride-black sendBtn float-right" (click)="sendComment(currentVideo.op,currentVideo.videoId, replyBox[key], key)">Send</button>
 									</div>
 								</div>
 
