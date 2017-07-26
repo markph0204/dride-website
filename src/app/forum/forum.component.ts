@@ -3,7 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { AngularFireAuth } from 'angularfire2/auth';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+
+
 import * as firebase from 'firebase/app';
 
 import { AuthService } from '../auth.service';
@@ -21,7 +25,7 @@ export class ForumComponent implements OnInit {
 
   threads: any;
 
-  constructor(db: AngularFireDatabase, private modalService: NgbModal) {
+  constructor(db: AngularFireDatabase, private modalService: BsModalService) {
 
 
     this.threads = db.list('/threads', {
@@ -37,7 +41,8 @@ export class ForumComponent implements OnInit {
   }
 
   ask() {
-    this.modalService.open(NgbdModalAskInForum, { size: 'lg' });
+    console.log('xx')
+    this.modalService.show(NgbdModalAskInForum);
   }
 
 }
@@ -54,7 +59,7 @@ export class NgbdModalAskInForum {
   isLoaded = true;
   showDanger = false
   
-  constructor(public activeModal: NgbActiveModal,
+  constructor(public bsModalRef: BsModalRef,
     public db: AngularFireDatabase,
     private auth: AuthService,
     public user: UserService,
@@ -64,12 +69,12 @@ export class NgbdModalAskInForum {
 
 
   closeModal = function () {
-    this.activeModal.close();
+    this.bsModalRef.hide();
   };
 
 
   dismissModal = function () {
-    this.activeModal.dismiss();
+    this.bsModalRef.dismiss();
   };
 
   slugify(text, id) {

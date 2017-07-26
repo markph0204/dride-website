@@ -35,9 +35,10 @@
       <button type="button" class="btn buyBtn btn-secondary " routerLink="/store">Buy</button>
 
         <div *ngIf="firebaseUser" class="login">
-            <div ngbDropdown class="d-inline-block">
-                <img class="profilePicM" src="{{firebaseUser.photoURL}}" alt="{{firebaseUser.displayName}}" id="settings" ngbDropdownToggle/>
-                <div class="dropdown-menu" aria-labelledby="settings">
+            <div dropdown class="d-inline-block" placement="bottom right" >
+                <img dropdownToggle class="profilePicM" src="{{firebaseUser.photoURL}}" alt="{{firebaseUser.displayName}}" id="settings"/>
+                <!--<span class="caret"></span>-->
+                <div *dropdownMenu role="menu" class="dropdown-menu" aria-labelledby="settings">
                     <button class="dropdown-item">Settings</button>
                     <div class="dropdown-divider"></div>
                     <button class="dropdown-item">Logout</button>

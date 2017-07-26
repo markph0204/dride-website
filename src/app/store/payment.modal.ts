@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 @Component({
   selector: 'ngbd-modal-content',
@@ -13,18 +13,18 @@ export class NgbdModalPayement {
   qTitle: any;
   isLoaded: boolean = true;
   shareTxt: string = 'I just joined the waitlist for #dride. You should too! 🚗';
-  constructor(public activeModal: NgbActiveModal,private router: Router, private route: ActivatedRoute) { 
+  constructor(public bsModalRef: BsModalRef,private router: Router, private route: ActivatedRoute) { 
 
   }
 
 
   closeModal = function () {
-    this.activeModal.close();
+    this.bsModalRef.hide();
   };
 
 
   dismissModal = function () {
-    this.activeModal.dismiss();
+    this.bsModalRef.hide();
   };
 
 

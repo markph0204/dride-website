@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 
 import { AuthService } from '../auth.service';
@@ -24,7 +25,11 @@ export class ProductComponent implements OnInit {
   mainImageIndex: string = "0"
   public firebaseUser: any;
 
-  constructor(db: AngularFireDatabase, private route: ActivatedRoute, private auth: AuthService, private afAuth: AngularFireAuth, private modalService: NgbModal) {
+  constructor(db: AngularFireDatabase, 
+              private route: ActivatedRoute, 
+              private auth: AuthService, 
+              private afAuth: AngularFireAuth, 
+              private modalService: BsModalService) {
 
 
 
@@ -64,7 +69,7 @@ export class ProductComponent implements OnInit {
           this.auth.verifyLoggedIn().then( res => {
        
 
-              this.modalService.open(NgbdModalPayement, {size: 'lg'});
+              this.modalService.show(NgbdModalPayement);
 
 
               //payment.makePayment($scope.data.price, $scope.data.key, $scope.data.actionBtn)

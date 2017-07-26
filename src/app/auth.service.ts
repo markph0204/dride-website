@@ -3,7 +3,10 @@ import { Observable } from 'rxjs/Observable';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 import { UserService } from './user.service';
@@ -14,11 +17,11 @@ export class AuthService {
 
   closeResult: string;
 
-  constructor(private modalService: NgbModal, public afAuth: AngularFireAuth) { }
+  constructor(private modalService: BsModalService, public afAuth: AngularFireAuth) { }
 
   openLogin() {
 
-    return this.modalService.open(NgbdModalLogin, {size: 'lg'});
+    return this.modalService.show(NgbdModalLogin);
 
 
   }
@@ -74,7 +77,7 @@ export class NgbdModalLogin {
   userData: FirebaseListObservable<any[]>;
 
 
-  constructor(public activeModal: NgbActiveModal, public afAuth: AngularFireAuth, user: UserService, public db: AngularFireDatabase) { 
+  constructor(public activeModal: BsModalRef, public afAuth: AngularFireAuth, user: UserService, public db: AngularFireDatabase) { 
     this.user = afAuth.authState;
   }
 
@@ -82,12 +85,12 @@ export class NgbdModalLogin {
   user: Observable<firebase.User>;
 
   closeModal = function () {
-    this.activeModal.close();
+    this.activeModal.hide();
   };
 
 
   dismissModal = function () {
-    this.activeModal.dismiss();
+    this.activeModal.hide();
   };
 
   connectWithFacebook = function () {

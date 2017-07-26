@@ -4,8 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 
+// BS4 plugins
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -119,7 +123,9 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    NgbModule.forRoot(),
+    AlertModule.forRoot(), 
+    ModalModule.forRoot(),
+    BsDropdownModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
