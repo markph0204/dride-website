@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer } from '@angular/core';
 
 
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -12,8 +12,8 @@ import { UserService } from '../../user.service';
 export class NavComponent implements OnInit {
 
   firebaseUser: any;
-
-  constructor(private afAuth: AngularFireAuth) {
+  isCollapsed = true;
+  constructor(private afAuth: AngularFireAuth, private renderer: Renderer) {
 
     afAuth.authState.subscribe(user => {
       if (!user) {
@@ -25,6 +25,10 @@ export class NavComponent implements OnInit {
     });
   }
 
+  setHeight(el, height) {
+    if (!this.isCollapsed)
+      this.renderer.setElementStyle(el, 'height', height + 'px');
+  }
 
   ngOnInit() {
 

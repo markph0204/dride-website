@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 
 import { AngularFireModule } from 'angularfire2';
@@ -126,6 +127,7 @@ const appRoutes: Routes = [
     AlertModule.forRoot(), 
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
+    CollapseModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
