@@ -38,6 +38,7 @@ import { CloudPaginationService } from './cloud/cloud-pagination.service';
 import { ForumComponent, NgbdModalAskInForum} from './forum/forum.component';
 import { NgbdModalPayement} from './store/payment.modal';
 import { ThreadComponent } from './thread/thread.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DocumentationComponent } from './documentation/documentation.component';
 import { Dride1Component } from './content/dride1/dride1.component';
 import { DocsMainComponent, ShowOnHomePage } from './documentation/pages/main.component';
@@ -80,8 +81,8 @@ const appRoutes: Routes = [
   { path: 'uploadVideo', component: UploadVideoComponent },
 
 
-  { path: 'page-not-found', component: MainComponent },
-   //{ path: '**', component: PageNotFoundComponent }
+  { path: 'page-not-found', component: PageNotFoundComponent },
+  // { path: '**', component: PageNotFoundComponent }
 ];
 
 
@@ -93,6 +94,7 @@ const appRoutes: Routes = [
     CloudComponent,
     ForumComponent,
     ThreadComponent,
+    PageNotFoundComponent,
     NgbdModalLogin,
     NgbdModalAskInForum,
     NgbdModalPayement,
@@ -124,7 +126,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    AlertModule.forRoot(), 
+    AlertModule.forRoot(),
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),

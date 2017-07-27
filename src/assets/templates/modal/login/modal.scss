@@ -1,7 +1,9 @@
 .loginBox, .modalUI {
 
+
     .modal-header {
         background-image: url('../../../images/popUpHeader.svg');
+        background-position-y: -17px;
         background-repeat: no-repeat;
         background-size: cover;
         height: 133px;
@@ -28,15 +30,14 @@
         margin-bottom: 40px;
     }
 
-
+    h2{
+        margin-top: 19px;
+    }
     input:focus,
     button:focus {
         border: 0;
         box-shadow: none;
         outline: none;
-    }
-    .closeModal{
-        cursor: pointer;
     }
     .padWrap {
         padding: 0 15px;
@@ -61,9 +62,6 @@
         margin-top: 30px;
         margin-bottom: 30px;
     }
-    .sideIcon {
-        float: left;
-    }
     .socialButtons {
         width: 90%;
         margin: auto auto;
@@ -76,12 +74,13 @@
         cursor: pointer;
     }
     .sideIcon {
+        float: left;
         color: #fff;
         height: 45px;
         width: 45px;
         position: absolute;
         padding-top: 11px;
-        left: 43px;
+        left: 41px;
         margin-top: -13px;
         border-top-left-radius: 4px;
         border-bottom-left-radius: 4px;
@@ -129,8 +128,9 @@
         margin: auto auto;
     }
     .closeModal{
-        margin-top: -59px;
-        color: #bfbfbf;
+        margin-top: -67px;
+        color: #fff;
+        cursor: pointer;
     }
 
 }

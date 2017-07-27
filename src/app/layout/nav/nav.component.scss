@@ -1,13 +1,19 @@
 
 //navbar
-
+nav{
+    padding-bottom: 29px;
+}
+.nav{
+    margin-left: 54px;
+    font-size: 14px;
+}
 .nav > .active > a {
     background: none !important;
     border-bottom: 1px dashed #555555;
     display: inline;
-    padding: 20px 15px 20px 15px;
+    padding-bottom: 20px;
     position: relative;
-    top: 9px;
+    top: 6px;
 }
 
 .navbar-brand {
@@ -28,7 +34,8 @@
 }
 
 .nav-item{
-    margin-top: 15px;
+    margin-top: 13px;
+    padding-right: 2px;
 }
 
 .profilePicM {

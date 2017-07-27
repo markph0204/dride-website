@@ -2,6 +2,7 @@
 
     .modal-header {
         background-image: url('../../../images/popUpHeader.svg');
+        background-position-y: -17px;
         background-repeat: no-repeat;
         background-size: cover;
         height: 133px;
@@ -24,10 +25,13 @@
 
     .modal-body {
         background-color: #fff;
-        margin-top: 8px;
+        margin-top: -14px;
         margin-bottom: 40px;
+        height: 228px;
     }
-
+    h2{
+        margin-top: 20px;
+    }
 
     input:focus,
     button:focus {
@@ -60,6 +64,7 @@
         font-weight: 100;
         margin-top: 30px;
         margin-bottom: 30px;
+        font-family: Comfortaa;
     }
     .has-danger input{
         background-color: #fff1f1;
@@ -101,7 +106,7 @@
     }
     .icon-toyCar-1 {
         position: relative;
-        top: 11px;
+        top: -9px;
         left: 13px;
         color: #f06060;
     }
@@ -136,4 +141,8 @@
         color: #bfbfbf;
     }
 
+    .btn-dride-center{
+        top: -14px;
+        font-family: Comfortaa;
+    }
 }

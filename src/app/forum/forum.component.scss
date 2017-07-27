@@ -2,7 +2,6 @@
     background-color: #f9f9f9;
     min-height: 100%;
     padding-top: 1px;
-    padding-top: 70px;
     padding-bottom: 70px;
     .spacer25 {
         margin-bottom: 25px;
@@ -10,18 +9,19 @@
     .post {
         background: #fff;
         border-radius: 3px;
-        border: 1px solid rgba(0, 0, 0, .09);
-        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .04);
-        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-        margin-bottom: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.09);
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.04);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        margin-bottom: 25px;
         background-color: #fff;
-        min-height: 75px;
+        height: 113px;
         cursor: pointer;
         width: 100%;
         h2{
             text-transform: inherit;
             font-size: 15px;
-            margin-top: 20px;
+            margin-top: 18px;
+            margin-left: 3px;
             margin-bottom: 10px;
         }
     }
@@ -60,10 +60,17 @@
     }
     .ask {
         width: 100%;
+        top: -2px;
+        position: relative;
+        left: -18px;
+        height: 34px;
+        font-size: 14px;
+        font-family: Comfortaa;
     }
     .sorter {
         list-style: none;
         padding-left: 0;
+        margin-left: -13px;
         li {
             font-size: 16px;
             float: left;
@@ -79,6 +86,8 @@
         display: inherit;
         text-transform: initial;
         color: #909090;
+        font-size: 14px;
+        margin-left: 2px;
     }
     .readMore {
         color: #333;
@@ -98,7 +107,9 @@
     }
     .partRow1 {
         border-right: 1px dashed #b3b3b3;
-        margin: 20px 0 20px 0;
+        margin-top: 14px;
+        font-size: 14px;
+        height: 80px;
     }
     .partRow3 {
         border-left: 1px dashed #b3b3b3;

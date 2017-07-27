@@ -28,8 +28,8 @@ export class ThreadComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               public db: AngularFireDatabase,
-              private location:Location,
-              private router:Router,
+              private location: Location,
+              private router: Router,
               private auth: AuthService,
               public user: UserService,
               private afAuth: AngularFireAuth) {
@@ -48,7 +48,15 @@ export class ThreadComponent implements OnInit {
   ngOnInit() {
 
     this.sub = this.route.params.subscribe(params => {
-     this.threadId = params['slug'].split('__').pop();
+    this.threadId = params['slug'].split('__').pop();
+
+
+
+    this.db.object('/threads/' + this.threadId, { preserveSnapshot: true }).subscribe(snapshot => {
+        if (!snapshot.val()){
+          this.router.navigate(['/page-not-found'])
+        }
+    });
 
     this.currentThread = this.db.object('/threads/' + this.threadId);
     this.conversation = this.db.list('/conversations/' + this.threadId);

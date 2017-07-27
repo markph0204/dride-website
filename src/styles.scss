@@ -195,16 +195,18 @@ p {
     padding: 0.2em 0;
 }
 
-html,
-body {
-    height: inherit;
+html {
+    min-height: 100%
 }
 
 body {
     padding: 0;
     font-family: 'Comfortaa', cursive;
     overflow-x: hidden;
-        height: 100%;
+    display: grid;
+}
+.container{
+    height: 100%;
 }
 .disabled{
     opacity: 0.4;
@@ -908,8 +910,22 @@ $item-size) {
     border: 0;
     z-index: 100;
 }
-@media (min-width: 576px){
-    .modal-dialog {
-        max-width: 700px;
-    }
+
+.modal-dialog {
+    max-width: 600px;
 }
+
+.thread{
+    .bdy a {
+        color: #337ab7 !important;
+    }
+    .bdy p {
+        font-weight: 400;
+        font-size: 16px;
+        img{
+            margin: auto auto;
+            display: block;
+            padding: 30px;
+        }
+    }
+ }
