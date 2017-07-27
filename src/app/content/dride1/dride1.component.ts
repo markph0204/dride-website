@@ -10,10 +10,10 @@ import 'rxjs/add/operator/map';
 })
 export class Dride1Component implements OnInit {
 
-	preSubmit:boolean = true
+	preSubmit = true
 
 	constructor(public http: Http) {
-	    this.http = http
+		this.http = http
 	}
 
 	ngOnInit() {
@@ -23,10 +23,10 @@ export class Dride1Component implements OnInit {
 
 		console.log(email)
 
-	 //    this.preSubmit = false;
-		
+		this.preSubmit = false;
+
 		// return this.http.get('https://api.dride.io/validator/subscribe.php?email=' + email).map(res =>  res.json())
-		
+
 
 
 	}

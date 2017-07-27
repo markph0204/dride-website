@@ -59,6 +59,8 @@ p {
 h1 {
     text-transform: uppercase;
     font-weight: 100;
+    margin-top: 19px;
+    font-size: 36px;
 }
 
 h2 {
@@ -66,7 +68,11 @@ h2 {
     color: #636363;
     font-weight: 100;
 }
-
+.alert-warning{
+    margin-top: -7px;
+    font-size: 14px;
+    margin-left: -4px;
+}
 .contaier,
 .row {
     height: 100%;

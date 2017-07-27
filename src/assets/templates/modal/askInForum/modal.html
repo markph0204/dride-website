@@ -1,7 +1,7 @@
-<div class="loginBox askModal">
+<div class="loginBox askModal" bsModal (onShown)="onShown()">
 
     <div class="modal-header">
-        <h3 class="modal-title" >Ask A Question</h3>
+        <h3 class="modal-title" >Ask A Question {{isLoaded}}</h3>
         <p class="float-right closeModal" (click)="closeModal()">x</p>
     </div>
     <span class="icon-toyCar-1" [ngClass]="{'animatedCar': isLoaded}"></span>

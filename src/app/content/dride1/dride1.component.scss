@@ -8,7 +8,7 @@
     }
     .pic_1 {
         background-image: url('../../../assets/images/features/pic1.jpg');
-        height: 70%;
+        height: 450px;
         max-height: 550px;
         background-size: cover;
         background-position: center;
@@ -28,6 +28,7 @@
     .slogen {
         text-transform: initial;
         margin-bottom: 99px;
+		margin-top: 21px;
     }
     .featuresList {
         background-color: #333;
@@ -249,7 +250,8 @@
             margin-top: 13px;
         }
         .preOrderFooter h3 {
-            padding-top: 120px;
+			padding-top: 147px !important;
+			font-size: 24px;
         }
         .preOrderFooter {
             background-color: #333;
@@ -258,13 +260,13 @@
                 background-color: #333;
                 font-size: 16px;
                 padding: 21px;
-                text-transform: uppercase;
                 border-radius: 4px;
                 color: #fff;
                 border-color: #fff;
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
                 color: #fff;
+				height: 44px;
             }
             button {
                 padding: 11px;
@@ -299,7 +301,7 @@
 
         .submitted img {
             max-width: 100px;
-            margin-top: -37px;
+            margin-top: 13px;
         }
 
         .buy {
@@ -308,7 +310,7 @@
             }
             h3 {
                 color: #fff;
-                padding-bottom: 60px;
+                padding-bottom: 8px;
             }
         }
 
@@ -331,7 +333,7 @@
         p {
             font-size: 24px;
             text-align: center;
-            padding-bottom: 100px;
+            padding-bottom: 37px;
             margin-top: 50px;
             margin: auto auto;
         }
@@ -340,9 +342,13 @@
             padding-bottom: 100px;
             padding-top: 50px;
         }
-        .actionsVoice p {
-            text-align: left;
-            margin-bottom: 10px !important;
+
+        .actionsVoice{
+			margin-top: 48px;
+			p {
+            	text-align: left;
+            	margin-bottom: 10px !important;
+        	}
         }
     }
     .apps-stirp {
