@@ -31,6 +31,10 @@ export class NavComponent implements OnInit {
 		}
 	}
 
+	logOut() {
+		this.afAuth.auth.signOut();
+		// TODO: alert
+	}
 	ngOnInit() {
 
 	}

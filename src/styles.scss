@@ -749,7 +749,12 @@ $color: #333333,
         }
     }
  }
-
+.player vg-overlay-play .vg-icon-play_arrow:before {
+	font-size: 100px !important;
+}
+.vg-icon-play_arrow:before{
+	content: "\E91B";
+}
 .card-columns {
 	@include media-breakpoint-only(xs) {
 		column-count: 1;
