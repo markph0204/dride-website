@@ -14,6 +14,9 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import 'firebase/storage';
+import 'firebase/messaging';
+
 
 import { MomentModule } from 'angular2-moment';
 import { TruncateModule } from 'ng2-truncate';
@@ -25,18 +28,20 @@ import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 import { VgBufferingModule } from 'videogular2/buffering';
 import { AgmCoreModule, AgmPolygon } from '@agm/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { UiSwitchModule } from 'ngx-ui-switch/src'
 
 import { AppComponent } from './app.component';
 
 import { AuthService, NgbdModalLogin } from './auth.service';
 
 import { UserService } from './user.service';
+import { PushNotificationsService } from './push-notifications.service';
 
 import { MainComponent } from './main/main.component';
 import { CloudComponent } from './cloud/cloud.component';
 import { CloudPaginationService } from './cloud/cloud-pagination.service';
-import { ForumComponent, NgbdModalAskInForum} from './forum/forum.component';
-import { NgbdModalPayement} from './store/payment.modal';
+import { ForumComponent, NgbdModalAskInForum } from './forum/forum.component';
+import { NgbdModalPayement } from './store/payment.modal';
 import { ThreadComponent } from './thread/thread.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DocumentationComponent } from './documentation/documentation.component';
@@ -62,105 +67,109 @@ import { StoreComponent } from './store/store.component';
 import { ProductComponent } from './store/product.component';
 import { ProfileComponent, ShowClips, KeysPipe } from './profile/profile.component';
 import { UploadVideoComponent } from './cloud/upload-video/upload-video.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: MainComponent },
-  { path: 'forum', component: ForumComponent },
-  { path: 'thread', redirectTo: 'forum' },
-  { path: 'thread/:slug', component: ThreadComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'features', component: Dride1Component },
-  { path: 'documentation', component: DocumentationComponent },
-  { path: 'documentation/:slug', component: DocumentationComponent },
-  { path: 'store', component: StoreComponent },
-  { path: 'product/:productSlug', component: ProductComponent },
-  { path: 'profile/:uid/:videoId', component: ProfileComponent },
-  { path: 'profile/:uid', component: ProfileComponent },
-  { path: 'cloud', component: CloudComponent },
-  { path: 'uploadVideo', component: UploadVideoComponent },
+	{ path: '', component: MainComponent },
+	{ path: 'forum', component: ForumComponent },
+	{ path: 'thread', redirectTo: 'forum' },
+	{ path: 'thread/:slug', component: ThreadComponent },
+	{ path: 'about', component: AboutComponent },
+	{ path: 'features', component: Dride1Component },
+	{ path: 'documentation', component: DocumentationComponent },
+	{ path: 'documentation/:slug', component: DocumentationComponent },
+	{ path: 'store', component: StoreComponent },
+	{ path: 'product/:productSlug', component: ProductComponent },
+	{ path: 'profile/:uid/:videoId', component: ProfileComponent },
+	{ path: 'profile/:uid', component: ProfileComponent },
+	{ path: 'cloud', component: CloudComponent },
+	{ path: 'cloud/uploadVideo', component: UploadVideoComponent },
+	{ path: 'settings', component: SettingsComponent },
 
 
-  { path: 'page-not-found', component: PageNotFoundComponent },
-  // { path: '**', component: PageNotFoundComponent }
+	{ path: 'page-not-found', component: PageNotFoundComponent },
+	// { path: '**', component: PageNotFoundComponent }
 ];
 
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MainComponent,
-    CloudComponent,
-    ForumComponent,
-    ThreadComponent,
-    PageNotFoundComponent,
-    NgbdModalLogin,
-    NgbdModalAskInForum,
-    NgbdModalPayement,
-    DocumentationComponent,
-    Dride1Component,
-    DocsMainComponent,
-    AdasComponent,
-    AssistantComponent,
-    ConnectivityComponent,
-    DrideCloudComponent,
-    GettingStartedComponent,
-    IndicatorsComponent,
-    ManualSetupComponent,
-    PublishComponent,
-    SideNavComponent,
-    DocsPageDirective,
-    ShowOnHomePage,
-    CodeComponent,
-    AboutComponent,
-    NavComponent,
-    FooterComponent,
-    StoreComponent,
-    ProductComponent,
-    ProfileComponent,
-    ShowClips,
-    KeysPipe,
-    UploadVideoComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes),
-    AlertModule.forRoot(),
-    ModalModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    CollapseModule.forRoot(),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    MomentModule,
-    TruncateModule,
-    MarkdownToHtmlModule.forRoot(),
-    ElasticModule,
-    FormsModule,
-    VgCoreModule,
-    VgControlsModule,
-    VgOverlayPlayModule,
-    VgBufferingModule,
-    AgmCoreModule.forRoot({
-      apiKey: environment.googleMapsApi
-    }),
-    InfiniteScrollModule
-  ],
-  providers: [AuthService, UserService, SideNavComponent, PageService, CloudPaginationService],
-  bootstrap: [AppComponent],
-  entryComponents: [NgbdModalLogin,
-                    NgbdModalAskInForum,
-                    NgbdModalPayement,
-                    DocsMainComponent,
-                    AdasComponent,
-                    AssistantComponent,
-                    ConnectivityComponent,
-                    DrideCloudComponent,
-                    GettingStartedComponent,
-                    IndicatorsComponent,
-                    ManualSetupComponent,
-                    PublishComponent,
-    ],
+	declarations: [
+		AppComponent,
+		MainComponent,
+		CloudComponent,
+		ForumComponent,
+		ThreadComponent,
+		PageNotFoundComponent,
+		NgbdModalLogin,
+		NgbdModalAskInForum,
+		NgbdModalPayement,
+		DocumentationComponent,
+		Dride1Component,
+		DocsMainComponent,
+		AdasComponent,
+		AssistantComponent,
+		ConnectivityComponent,
+		DrideCloudComponent,
+		GettingStartedComponent,
+		IndicatorsComponent,
+		ManualSetupComponent,
+		PublishComponent,
+		SideNavComponent,
+		DocsPageDirective,
+		ShowOnHomePage,
+		CodeComponent,
+		AboutComponent,
+		NavComponent,
+		FooterComponent,
+		StoreComponent,
+		ProductComponent,
+		ProfileComponent,
+		ShowClips,
+		KeysPipe,
+		UploadVideoComponent,
+		SettingsComponent
+	],
+	imports: [
+		BrowserModule,
+		RouterModule.forRoot(appRoutes),
+		AlertModule.forRoot(),
+		ModalModule.forRoot(),
+		BsDropdownModule.forRoot(),
+		CollapseModule.forRoot(),
+		AngularFireModule.initializeApp(environment.firebase),
+		AngularFireDatabaseModule,
+		AngularFireAuthModule,
+		MomentModule,
+		TruncateModule,
+		MarkdownToHtmlModule.forRoot(),
+		ElasticModule,
+		FormsModule,
+		VgCoreModule,
+		VgControlsModule,
+		VgOverlayPlayModule,
+		VgBufferingModule,
+		AgmCoreModule.forRoot({
+			apiKey: environment.googleMapsApi
+		}),
+		InfiniteScrollModule,
+		UiSwitchModule
+	],
+	providers: [AuthService, UserService, SideNavComponent, PageService, CloudPaginationService, PushNotificationsService],
+	bootstrap: [AppComponent],
+	entryComponents: [NgbdModalLogin,
+		NgbdModalAskInForum,
+		NgbdModalPayement,
+		DocsMainComponent,
+		AdasComponent,
+		AssistantComponent,
+		ConnectivityComponent,
+		DrideCloudComponent,
+		GettingStartedComponent,
+		IndicatorsComponent,
+		ManualSetupComponent,
+		PublishComponent,
+	],
 })
 export class AppModule { }

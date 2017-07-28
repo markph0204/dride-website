@@ -33,7 +33,7 @@
                         <span class="readMore">Read More</span>
                     </div>
                 </a>
-                <div *ngIf="!(threads | async)?.length" >
+                <div *ngIf="!(threads | async)?.length" class="loadersLines" >
                 <div *ngFor="let i of [1,2,3,4]">
                     <div class="timeline-wrapper">
                         <div class="timeline-item">

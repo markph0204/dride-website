@@ -1,6 +1,6 @@
 /* Global styles */
 
-@import "~bootstrap/dist/css/bootstrap.min.css";
+@import '../node_modules/bootstrap/scss/bootstrap';
 
 @import url(https://fonts.googleapis.com/css?family=Raleway:100,400,700);
 @import url(https://fonts.googleapis.com/css?family=Comfortaa:300,400);
@@ -396,191 +396,11 @@ $color: #333333,
     font-size: 30px;
 }
 
-.halfPage {
-    .icon-bigD:before {
-        font-size: 460px;
-    }
-    .icon-bigD {
-        left: 27%;
-        position: fixed !important;
-        top: 40%;
-    }
-}
-
-@mixin on-circle($item-count,
-$circle-size,
-$item-size) {
-    position: relative;
-    width: $circle-size;
-    height: $circle-size;
-    border-radius: 50%;
-    padding: 0;
-    list-style: none;
-    > * {
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: -($item-size / 2);
-        width: $item-size;
-        height: $item-size;
-        $angle: (32);
-        $rot: 100;
-        @for $i from 1 through $item-count {
-            &:nth-of-type(#{$i}) {
-                transform: rotate($rot * 1deg) translate($circle-size / 2) rotate($rot * -1deg);
-            }
-            $rot: $rot + $angle;
-        }
-    }
-}
-
-.circle-container {
-    @include on-circle($item-count: 8, $circle-size: 450px, $item-size: 6em);
-    margin: 5em auto 0;
-    span {
-        display: block;
-        max-width: 100%;
-        border-radius: 50%;
-        transition: .15s;
-        cursor: pointer;
-    }
-}
 
 .h75 {
     height: 75%;
 }
 
-.card-container {
-    position: relative;
-    height: 100%;
-    overflow: hidden;
-}
-
-.card {
-    width: 100%;
-    position: absolute;
-    .icon-toyCar-1{
-        font-size: 19px !important;
-        top: 36px !important;
-    }
-}
-
-.card.ng-animate {
-    transition: .7s ease-in-out all;
-}
-
-.card.ng-enter.toLeft {
-    left: 100%;
-}
-
-.card.ng-enter-active.toLeft {
-    left: 0;
-}
-
-.card.ng-leave.toLeft {
-    left: 0;
-}
-
-.card.ng-leave-active.toLeft {
-    left: -100%;
-}
-
-.card.ng-enter.toRight {
-    left: -100%;
-}
-
-.card.ng-enter-active.toRight {
-    left: 0;
-}
-
-.card.ng-leave.toRight {
-    left: 0;
-}
-
-.card.ng-leave-active.toRight {
-    left: 100%;
-}
-
-.card-container .ng-hide {
-    -webkit-animation: moveToRight .7s ease-in-out both;
-    animation: moveToRight .7s ease-in-out both;
-}
-
-.card-container .ng-show {
-    -webkit-animation: moveFromRight .1s ease-in-out both;
-    animation: moveFromRight .1s ease-in-out both;
-}
-
-.circle-container .ng-hide {
-    -webkit-animation: fadeOut .7s ease-in-out both;
-    animation: fadeOut .7s ease-in-out both;
-}
-
-.circle-container .ng-show {
-    -webkit-animation: fadeIn .1s ease-in-out both;
-    animation: fadeIn .1s ease-in-out both;
-}
-
-.not-visible {
-    visibility: hidden;
-}
-
-@-webkit-keyframes moveToLeft {
-    from {}
-    to {
-        -webkit-transform: translateX(-100%);
-    }
-}
-
-@keyframes moveToLeft {
-    from {}
-    to {
-        -webkit-transform: translateX(-100%);
-        transform: translateX(-100%);
-    }
-}
-
-@-webkit-keyframes moveFromLeft {
-    from {
-        -webkit-transform: translateX(-100%);
-    }
-}
-
-@keyframes moveFromLeft {
-    from {
-        -webkit-transform: translateX(-100%);
-        transform: translateX(-100%);
-    }
-}
-
-@-webkit-keyframes moveToRight {
-    from {}
-    to {
-        -webkit-transform: translateX(100%);
-    }
-}
-
-@keyframes moveToRight {
-    from {}
-    to {
-        -webkit-transform: translateX(100%);
-        transform: translateX(100%);
-    }
-}
-
-@-webkit-keyframes moveFromRight {
-    from {
-        -webkit-transform: translateX(100%);
-    }
-}
-
-@keyframes moveFromRight {
-    from {
-        -webkit-transform: translateX(100%);
-        transform: translateX(100%);
-    }
-}
 
 .btn-dride {
     background-color: rgba(255, 255, 255, 0.85);
@@ -929,3 +749,21 @@ $item-size) {
         }
     }
  }
+
+.card-columns {
+	@include media-breakpoint-only(xs) {
+		column-count: 1;
+	}
+	@include media-breakpoint-only(sm) {
+		column-count: 1;
+	}
+	@include media-breakpoint-only(md) {
+		column-count: 1;
+	}
+	@include media-breakpoint-only(lg) {
+		column-count: 2;
+	}
+	@include media-breakpoint-only(xl) {
+		column-count: 2;
+	}
+}

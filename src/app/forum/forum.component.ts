@@ -67,12 +67,7 @@ export class NgbdModalAskInForum {
 				private route: ActivatedRoute) {
 	}
 
-	public handler(type: string, $event: ModalDirective) {
-		console.log(`event ${type} is fired${$event.dismissReason ? ', dismissed by ' + $event.dismissReason : ''}`);
-	}
-
 	onShown() {
-		alert('xx')
 		this.isLoaded = true;
 	}
 

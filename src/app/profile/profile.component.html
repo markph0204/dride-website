@@ -95,7 +95,7 @@
 						                <div class="connectorLine" *ngIf="conversationPreviusIsMine[commentId]"></div>
 						            </div>
 						        </div>
-						        <p *ngIf="currentVideo && !hasComments(currentVideo.comments)" class="firstToCmnt">Be the first to comment</p>
+						        <p *ngIf="currentVideo && !hasComments(comments)" class="firstToCmnt">Be the first to comment</p>
 						        <p *ngIf="hasMoreToLoad()" class="moreCmnts" (click)="loadMoreComments()">Load More Comments</p>
 						    </div>
 						    <div class="postBox">

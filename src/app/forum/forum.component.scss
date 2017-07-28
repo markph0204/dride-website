@@ -165,6 +165,11 @@
         left: 100%;
         top: 28px;
     }
+	.loadersLines{
+		margin-left: -16px;
+		width: 100%;
+	}
+
     @keyframes placeHolderShimmer {
         0% {
             background-position: -468px 0

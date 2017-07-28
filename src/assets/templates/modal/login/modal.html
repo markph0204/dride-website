@@ -41,7 +41,7 @@
                         <div class="privacy">
                             <div class="col-md-9 lbl1">Keep your activity anonymous</div>
                             <div class="col-md-3"> 
-<!--                                  <switch id="anonymous" name="anonymous" [(model)]="anonymous" class="green"></switch> -->
+                                  <ui-switch id="anonymous" name="anonymous" [(ngModel)]="anonymous" class="green"></ui-switch> 
                             </div>
                         </div>
 
@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-    <div class="modal-footer text-left" ng-show="!onWelcome">
+    <div class="modal-footer text-left" *ngIf="!onWelcome">
      * We will never post anything on your behalf.
     </div>
 

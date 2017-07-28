@@ -43,9 +43,9 @@
                     />
                     <!--<span class="caret"></span>-->
                     <div *dropdownMenu role="menu" class="dropdown-menu" aria-labelledby="settings">
-                        <button class="dropdown-item" (click)="isCollapsed = true">Settings</button>
+                        <a routerLink="/settings" class="dropdown-item" (click)="isCollapsed = true">Settings</a>
                         <div class="dropdown-divider"></div>
-                        <button class="dropdown-item" (click)="isCollapsed = true">Logout</button>
+                        <a class="dropdown-item" (click)="isCollapsed = true">Logout</a>
                     </div>
                 </div>
             </div>
