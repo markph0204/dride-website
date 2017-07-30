@@ -7,7 +7,6 @@
                 ".read": true,
                 ".write": "auth!=null",
                 "$clipId": {
-                    ".validate": "newData.hasChildren(['clips', 'thumbs'])",
                     ".indexOn": ["views", "hp"]
                 }
             }

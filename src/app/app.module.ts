@@ -134,6 +134,7 @@ const appRoutes: Routes = [
 	imports: [
 		BrowserModule,
 		RouterModule.forRoot(appRoutes),
+		BrowserModule.withServerTransition({appId: 'dride'}),
 		AlertModule.forRoot(),
 		ModalModule.forRoot(),
 		BsDropdownModule.forRoot(),

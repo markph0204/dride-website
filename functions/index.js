@@ -264,8 +264,24 @@ exports.generateThumbnail = functions.storage.object().onChange(event => {
 });
 
 
+// // Load zone.js for the server.
+// require('zone.js/dist/zone-node');
 
-// app.get('/forum', ngApp)
+// // Import renderModuleFactory from @angular/platform-server.
+// var renderModuleFactory = require('@angular/platform-server').renderModuleFactory;
 
-// exports.profile = functions.https.onRequest(app);
+// // Import the AOT compiled factory for your AppServerModule.
+// // This import will change with the hash of your built server bundle.
+// var AppServerModuleNgFactory = require('./dist-server/main.114c1fd7c5fe0c95b677.bundle').AppServerModuleNgFactory;
+
+// // Load the index.html file.
+// var index = require('fs').readFileSync('./src/index.html', 'utf8');
+
+// // Render to HTML and log it to the console.
+// renderModuleFactory(AppServerModuleNgFactory, {document: index, url: '/'}).then(html => console.log(html));
+// app.get('/forum', (request, response) => {
+//   response.send("Hello from Express on Firebase with CORS!")
+// })
+
+// exports.forum = functions.https.onRequest(app);
 
