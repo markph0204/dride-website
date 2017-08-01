@@ -1,4 +1,4 @@
-<nav class="navbar navbar-toggleable-md navbar-light pt-0">
+<nav class="navbar navbar-toggleable-md navbar-light pt-0" [ngClass]="{'fixed-top': isFixed}" >
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" (click)="isCollapsed = !isCollapsed"
         aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

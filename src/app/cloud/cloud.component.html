@@ -6,14 +6,22 @@
 			<div class="col-md-12 p-0">
 
 
-				<!-- 	        	    <div class="container" infinite-scroll='hpClips.nextPage()' infinite-scroll-disabled='hpClips.busy' infinite-scroll-distance='2'> -->
-				<div class="container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" [scrollWindow]="!hpClips.busy" (scrolled)="hpClips.nextPage()" [immediateCheck]="true">
+				<div class="container" 
+					infiniteScroll 
+					[infiniteScrollDistance]="2"
+					[infiniteScrollThrottle]="300" 
+					[scrollWindow]="!hpClips.busy"
+					(scrolled)="hpClips.nextPage()"
+					[infiniteScrollDisabled]="!isFull"
+					[immediateCheck]="true">
 
 					<div class="col-md-offset-2 col-md-8 mx-auto">
 						<h2 class="bVideosT">Best Videos Today</h2>
 					</div>
 					<div *ngIf="hpClips.items">
-						<div class="col-md-offset-2 col-md-8 whiteBg p-0 animBox mx-auto" *ngFor="let currentVideo of hpClips.items;  index as key">
+						<div class="whiteBg p-0 animBox mx-auto"
+							 *ngFor="let currentVideo of hpClips.items;  index as key"
+							 [ngClass]="{'col-md-offset-2 col-md-8': isFull, 'col-md-12': !isFull}">
 							<span class="icon-toyCar-1 float-right"></span>
 							<div class="box mainVid">
 

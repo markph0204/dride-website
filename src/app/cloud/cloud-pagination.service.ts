@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from "@angular/http";
+import { Http } from '@angular/http';
 import { environment } from '../../environments/environment';
 
 
@@ -7,96 +7,108 @@ import { environment } from '../../environments/environment';
 export class CloudPaginationService {
 
 	items: Array<any> = [];
-	busy:boolean = false;
-	after: string = "9999999999999"; //highest key possible
-	before: string = "";
-	end:boolean = false;
+	busy = false;
+	after = '9999999999999'; // highest key possible
+	before = '';
+	end = false;
 
-   constructor(private http: Http) {
-   		this.nextPage();
-   		this.busy = false;
+	constructor(private http: Http) {
+		this.nextPage();
+		this.busy = false;
 
-   }
+	}
 
-   nextPage = function() {
-            if (this.busy || this.end) return;
-            this.busy = true;
+	nextPage = function () {
+		if (this.busy || this.end) {
+			return
+		};
 
-            var url = environment.firebase.databaseURL + "/clips_homepage.json?orderBy=%22hpInsertTime%22&endAt=%22" + this.after + "%22&limitToLast=5";
+		this.busy = true;
 
-                this.http
-                    .get(url)
-                    .map(response => response.json())
-                    .subscribe(data => {
-
-	                    var items = this.reverseObject(data);
-	                    for (var item in items) {
-	                        var config = {
-	                            config: {
-	                                preload: "none",
-	                                sources: [
-	                                    {
-	                                        src: items[item].clips.src,
-	                                        type: "video/mp4"
-	                                    }
-	                                ],
-	                                theme: {
-	                                    url: "styles/videoPlayer.css"
-	                                },
-	                                plugins: {
-	                                    controls: {
-	                                        autoHide: true,
-	                                        autoHideTime: 5000
-	                                    },
-	                                    poster: items[item].thumbs.src
-	                                }
-	                            }
-	                        };
-	                        Object.assign(items[item], config)
-
-	                        if (!items[item].comments)
-	                            items[item].comments = [];
-
-	                        this.items.push(items[item]);
-	                        this.after = items[item].hpInsertTime;
-
-	                    }
-
-	                    this.busy = false;
-
-	                    if (this.after == this.before) {
-	                        this.end = true;
-	                        return;
-	                    }
-
-	                    this.before = this.after;
-	                    //remove last element because he is the first element from next batch
-	                    this.items.pop();
+		const url = environment.firebase.databaseURL +
+			'/clips_homepage.json?orderBy=%22hpInsertTime%22&endAt=%22' +
+			this.after +
+			'%22&limitToLast=' +
+			(this.isFull ? 5 : 3)
 
 
-                    },
-                    error => {
-                        this.end = true
-                        //TODO: log this
-                        console.log("An error occurred when requesting cloud clips.");
-                    }
+		this.http
+			.get(url)
+			.map(response => response.json())
+			.subscribe(data => {
 
-                    )
+				const items = this.reverseObject(data);
+				for (const item in items) {
+					if (items.hasOwnProperty(item)) {
+						const config = {
+							config: {
+								preload: 'none',
+								sources: [
+									{
+										src: items[item].clips.src,
+										type: 'video/mp4'
+									}
+								],
+								theme: {
+									url: 'styles/videoPlayer.css'
+								},
+								plugins: {
+									controls: {
+										autoHide: true,
+										autoHideTime: 5000
+									},
+									poster: items[item].thumbs.src
+								}
+							}
+						};
+						Object.assign(items[item], config)
+
+						if (!items[item].comments) {
+							items[item].comments = [];
+						}
+
+						this.items.push(items[item]);
+						this.after = items[item].hpInsertTime;
+					}
+				}
+
+				this.busy = false;
+
+				if (this.after === this.before) {
+					this.end = true;
+					return;
+				}
+
+				this.before = this.after;
+				// remove last element because he is the first element from next batch
+				this.items.pop();
 
 
-        };
+			},
+			error => {
+				this.end = true
+				// TODO: log this
+				console.log('An error occurred when requesting cloud clips.');
+			}
 
-            reverseObject(object) {
-                var newObject = {};
-                var keys = [];
-                for (var key in object) {
-                    keys.push(key);
-                }
-                for (var i = keys.length - 1; i >= 0; i--) {
-                    var value = object[keys[i]];
-                    newObject[keys[i]] = value;
-                }
+			)
 
-                return newObject;
-            }
+
+	};
+
+	reverseObject(object) {
+		const newObject = {};
+		const keys = [];
+		for (const key in object) {
+			if (object.hasOwnProperty(key)) {
+				keys.push(key);
+			}
+		}
+		for (let i = keys.length - 1; i >= 0; i--) {
+			const value = object[keys[i]];
+			newObject[keys[i]] = value;
+		}
+
+		return newObject;
+	}
 }

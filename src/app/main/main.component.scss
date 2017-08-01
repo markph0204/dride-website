@@ -1,3 +1,91 @@
+
+$color: #333333,
+#333,
+#F3B562,
+#b68cbf,
+#F06060,
+#72C6CE,
+#4A6164;
+@for $i from 1 through 7 {
+    .bg-#{$i} {
+        background-color: nth($color, $i);
+    }
+    .active-#{$i} {
+        color: nth($color, $i);
+    }
+    .color-#{$i} .icon-bigD:before {
+        color: nth($color, $i);
+    }
+}
+@mixin on-circle($item-count,
+$circle-size,
+$item-size) {
+    position: relative;
+    width: $circle-size;
+    height: $circle-size;
+    border-radius: 50%;
+    padding: 0;
+    list-style: none;
+    > * {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -($item-size / 2);
+        width: $item-size;
+        height: $item-size;
+        $angle: (32);
+        $rot: 100;
+        @for $i from 1 through $item-count {
+            &:nth-of-type(#{$i}) {
+                transform: rotate($rot * 1deg) translate($circle-size / 2) rotate($rot * -1deg);
+            }
+            $rot: $rot + $angle;
+        }
+    }
+}
+
+.circle-container {
+    @include on-circle($item-count: 8, $circle-size: 450px, $item-size: 6em);
+    margin: 5em auto 0;
+    span {
+        display: block;
+        max-width: 100%;
+        border-radius: 50%;
+        transition: .15s;
+        cursor: pointer;
+		top: 306px;
+    	left: 198px;
+    }
+}
+.halfPage{
+
+	.icon-bigD:before {
+		font-size: 460px;
+	}
+	.icon-bigD {
+		left: 27%;
+		position: fixed !important;
+		top: 40%;
+	}
+	.labelNear {
+		font-family: 'Comfortaa', cursive;
+		padding-right: 10px;
+		padding-top: 6px;
+		font-size: 17px;
+		font-weight: 100;
+		text-align: right;
+		margin-top: -29px;
+		margin-right: 39px;
+		width: 160px;
+		float: right;
+	}
+}
+
+
+.container{
+	height: inherit;
+}
 .pic_1 {
     background-image: url('../../assets/images/features/pic1.jpg');
     height: 300px;
@@ -56,8 +144,6 @@
         p {
             font-size: 20px;
             text-align: left;
-            padding-top: 100px;
-            padding-bottom: 100px;
             margin: auto auto;
         }
         .actions {
@@ -72,9 +158,24 @@
         	}
     	}
 	}
+	h1{
+		margin-bottom: 99px;
+	}
+	h2{
+		margin: 70px auto 70px auto;
+	}
+	.spcaer{
+		height: 50px;
+	}
 	.stopSign{
 		margin-top: -88px;
 	}
+	.icon-toyCar-1{
+		top: -18px;
+		right: 31%;
+		position: relative;
+	}
+
 }
 
 

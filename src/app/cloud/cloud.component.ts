@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Http } from "@angular/http";
+import { Component, OnInit, Input } from '@angular/core';
+import { Http } from '@angular/http';
 
 import { environment } from '../../environments/environment';
 import { AuthService } from '../auth.service';
@@ -17,16 +17,18 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 
 export class CloudComponent implements OnInit {
+	@Input() isFull = true;
 	hpClips: any;
 	public firebaseUser: any;
 	public replyBox: any = [];
 
 	constructor(private db: AngularFireDatabase,
-				public af: AngularFireDatabase,
-				private dCloud: CloudPaginationService,
-				private auth: AuthService,
-				private afAuth: AngularFireAuth,
-				private http: Http) {
+		public af: AngularFireDatabase,
+		private dCloud: CloudPaginationService,
+		private auth: AuthService,
+		private afAuth: AngularFireAuth,
+		private http: Http) {
+
 
 		this.hpClips = this.dCloud
 
@@ -52,16 +54,16 @@ export class CloudComponent implements OnInit {
 
 	fbShare = function (uid, videoId) {
 		window.open(
-			"https://www.facebook.com/sharer/sharer.php?u=https://dride.io/profile/" +
+			'https://www.facebook.com/sharer/sharer.php?u=https://dride.io/profile/' +
 			uid +
-			"/" +
+			'/' +
 			videoId,
-			"Facebook",
-			"toolbar=0,status=0,resizable=yes,width=" +
+			'Facebook',
+			'toolbar=0,status=0,resizable=yes,width=' +
 			500 +
-			",height=" +
+			',height=' +
 			600 +
-			",top=" +
+			',top=' +
 			(window.innerHeight - 600) / 2 +
 			',left=' +
 			(window.innerWidth - 500) / 2
@@ -69,8 +71,8 @@ export class CloudComponent implements OnInit {
 	};
 
 	twShare = function (uid, videoId) {
-		var url = 'https://dride.io/profile/' + uid + "/" + videoId;
-		let txt = encodeURIComponent('You need to see this! #dride ' + url);
+		const url = 'https://dride.io/profile/' + uid + '/' + videoId;
+		const txt = encodeURIComponent('You need to see this! #dride ' + url);
 		window.open(
 			'https://www.twitter.com/intent/tweet?text=' + txt,
 			'Twitter',
@@ -116,8 +118,14 @@ export class CloudComponent implements OnInit {
 
 	hasMoreToLoad = function (currentVideo) {
 
-		if (!currentVideo.comments || typeof currentVideo.comments == 'undefined')
+		// dont load if not in full mode
+		if (!this.isFull) {
 			return false;
+		}
+
+		if (!currentVideo.comments || typeof currentVideo.comments === 'undefined') {
+			return false;
+		}
 
 		return currentVideo &&
 			currentVideo.cmntsCount >
@@ -144,14 +152,14 @@ export class CloudComponent implements OnInit {
 
 	};
 
-    sendComment = function(op, videoId, body, index) {
-            if (!body) {
-                alert("Please write something");
-                return;
-            }
+	sendComment = function (op, videoId, body, index) {
+		if (!body) {
+			alert('Please write something');
+			return;
+		}
 
-			this.auth.verifyLoggedIn().then( res => {
-				this.db.list('/conversations_video/' + op + '/' + videoId)
+		this.auth.verifyLoggedIn().then(res => {
+			this.db.list('/conversations_video/' + op + '/' + videoId)
 				.push({
 					autherId: res.uid,
 					auther: res.displayName,
@@ -163,33 +171,12 @@ export class CloudComponent implements OnInit {
 					this.loadMoreComments(op, videoId, index);
 					this.replyBox[index] = '';
 				});
-				//TODO: track
-				//$mixpanel.track("posted a comment");
-			})
+			// TODO: track
+			// $mixpanel.track("posted a comment");
+		})
 
 
-            // firebase
-            //     .database()
-            //     .ref("conversations_video")
-            //     .child(op)
-            //     .child(videoId)
-            //     .push({
-            //         autherId: $rootScope.firebaseUser.uid,
-            //         auther: $rootScope.firebaseUser.displayName,
-            //         pic: $rootScope.firebaseUser.photoURL,
-            //         body: body,
-            //         timestamp: new Date().getTime()
-            //     })
-            //     .then(function() {
-            //         $scope.loadMoreComments(videoId, op, index);
-            //         body = "";
-            //         $scope.replyBox[index] = "";
-
-            //         $scope.bindVideoToLive(op, videoId, index);
-            //     });
-
-            //$mixpanel.track("posted a comment");
-        };
+	};
 
 
 
