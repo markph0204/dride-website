@@ -1,11 +1,9 @@
-html{
-    height: 100%;
-}
 .thread {
     background-color: #f9f9f9;
-    min-height: 100%;
     padding-top: 16px;
-    h1{
+	min-height: 100vh;
+	padding-bottom: 110px;
+	h1{
         font-size: 36px;
         padding-top: 5px;
     }

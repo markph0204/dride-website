@@ -6,46 +6,52 @@ import { PageComponent } from './page.component';
 import { PageService } from './pages.service';
 import { PageItem } from './page-item';
 import { SideNavComponent } from './layout/side-nav.component';
+import { introAnim } from '../router.animations';
 
 
 @Component({
 	selector: 'app-documentation',
 	templateUrl: './documentation.component.html',
 	styleUrls: ['./documentation.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	animations: [ introAnim ]
 })
 
 export class DocumentationComponent implements OnInit {
-	//@Input() pages: PageItem[];
+	// @Input() pages: PageItem[];
 	@Input() pages: Object;
 
 	@ViewChild(DocsPageDirective) pageHost: DocsPageDirective;
 
 	public docMenu: any[]
 
-	constructor(sideNav: SideNavComponent, private _componentFactoryResolver: ComponentFactoryResolver, private pageService: PageService, private route: ActivatedRoute) {
+	constructor(sideNav: SideNavComponent,
+		private _componentFactoryResolver: ComponentFactoryResolver,
+		private pageService: PageService,
+		private route: ActivatedRoute) {
 		this.docMenu = sideNav.docMenu;
 	}
 
 	ngOnInit() {
 		this.pages = this.pageService.getPages();
 		this.route.params.subscribe(params => {
-			if (params.slug)
+			if (params.slug) {
 				this.loadComponent(params.slug);
-			else
+			} else {
 				this.loadComponent('DocsMainComponent');
+			}
 		})
 	}
 
 	loadComponent(currentAddIndex: string) {
 
-		let adItem = this.pages[currentAddIndex];
-		let componentFactory = this._componentFactoryResolver.resolveComponentFactory(adItem.component);
+		const adItem = this.pages[currentAddIndex];
+		const componentFactory = this._componentFactoryResolver.resolveComponentFactory(adItem.component);
 
-		let viewContainerRef = this.pageHost.viewContainerRef;
+		const viewContainerRef = this.pageHost.viewContainerRef;
 		viewContainerRef.clear();
 
-		let componentRef = viewContainerRef.createComponent(componentFactory);
+		const componentRef = viewContainerRef.createComponent(componentFactory);
 		(<PageComponent>componentRef.instance).data = adItem.data;
 	}
 

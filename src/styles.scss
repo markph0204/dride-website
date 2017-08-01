@@ -196,14 +196,17 @@ p {
 }
 
 html {
-    min-height: 100%
+    min-height: 100vh
 }
 
 body {
     padding: 0;
     font-family: 'Comfortaa', cursive;
     overflow-x: hidden;
-    display: grid;
+}
+
+.greyBg{
+	background-color: #f9f9f9;
 }
 .container{
     height: 100%;
@@ -283,6 +286,9 @@ $color: #333333,
 }
 .bold, b {
     font-weight: 400;
+}
+main{
+	min-height: 100vh;
 }
 .modal-content {
     background-color: #EAEAEA;

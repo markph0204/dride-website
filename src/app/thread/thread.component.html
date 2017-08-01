@@ -8,9 +8,9 @@
 			
 			<h1 class="text-center">{{(currentThread | async)?.title}}</h1>
 
-			<div class="chatBox">
+			<div class="chatBox" *ngIf="(currentThread | async)" [@introAnim]>
 
-			    <div *ngFor="let node of conversation | async; index as key"  class="animBox">
+			    <div *ngFor="let node of conversation | async; index as key"  class="animBox" >
 			        <div class="bubble">
 			            <div class="auther float-left pl">
 			                <img src="{{node.pic}}" alt="{{node.auther}}" />
@@ -24,7 +24,7 @@
 
 			</div>
 
-			<div class="wrapReplyBox">
+			<div class="wrapReplyBox" *ngIf="(currentThread | async)" [@introAnim]>
 				<span class="bold">@{{firebaseUser ? firebaseUser.displayName : ''}}</span>
 				<textarea (keydown.control.Enter)="send()" class="form-control replyBox" fz-elastic [(ngModel)]="replyBox" type="text" name="reply" placeholder="What's on your mind?"></textarea>
 				<button class="btn btn-dride-black sendBtn float-right" (click)="send()">Send</button>

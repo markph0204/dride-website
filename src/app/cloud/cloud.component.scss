@@ -1,6 +1,13 @@
+.greyBg{
+	background-color: #f9f9f9;
+	min-height: 100%;
+}
+.blackBg{
+	background-color: #333 !important;
+}
+
 .cloudMain {
-    background-color: #f9f9f9;
-    min-height: 100%;
+
     .wrapTop{
         height: 270px;
         margin-top: -99px;
@@ -171,6 +178,7 @@
                 padding: 5px 25px 5px 25px;
                 border-bottom-right-radius: 2px;
                 background-color: #333;
+				color: #fff;
             }
     }
     .cmntsBox{
@@ -182,6 +190,7 @@
             border-radius: 2px;
             padding: 10px;
             font-weight: 100;
+			text-align: left;
             .bdy a {
                 color: #337ab7 !important;
             }
@@ -246,6 +255,7 @@
             font-weight: 300;
             margin-bottom: 17px;
             margin-top: 17px;
+			width: 100%;
         }
 
     }

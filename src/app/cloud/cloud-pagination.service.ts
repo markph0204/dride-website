@@ -65,7 +65,11 @@ export class CloudPaginationService {
 
 						if (!items[item].comments) {
 							items[item].comments = [];
+							items[item].loadMore = false;
+						}else {
+							items[item].loadMore = true;
 						}
+
 
 						this.items.push(items[item]);
 						this.after = items[item].hpInsertTime;

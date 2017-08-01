@@ -8,45 +8,54 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
 
-
 import * as firebase from 'firebase/app';
 
 import { AuthService } from '../auth.service';
 import { UserService } from '../user.service';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import {
+	AngularFireDatabase,
+	FirebaseListObservable
+} from 'angularfire2/database';
 
+import { introAnim } from '../router.animations';
 
 @Component({
 	selector: 'app-forum',
 	templateUrl: './forum.component.html',
-	styleUrls: ['./forum.component.scss']
+	styleUrls: ['./forum.component.scss'],
+	animations: [ introAnim ]
 })
 export class ForumComponent implements OnInit {
-
-
+	@Input() isFull = true;
 	threads: any;
 
-	constructor(db: AngularFireDatabase, private modalService: BsModalService) {
-
-
-		this.threads = db.list('/threads', {
-			query: {
-			orderByChild: 'lastUpdate',
-			orderByKey: true
-			}
-		}).map((arr) => arr.reverse());
-
-	}
+	constructor(
+		private db: AngularFireDatabase,
+		private modalService: BsModalService
+	) { }
 
 	ngOnInit() {
+		const r = {
+					query:
+					{
+						orderByChild: 'lastUpdate',
+						orderByKey: true
+					}
+				}
+
+		if (!this.isFull) {
+			r.query['limitToLast'] = 3
+		}
+
+		this.threads = this.db
+			.list('/threads', r)
+			.map(arr => arr.reverse());
 	}
 
 	ask() {
 		this.modalService.show(NgbdModalAskInForum);
 	}
-
 }
-
 
 @Component({
 	selector: 'ngbd-modal-content',
@@ -57,15 +66,16 @@ export class NgbdModalAskInForum {
 	@Input() name;
 	qTitle: any;
 	public isLoaded = false;
-	showDanger = false
+	showDanger = false;
 
-	constructor(public bsModalRef: BsModalRef,
-				public db: AngularFireDatabase,
-				private auth: AuthService,
-				public user: UserService,
-				private router: Router,
-				private route: ActivatedRoute) {
-	}
+	constructor(
+		public bsModalRef: BsModalRef,
+		public db: AngularFireDatabase,
+		private auth: AuthService,
+		public user: UserService,
+		private router: Router,
+		private route: ActivatedRoute
+	) { }
 
 	onShown() {
 		this.isLoaded = true;
@@ -73,65 +83,52 @@ export class NgbdModalAskInForum {
 
 	closeModal = function () {
 		this.bsModalRef.hide();
-	}
-
+	};
 
 	dismissModal = function () {
 		this.bsModalRef.dismiss();
-	}
+	};
 
 	slugify(text, id) {
-
-	return text
-		.toLowerCase()
-		.replace(/[^\w ]+/g, '')
-		.replace(/ +/g, '-') + '__' + id;
-
+		return (
+			text.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-') + '__' + id
+		);
 	}
 	// TODO: Add animation
 	openThread = function (title) {
-
 		this.auth.verifyLoggedIn().then(result => {
-
 			if (!title) {
-			this.showDanger = true;
-			return;
+				this.showDanger = true;
+				return;
 			}
 
-			this.firebaseUser = this.user.getUser()
+			this.firebaseUser = this.user.getUser();
 			// add a new thread on Firebase
-			this.db.list('/threads')
-			.push({
-			'title': title,
-			'created': new Date().getTime(),
-			'views': 0,
-			'participants': [this.firebaseUser.uid],
-			'description': '',
-			'cmntsCount': 1,
-			'lastUpdate': (new Date).getTime()
-			}).then(ref => {
-
-
-			this.db.object('/threads/' + ref.key).update({ slug: this.slugify(title, ref.key) }).then(res => {
-				this.closeModal();
-				// $location.path('thread/' + $scope.slugify(title, ref.key));
-				this.router.navigate(['/thread/' + this.slugify(title, ref.key)], { relativeTo: this.route });
-				// TODO: //$mixpanel.track('posted a new post');
-			});
-
-
-
-			});
-
+			this.db
+				.list('/threads')
+				.push({
+					title: title,
+					created: new Date().getTime(),
+					views: 0,
+					participants: [this.firebaseUser.uid],
+					description: '',
+					cmntsCount: 1,
+					lastUpdate: new Date().getTime()
+				})
+				.then(ref => {
+					this.db
+						.object('/threads/' + ref.key)
+						.update({ slug: this.slugify(title, ref.key) })
+						.then(res => {
+							this.closeModal();
+							// $location.path('thread/' + $scope.slugify(title, ref.key));
+							this.router.navigate(
+								['/thread/' + this.slugify(title, ref.key)],
+								{ relativeTo: this.route }
+							);
+							// TODO: //$mixpanel.track('posted a new post');
+						});
+				});
 		});
-
-
-
 	};
-
-
-
 }
-
-
-

@@ -1,5 +1,5 @@
-<div class="cloudMain">
-	<div class="container-fluid greyBg">
+<div class="cloudMain" [ngClass]="{'greyBg': isFull, 'blackBg': !isFull}">
+	<div class="container-fluid">
 
 		<div class="container-fluid">
 
@@ -16,12 +16,12 @@
 					[immediateCheck]="true">
 
 					<div class="col-md-offset-2 col-md-8 mx-auto">
-						<h2 class="bVideosT">Best Videos Today</h2>
+						<h2 *ngIf="isFull" class="bVideosT">Best Videos Today</h2>
 					</div>
 					<div *ngIf="hpClips.items">
 						<div class="whiteBg p-0 animBox mx-auto"
 							 *ngFor="let currentVideo of hpClips.items;  index as key"
-							 [ngClass]="{'col-md-offset-2 col-md-8': isFull, 'col-md-12': !isFull}">
+							 [ngClass]="{'col-md-offset-2 col-md-8': isFull, 'col-md-10 col-sm-12': !isFull}">
 							<span class="icon-toyCar-1 float-right"></span>
 							<div class="box mainVid">
 
@@ -89,8 +89,12 @@
 										</div>
 										<!-- <div class="connectorLine" *ngIf="conversationPreviusIsMine[key]"></div> -->
 									</div>
-									<p *ngIf="currentVideo && !hasComments(currentVideo.comments)" class="firstToCmnt">Be the first to comment</p>
-									<p *ngIf="hasMoreToLoad(currentVideo)" class="moreCmnts" (click)="loadMoreComments(currentVideo.op, currentVideo.videoId, key)">Load More Comments</p>
+									<label *ngIf="currentVideo && currentVideo.comments.length == 0" class="firstToCmnt">Be the first to comment</label>
+									<p *ngIf="currentVideo.loadMore" 
+										class="moreCmnts"
+										(click)="loadMoreComments(currentVideo.op, currentVideo.videoId, key)">
+										Load More Comments
+									 </p>
 
 
 								</div>

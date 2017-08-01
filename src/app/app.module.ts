@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +17,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import 'firebase/storage';
 import 'firebase/messaging';
+
 
 
 import { MomentModule } from 'angular2-moment';
@@ -75,8 +77,8 @@ const appRoutes: Routes = [
 	{ path: 'forum', component: ForumComponent },
 	{ path: 'thread', redirectTo: 'forum' },
 	{ path: 'thread/:slug', component: ThreadComponent },
-	{ path: 'about', component: AboutComponent },
-	{ path: 'features', component: Dride1Component },
+	{ path: 'about', component: AboutComponent, data: { state: 'about' }  },
+	{ path: 'features', component: Dride1Component, data: { state: 'features' } },
 	{ path: 'documentation', component: DocumentationComponent },
 	{ path: 'documentation/:slug', component: DocumentationComponent },
 	{ path: 'store', component: StoreComponent },
@@ -133,6 +135,7 @@ const appRoutes: Routes = [
 	],
 	imports: [
 		BrowserModule,
+		BrowserAnimationsModule,
 		RouterModule.forRoot(appRoutes),
 		BrowserModule.withServerTransition({appId: 'dride'}),
 		AlertModule.forRoot(),

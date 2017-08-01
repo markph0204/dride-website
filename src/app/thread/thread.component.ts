@@ -8,12 +8,15 @@ import { UserService } from '../user.service';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
+import { introAnim } from '../router.animations';
+
 
 
 @Component({
 	selector: 'app-thread',
 	templateUrl: './thread.component.html',
-	styleUrls: ['./thread.component.scss']
+	styleUrls: ['./thread.component.scss'],
+	animations: [ introAnim ]
 })
 export class ThreadComponent implements OnInit {
 

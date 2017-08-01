@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { environment } from '../../environments/environment';
@@ -112,27 +112,6 @@ export class CloudComponent implements OnInit {
 		document.getElementById(id).focus();
 	}
 
-	hasComments = function (comments) {
-		return comments && Object.keys(comments).length ? true : false;
-	};
-
-	hasMoreToLoad = function (currentVideo) {
-
-		// dont load if not in full mode
-		if (!this.isFull) {
-			return false;
-		}
-
-		if (!currentVideo.comments || typeof currentVideo.comments === 'undefined') {
-			return false;
-		}
-
-		return currentVideo &&
-			currentVideo.cmntsCount >
-			Object.keys(currentVideo.comments).length
-			? true
-			: false;
-	};
 	loadMoreComments(op, videoId, index) {
 
 		this.http
@@ -141,6 +120,7 @@ export class CloudComponent implements OnInit {
 			.subscribe(data => {
 				const items = data;
 				this.hpClips.items[index].comments = items;
+				this.hpClips.items[index].loadMore = false;
 			},
 			error => {
 				// TODO: log this
