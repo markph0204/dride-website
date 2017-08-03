@@ -16,5 +16,14 @@
       "es2016",
       "dom"
     ]
-  }
+  },
+   "files": [
+    "src/app/app.module.ts",
+    "src/main.ts"
+  ],
+
+  "angularCompilerOptions": {
+   "genDir": "aot",
+   "skipMetadataEmit" : true
+ }
 }

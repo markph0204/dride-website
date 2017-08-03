@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+
 import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
@@ -12,7 +13,7 @@ export class CloudPaginationService {
 	before = '';
 	end = false;
 
-	constructor(private http: Http) {
+	constructor(private http: HttpClient) {
 		this.nextPage();
 		this.busy = false;
 
@@ -29,12 +30,11 @@ export class CloudPaginationService {
 			'/clips_homepage.json?orderBy=%22hpInsertTime%22&endAt=%22' +
 			this.after +
 			'%22&limitToLast=' +
-			(this.isFull ? 5 : 3)
+			(this.isFull ? 5 : 2)
 
 
 		this.http
 			.get(url)
-			.map(response => response.json())
 			.subscribe(data => {
 
 				const items = this.reverseObject(data);

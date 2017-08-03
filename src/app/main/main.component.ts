@@ -1,25 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
-
 import { introAnim } from '../router.animations';
+import {HttpClientModule} from '@angular/common/http';
+
 
 
 @Component({
 	selector: 'app-main',
 	templateUrl: './main.component.html',
 	styleUrls: ['./main.component.scss'],
-	animations: [ introAnim ]
+	animations: [introAnim]
 })
 export class MainComponent implements OnInit {
 
 	public show: any = [false, false, false, false, false, false, false, false];
 	displayCard = 0
 	preSubmit = true
+	isLoaded = false
 
 	constructor() { }
 
 
 	ngOnInit() {
+		this.isLoaded = true;
 	}
 
 	sendDetails = function(email){

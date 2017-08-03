@@ -6,7 +6,7 @@ import { introAnim } from '../../router.animations';
 	selector: 'app-about',
 	templateUrl: './about.component.html',
 	styleUrls: ['./about.component.scss'],
-	animations: [ introAnim ]
+	animations: [introAnim]
 })
 export class AboutComponent implements OnInit {
 

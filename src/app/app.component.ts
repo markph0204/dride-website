@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { introAnim } from './router.animations';
 
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss'],
-	animations: [ introAnim ]
+	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 	title = 'app';

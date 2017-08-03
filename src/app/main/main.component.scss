@@ -56,7 +56,9 @@ $color: #333333,
     left: 198px;
   }
 }
-
+.sep{
+	box-shadow: 0 0px 38px rgba(0, 0, 0, 0.3), 0 0px 12px rgba(0, 0, 0, 0.22);
+}
 .halfPage {
   .icon-bigD:before {
     font-size: 460px;
@@ -74,7 +76,7 @@ $color: #333333,
     font-weight: 100;
     text-align: right;
     margin-top: -29px;
-    margin-right: 39px;
+    margin-right: 62px;
     width: 160px;
     float: right;
   }
@@ -99,14 +101,6 @@ $color: #333333,
   height: 480px;
 }
 
-.logo {
-  text-transform: lowercase;
-  font-size: 90px;
-  padding-top: 90px;
-  span {
-    font-size: 30px;
-  }
-}
 
 .slogen {
   text-transform: initial;
@@ -114,44 +108,50 @@ $color: #333333,
   font-family: 'Raleway', sans-serif;
   color: #666666;
 }
-
-.section1 {
-	height: 100vh;
-	img {
- 		margin-top: -18px;
+.logo {
+	text-transform: lowercase;
+	font-size: 60px;
+	padding-top: 90px;
+	span {
+		font-size: 30px;
 	}
 }
 
-.section2 {
-  margin-top: 300px;
-  p {
-	font-size: 27px;
-    text-align: left;
-    padding-bottom: 100px;
-    margin: auto auto;
-    font-weight: 300;
-  }
-  .actions {
-    a {
-		font-size: 17px;
-		padding-left: 79px;
-    }
-    button {
-  	font-family: 'Comfortaa';
-    background-color: #333;
-	border-radius: 2px;
-	border: 0;
-    color: #fff;
-    cursor: pointer;
-    width: 151px;
-    }
-  }
+.productSubTtl {
+	font-size: 18px;
+	font-weight: 100;
+	color: #404040;
+	text-transform: capitalize;
+	margin-top: 6px;
+	letter-spacing: 1px;
+}
+.section1 {
+	height: 100vh;
+	background-image: url('../../assets/images/hp.png');
+	background-size: cover;
+	img {
+ 		margin-top: -18px;
+	}
+	.logo {
+		padding-top: 75vh;
+		font-size: 69px;
+		letter-spacing: 6px;
+		margin-left: 16px;
+	}
+	.preOrderBtn {
+		margin-bottom: 40px;
+		border: 0;
+		background-color: #fff;
+		margin-top: 16px;
+		width: 169px;
+		border-radius: 2px
+	}
 }
 
 .section3 {
   background-color: #f1f1f1;
-  min-height: 300px;
-  margin-top: 75px;
+  min-height: 100vh;
+  padding: 0;
   .textIt1 {
     p {
       font-size: 20px;
@@ -162,19 +162,25 @@ $color: #333333,
       a {
         padding-left: 15px;
       }
-      button {
-        padding-right: 15px;
-        background-color: #333;
-        color: #fff;
-        cursor: pointer;
-      }
     }
   }
   h1 {
-    margin-bottom: 99px;
+    margin-top: 18px;
+    letter-spacing: 1px;
+    color: #fff;
+    font-size: 100px;
+    padding-left: 18px;
+	span{
+		font-size: 42px;
+		font-weight: 100;
+		font-family: 'Raleway';
+		cursor: pointer;
+	}
   }
   h2 {
-    margin: 70px auto 70px auto;
+    margin-top: 10px;
+    color: #fff;
+    font-size: 22px;
   }
   .spcaer {
     height: 50px;
@@ -187,7 +193,54 @@ $color: #333333,
     right: 31%;
     position: relative;
   }
+  .curedHeaderWrap{
+	height: 265px;
+    background-color: #72c6ce;
+    margin-bottom: 160px;
+  }
+  .roundWrap{
+	  margin-top: -160px;
+	  overflow: hidden;
+  }
+  .z{
+	margin-top: 41px;
+  }
+  .roundedBottom{
+    height: 304px;
+    background-color: #72c6ce;
+    margin-top: -172px;
+    border-radius: 190%;
+    width: 171%;
+    margin-left: -34%;
+    display: block;
+  }
+  .buyBtn{
+	padding-right: 15px;
+    background-color: #72c6ce;
+    color: #fff;
+    cursor: pointer;
+    width: 140px;
+    border: 0;
+    margin-top: 22px;
+    margin-left: -9px;
+    font-family: Comfortaa;
+    font-size: 17px;
+    border-radius: 2px;
+  }
+  .aLbl{
+	padding-top: 29px;
+  }
+
+
+
 }
+
+.spacerImg{
+	background-image: url('../../assets/images/bg1.png');
+    height: 420px;
+    background-size: cover;
+}
+
 
 .section4 {
   background-color: #333;

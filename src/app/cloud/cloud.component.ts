@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 import { AuthService } from '../auth.service';
@@ -27,7 +27,7 @@ export class CloudComponent implements OnInit {
 		private dCloud: CloudPaginationService,
 		private auth: AuthService,
 		private afAuth: AngularFireAuth,
-		private http: Http) {
+		private http: HttpClient) {
 
 
 		this.hpClips = this.dCloud
@@ -116,7 +116,6 @@ export class CloudComponent implements OnInit {
 
 		this.http
 			.get(environment.firebase.databaseURL + '/conversations_video/' + op + '/' + videoId + '.json')
-			.map(response => response.json())
 			.subscribe(data => {
 				const items = data;
 				this.hpClips.items[index].comments = items;

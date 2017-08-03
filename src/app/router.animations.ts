@@ -8,8 +8,7 @@ export const introAnim = trigger(
 			':enter', [
 				style({ opacity: 0 }),
 				animate('.5s cubic-bezier(.75,-0.48,.26,1.52)', style({ transform: 'translateY(0px)', opacity: 1 })),
-			],
-			transition('* => *', animate('.5s'))
+			]
 		),
 		transition(
 			':leave', [

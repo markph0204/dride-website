@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-6 halfPage hidden-lg-down">
+	<div class="col-6 halfPage hidden-lg-down p-0">
 
     <!-- big D part -->
     <div class="row text-center {{'color-' + displayCard}} hidden-xs hidden-sm">
@@ -37,51 +37,47 @@
 
 
 	</div>
-	<div class="col-xl-6 col-lg-12">
+	<div class="col-xl-6 col-lg-12 sep p-0">
 		<div class="section1">
-			<div class="container-fluid blackBg text-center">
+			<div class="container-fluid text-center">
 				<div class="col-xs-12 content text-center" [@introAnim]>
 					<h1 class="logo">dride</h1>
-					<h2 class="slogen">Connected dashcam with safety alerts & apps.</h2>
+					<h2 class="productSubTtl">Connected dashcam with safety alerts & apps.</h2>
+
+					<a class="btn btn-dride btn-dride-white preOrderBtn mx-auto" routerLink="/features">Learn More</a>
+
 				</div>
-				<img class="img-fluid" src="assets/images/mainPic.png" alt="Dride1" [@introAnim]/>
-			</div>
-			<div class="clear"></div>
-			<div class="container text-center section2">
-
-				<div class="actions">
-
-					<button routerLink="/store" type="button" class="btn buyBtn btn-secondary">Buy Now</button>
-					<a [routerLink]="['/features']">Learn More</a>
-				</div>
-
 
 			</div>
 		</div>
 		<div class="container-fluid text-center section3">
-    		<span class="icon-toyCar-1" [ngClass]="{'animatedCar': isLoaded}"></span>
-			<div class="col-xs-12 content text-center">
-				<h1 class="logo">dride<span>zero</span></h1>
-
+			<div class="curedHeaderWrap">
+					<span class="icon-toyCar-1" [ngClass]="{'animatedCar': isLoaded}"></span>
+					<div class="col-xs-12 content text-center">
+						<h1 class="logo">dride<span>zero</span></h1>
+						<h2 class="productSubTtl">World's smallest connected dashcam</h2>
+					</div>
 			</div>
-
-			<img class="img-fluid" src="assets/images/zero.png" alt="dride-zero" />
+			<div class="roundWrap">
+				<div class="roundedBottom"></div>
+			</div>
+			<img class="img-fluid z" src="assets/images/zero.png" alt="dride-zero" />
 
 			<div class="container text-center textIt1">
-				<h2 class="slogen">World's smallest connected dashcam</h2>
-				<p class="mx-auto">We’re a bunch of car fanatics who believe that the vehicles we are driving are unnecessarily primitive and downright
-					dangerous! We’ve designed </p>
+
 				<div class="spcaer"></div>
 				<div class="actions">
 
 					<button routerLink="/store" type="button" class="btn buyBtn btn-secondary">Pre-Order</button>
+					<a class="btn btn-dride aLbl" routerLink="/features">Learn More</a>
+
 				</div>
 
 
 			</div>
-			<img class="float-right stopSign" src="assets/images/stopSign.png" alt="stop sign" />
 		</div>
 
+		<div class="spacerImg"></div>
 
 		<div class="container-fluid text-center section4">
 
@@ -100,7 +96,7 @@
 		</div>
 
 
-		<div class="container-fluid text-center section5">
+		<div class="container-fluid text-center section5" >
 
 			<div class="col-xs-12 content text-center">
 				<h1 class="logo">Join The Discussion</h1>

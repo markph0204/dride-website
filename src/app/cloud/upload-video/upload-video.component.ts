@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Http } from '@angular/http';
 
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../auth.service';
@@ -32,7 +31,6 @@ export class UploadVideoComponent implements OnInit {
 		public af: AngularFireDatabase,
 		private auth: AuthService,
 		private afAuth: AngularFireAuth,
-		private http: Http,
 		private router: Router,
 		public firebaseApp: FirebaseApp) {
 

@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 
 // BS4 plugins
-import { AlertModule } from 'ngx-bootstrap/alert';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -17,7 +17,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import 'firebase/storage';
 import 'firebase/messaging';
-
 
 
 import { MomentModule } from 'angular2-moment';
@@ -134,16 +133,15 @@ const appRoutes: Routes = [
 		SettingsComponent
 	],
 	imports: [
-		BrowserModule,
+		BrowserModule.withServerTransition({appId: 'dride'}),
 		BrowserAnimationsModule,
 		RouterModule.forRoot(appRoutes),
-		BrowserModule.withServerTransition({appId: 'dride'}),
-		AlertModule.forRoot(),
 		ModalModule.forRoot(),
 		BsDropdownModule.forRoot(),
 		CollapseModule.forRoot(),
 		AngularFireModule.initializeApp(environment.firebase),
 		AngularFireDatabaseModule,
+		HttpClientModule,
 		AngularFireAuthModule,
 		MomentModule,
 		TruncateModule,

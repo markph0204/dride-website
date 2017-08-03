@@ -1,25 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 
 @Component({
-  selector: 'app-dride1',
-  templateUrl: './dride1.component.html',
-  styleUrls: ['./dride1.component.scss']
+	selector: 'app-dride1',
+	templateUrl: './dride1.component.html',
+	styleUrls: ['./dride1.component.scss']
 })
 export class Dride1Component implements OnInit {
 
 	preSubmit = true
 
-	constructor(public http: Http) {
-		this.http = http
+	constructor() {
 	}
 
 	ngOnInit() {
 	}
 
-	sendDetails = function(email){
+	sendDetails = function (email) {
 
 
 		this.preSubmit = false;
