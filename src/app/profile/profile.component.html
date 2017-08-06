@@ -88,7 +88,7 @@
 						                    <div class="auther float-left pl">
 						                        <img src="{{comments[commentId].pic}}" alt="{{comments[commentId].auther}}" />
 						                    </div>
-						                    <div class="ago">{{comments[commentId].timestamp | amTimeAgo}}</div>
+						                    <div class="ago">{{comments[commentId].timestamp | timeAgo}}</div>
 						                    <a class="bold" routerLink="/profile/{{comments[commentId].autherId}}">@{{comments[commentId].auther}}</a>
 						                    <div class="bdy">{{comments[commentId].body}}</div>
 						                </div>
@@ -100,7 +100,7 @@
 						    </div>
 						    <div class="postBox">
 						        <div class="wrapReplyBox mt-0">
-						            <textarea id="replyBox" ctrl-enter="sendComment()" class="form-control replyBox mt-0" fz-elastic [(ngModel)]="replyBox" type="text" name="reply" placeholder="What's on your mind?"></textarea>
+						            <textarea id="replyBox" ctrl-enter="sendComment()" class="form-control replyBox mt-0" [(ngModel)]="replyBox" type="text" name="reply" placeholder="What's on your mind?"></textarea>
 						            <button class="btn btn-dride-black sendBtn float-right" (click)="sendComment()">Send</button>
 						        </div>
 						    </div>

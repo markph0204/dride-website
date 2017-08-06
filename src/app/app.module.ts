@@ -19,10 +19,9 @@ import 'firebase/storage';
 import 'firebase/messaging';
 
 
-import { MomentModule } from 'angular2-moment';
+import { TimeAgoPipe } from 'time-ago-pipe'
 import { TruncateModule } from 'ng2-truncate';
 import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
-import { ElasticModule } from 'angular2-elastic';
 import { VgCoreModule } from 'videogular2/core';
 import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
@@ -37,6 +36,7 @@ import { AuthService, NgbdModalLogin } from './auth.service';
 
 import { UserService } from './user.service';
 import { PushNotificationsService } from './push-notifications.service';
+
 
 import { MainComponent } from './main/main.component';
 import { CloudComponent } from './cloud/cloud.component';
@@ -130,7 +130,8 @@ const appRoutes: Routes = [
 		ShowClips,
 		KeysPipe,
 		UploadVideoComponent,
-		SettingsComponent
+		SettingsComponent,
+		TimeAgoPipe
 	],
 	imports: [
 		BrowserModule.withServerTransition({appId: 'dride'}),
@@ -143,10 +144,8 @@ const appRoutes: Routes = [
 		AngularFireDatabaseModule,
 		HttpClientModule,
 		AngularFireAuthModule,
-		MomentModule,
 		TruncateModule,
 		MarkdownToHtmlModule.forRoot(),
-		ElasticModule,
 		FormsModule,
 		VgCoreModule,
 		VgControlsModule,

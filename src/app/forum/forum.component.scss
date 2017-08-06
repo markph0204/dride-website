@@ -1,5 +1,5 @@
 .vh{
-	height: 100vh;
+	min-height: 100vh;
 }
 .forum {
     padding-top: 1px;
@@ -61,17 +61,15 @@
     }
     .ask {
         width: 100%;
-        top: -2px;
-        position: relative;
-        left: -18px;
         height: 34px;
         font-size: 14px;
         font-family: Comfortaa;
+		background-color: #333;
+		color: #fff;
     }
     .sorter {
         list-style: none;
         padding-left: 0;
-        margin-left: -13px;
         li {
             font-size: 16px;
             float: left;
@@ -167,7 +165,6 @@
         top: 28px;
     }
 	.loadersLines{
-		margin-left: -16px;
 		width: 100%;
 	}
 

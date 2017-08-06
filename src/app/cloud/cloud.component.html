@@ -1,7 +1,6 @@
 <div class="cloudMain greyBg">
 	<div class="container-fluid">
 
-		<div class="container-fluid">
 
 			<div class="col-md-12 p-0">
 
@@ -21,7 +20,7 @@
 					<div *ngIf="hpClips.items">
 						<div class="whiteBg p-0 animBox mx-auto"
 							 *ngFor="let currentVideo of hpClips.items;  index as key"
-							 [ngClass]="{'col-md-offset-2 col-md-8': isFull, 'col-md-10 col-sm-12': !isFull}">
+							 [ngClass]="{'col-md-offset-2 col-md-8': isFull, 'col-md-9 col-sm-12': !isFull}">
 							<span class="icon-toyCar-1 float-right"></span>
 							<div class="box mainVid">
 
@@ -82,7 +81,7 @@
 											<div class="auther float-left pl">
 												<img src="{{currentVideo.comments[node].pic}}" alt="{{currentVideo.comments[node].auther}}" />
 											</div>
-											<div class="ago">{{node.timestamp | amTimeAgo}}</div>
+											<div class="ago">{{node.timestamp | timeAgo}}</div>
 											<a class="bold" href="profile/{{currentVideo.comments[node].autherId}}">@{{currentVideo.comments[node].auther}}</a>
 											<div class="bdy" ng-bind-html2="currentVideo.comments[node].body | markdown">{{currentVideo.comments[node].body}}</div>
 
@@ -101,7 +100,7 @@
 								<div class="postBox">
 									<div class="wrapReplyBox mt-0">
 										<textarea id="replyBox{{key}}" ctrl-enter="sendComment(currentVideo.op, currentVideo.videoId, replyBox[key], key)" class="form-control replyBox mt-0"
-											fz-elastic [(ngModel)]="replyBox[key]" type="text" name="reply" placeholder="What's on your mind?"></textarea>
+											[(ngModel)]="replyBox[key]" type="text" name="reply" placeholder="What's on your mind?"></textarea>
 										<button class="btn btn-dride-black sendBtn float-right" (click)="sendComment(currentVideo.op,currentVideo.videoId, replyBox[key], key)">Send</button>
 									</div>
 								</div>
@@ -127,5 +126,5 @@
 
 			</div>
 		</div>
-	</div>
+
 </div>

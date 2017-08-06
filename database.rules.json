@@ -4,6 +4,7 @@
             ".read": true,
             ".indexOn": ["views", "hp"],
             "$uid": {
+                ".indexOn": ["dateUploaded"],
                 ".read": true,
                 ".write": "auth!=null",
                 "$clipId": {

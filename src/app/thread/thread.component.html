@@ -17,7 +17,7 @@
 			            </div>
 			            <a class="bold" routerLink="/profile/{{node.autherId}}">@{{node.auther}}</a>
 			            <div class="bdy" markdown-to-html [data]="node.body" ></div>
-			            <div class="ago">{{node.timestamp | amTimeAgo}}</div>
+			            <div class="ago">{{node.timestamp | timeAgo}}</div>
 			        </div>
 			        <div class="connectorLine" *ngIf="conversationPreviusIsMine[key]"></div>
 			    </div>
@@ -26,7 +26,7 @@
 
 			<div class="wrapReplyBox" *ngIf="(currentThread | async)" [@introAnim]>
 				<span class="bold">@{{firebaseUser ? firebaseUser.displayName : ''}}</span>
-				<textarea (keydown.control.Enter)="send()" class="form-control replyBox" fz-elastic [(ngModel)]="replyBox" type="text" name="reply" placeholder="What's on your mind?"></textarea>
+				<textarea (keydown.control.Enter)="send()" class="form-control replyBox" [(ngModel)]="replyBox" type="text" name="reply" placeholder="What's on your mind?"></textarea>
 				<button class="btn btn-dride-black sendBtn float-right" (click)="send()">Send</button>
 				<label class="hint">Use ctrl+Enter to post | markdown enabled</label>
 			</div>
