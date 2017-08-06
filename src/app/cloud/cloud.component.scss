@@ -199,6 +199,9 @@
             .bdy img {
                 max-width: 100%;
             }
+			.bold{
+				display: inline-block;
+			}
         }
          .bubble:hover .ago {
              color: #999;
@@ -210,6 +213,7 @@
         .auther {
             height: 48px;
             margin-top: 45px;
+			clear: both;
             img {
                 width: 50px;
                 height: 50px;

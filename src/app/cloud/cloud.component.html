@@ -64,7 +64,7 @@
 								<div class="actionBar innerPad">
 									<div class="views float-left">
 										<label>{{currentVideo.views | number:0}} Views </label> &nbsp;&nbsp;&nbsp;
-										<label (click)="commentFoucs('replyBox'+key)">{{currentVideo.cmntsCount | number:0}} Comments</label>
+										<label class="hidden-xs-down" (click)="commentFoucs('replyBox'+key)">{{currentVideo.cmntsCount | number:0}} Comments</label>
 									</div>
 									<ul class="float-right actions">
 										<li (click)="fbShare(currentVideo.op, currentVideo.videoId)"><span class="icon-facebookMedium shareIcon"></span></li>

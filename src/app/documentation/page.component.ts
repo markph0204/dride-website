@@ -1,3 +1,3 @@
 export interface PageComponent {
-  data: any;
+	data: any;
 }

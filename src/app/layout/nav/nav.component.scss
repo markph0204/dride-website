@@ -76,8 +76,12 @@ nav{
       -webkit-transition: height .5s;
       transition: height .5s;
 }
+
 @media (max-width: 992px) {
 
+	nav{
+		width: 100%;
+	};
     .navbar-brand{
         width: 97px;
     }
@@ -88,9 +92,12 @@ nav{
         padding: 20px;
     }
     .nav{
-        display: inherit !important;
-        background-color: #fff;
-        padding-top: 1px;
+		position: relative;
+    	top: 13px;
+
+		display: inherit !important;
+		background-color: #fff;
+		margin-top: -13px !important;
         .active a{
                 padding: 20px 15px 4px 15px;
                 border-bottom: 0;
@@ -100,7 +107,21 @@ nav{
         .active a::before { 
             content: "● ";
         }
+		.nav-item{
+			padding-bottom: 34px;
+			margin-top: 0;
+		}
     }
+	.nav:first-child{
+		 padding-top: 90px;
+	}
+	.navbar-toggler{
+		background-color: #fff;
+		border-radius: 0;
+		margin-left: 4px;
+		padding: 5px 9px 5px 9px;
+		margin-top: 14px;
+	}
     .navbar{
         .show{
             //margin-bottom: -554px;
@@ -108,5 +129,12 @@ nav{
             background-color: rgb(255, 255, 255);
         }
     }
-    
+	.darkOverlay {
+		position: fixed;
+		background-color: rgba(51,51,51,.72);
+		width: 100%;
+		height: 100%;
+		top: 0;
+		z-index: 1000;
+	}
 }

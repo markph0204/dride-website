@@ -4,9 +4,9 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" routerLink="/">dride</a>
-    <div class="collapse navbar-collapse" (collapsed)="setHeight(el, 0)" (expanded)="setHeight(el, 0);setHeight(el, el.scrollHeight)"
+    <div class="collapse navbar-collapse" (collapsed)="setHeight(el, 0);showOverlay = false" (expanded)="setHeight(el, 0);setHeight(el, el.scrollHeight);showOverlay = true"
         [collapse]="isCollapsed" #el>
-        <ul class="nav mr-auto mt-2 mt-lg-0">
+        <ul class="nav mr-auto mt-lg-0">
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="isCollapsed = true">
                 <a class="nav-link" routerLink="/">Home</a>
             </li>
@@ -52,3 +52,6 @@
         </div>
     </div>
 </nav>
+
+
+<div class="darkOverlay" *ngIf="showOverlay"></div>

@@ -17,6 +17,7 @@ export class NavComponent implements OnInit {
 	isCollapsed = true;
 	isFixed = false;
 	path = '';
+	showOverlay = false;
 
 	constructor(private afAuth: AngularFireAuth, private renderer: Renderer, public location: Location,  router: Router) {
 
@@ -52,4 +53,5 @@ export class NavComponent implements OnInit {
 	ngOnInit() {
 
 	}
+
 }
