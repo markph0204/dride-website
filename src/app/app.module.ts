@@ -76,6 +76,7 @@ const appRoutes: Routes = [
 	{ path: 'forum', component: ForumComponent },
 	{ path: 'thread', redirectTo: 'forum' },
 	{ path: 'thread/:slug', component: ThreadComponent },
+	{ path: 'forum/:slug', component: ThreadComponent },
 	{ path: 'about', component: AboutComponent, data: { state: 'about' }  },
 	{ path: 'features', component: Dride1Component, data: { state: 'features' } },
 	{ path: 'documentation', component: DocumentationComponent },
