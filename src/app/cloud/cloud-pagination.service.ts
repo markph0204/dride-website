@@ -30,7 +30,7 @@ export class CloudPaginationService {
 			'/clips_homepage.json?orderBy=%22hpInsertTime%22&endAt=%22' +
 			this.after +
 			'%22&limitToLast=' +
-			(this.isFull ? 5 : 2)
+			(this.isFull ? 5 : 3)
 
 
 		this.http

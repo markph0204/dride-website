@@ -27,7 +27,13 @@
 
                             <vg-player class="player" *ngIf="currentVideo">
 
-							    <video [vgMedia]="media" #media id="current" preload="auto" crossorigin class="videoPlayer" poster="{{currentVideo.thumbs.src}}" >
+							    <video [vgMedia]="media" #media id="current" 
+										preload="auto"
+										crossorigin 
+										class="videoPlayer" 
+										poster="{{currentVideo.thumbs.src}}" 
+										src="{{currentVideo.clips.src}}"
+										>
 							    	<source src="{{currentVideo.clips.src}}" type="video/mp4">
 							    </video>
 
@@ -72,7 +78,7 @@
                                 <div class="desc">
                                     <p><b>License Plate: </b> {{currentVideo.plates}}</p>
                                     <p><b>Description: </b> {{currentVideo.description}}</p>
-                                    <p class="dateLabel">{{videoId*1000 | date:'medium'}}</p>
+                                    <p class="dateLabel">{{currentVideo.timestamp * 1000 | date:'medium'}}</p>
                                 </div>
 
                                 <div class="clear"></div>
@@ -106,7 +112,6 @@
 						    </div>
 						    <div class="clear"></div>
 						</div>
-
 
 	                    <div class="box" *ngIf="map.path">
 						 	<agm-map class="pad5" [latitude]="map.center.latitude" [longitude]="map.center.longitude" [zoom]="map.zoom">

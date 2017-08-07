@@ -82,7 +82,7 @@ exports.cmntsCountVideo = functions.database.ref('/conversations_video/{uid}/{vi
         event.data.adminRef.root.child("conversations_video/" + event.params.uid + '/' + event.params.videId).once('value').then(function(conversationVideo) {
 
             event.data.adminRef.root.child("clips/" + event.params.uid + '/' + event.params.videId + "/cmntsCount").set(conversationVideo.numChildren());
-            var r = {}
+            let r = {}
             r[event.params.conversationId] = event.data.val()
             event.data.adminRef.root.child("clips/" + event.params.uid + '/' + event.params.videId + "/comments").set(r);
 
@@ -241,7 +241,7 @@ exports.generateThumbnail = functions.storage.object().onChange(event => {
         return;
     }
 
-    //find uid & timestamp from filename
+    // find uid & timestamp from filename
     n = event.data.name.split('/');
     uid = n[1];
     filename = n[2];
@@ -249,7 +249,7 @@ exports.generateThumbnail = functions.storage.object().onChange(event => {
     var cloudAnalyserUrl = 'http://54.246.250.130:9000/api/getThumb';
 
     var formData = {
-        // Pass a simple key-value pair 
+        // Pass a simple key-value pair
         uid: uid,
         filename: filename
 
@@ -264,24 +264,30 @@ exports.generateThumbnail = functions.storage.object().onChange(event => {
 });
 
 
-// // Load zone.js for the server.
-// require('zone.js/dist/zone-node');
+// Load zone.js for the server.
+require('zone.js/dist/zone-node');
+const path = require('path');
 
-// // Import renderModuleFactory from @angular/platform-server.
-// var renderModuleFactory = require('@angular/platform-server').renderModuleFactory;
 
-// // Import the AOT compiled factory for your AppServerModule.
-// // This import will change with the hash of your built server bundle.
-// var AppServerModuleNgFactory = require('./dist-server/main.114c1fd7c5fe0c95b677.bundle').AppServerModuleNgFactory;
+// Import renderModuleFactory from @angular/platform-server.
+const renderModuleFactory = require('@angular/platform-server').renderModuleFactory;
 
-// // Load the index.html file.
-// var index = require('fs').readFileSync('./src/index.html', 'utf8');
+// Import the AOT compiled factory for your AppServerModule.
+// This import will change with the hash of your built server bundle.
+const AppServerModuleNgFactory = require('./dist-server/main.a7ad34b20e2d30c271dd.bundle').AppServerModuleNgFactory;
 
-// // Render to HTML and log it to the console.
-// renderModuleFactory(AppServerModuleNgFactory, {document: index, url: '/'}).then(html => console.log(html));
-// app.get('/forum', (request, response) => {
-//   response.send("Hello from Express on Firebase with CORS!")
-// })
+// Load the index.html file.
+const index = require('fs').readFileSync(path.resolve(__dirname, './dist-server/index.html'), 'utf8');
 
-// exports.forum = functions.https.onRequest(app);
+let app = express();
 
+app.get('/', function(req, res) {
+  renderModuleFactory(AppServerModuleNgFactory, {document: index, url: '/'})
+      .then(function(html) {
+         res.send(html);
+      }).catch( function(e) {
+         console.log(e)
+      });
+});
+
+exports.ssr = functions.https.onRequest(app);

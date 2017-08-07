@@ -5,7 +5,11 @@
 .blackBg{
 	background-color: #333 !important;
 }
-
+.notFull{
+	.phpt{
+			margin-top: -170px;
+	}
+}
 .cloudMain {
 
     .wrapTop{
@@ -85,7 +89,6 @@
         border-radius: 2px;
     }
     .videoPlayer {
-        padding: 5px 0 5px 0;
         width: 100%;
         height: 100%;
     }
@@ -276,6 +279,7 @@
     .listItem.ng-enter-active {
         opacity: 1;
     }
+
 
 
 }

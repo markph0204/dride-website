@@ -44,7 +44,7 @@ export class ForumComponent implements OnInit {
 				}
 
 		if (!this.isFull) {
-			r.query['limitToLast'] = 3
+			r.query['limitToLast'] = 4
 		}
 
 		this.threads = this.db

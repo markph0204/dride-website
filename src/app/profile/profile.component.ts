@@ -2,8 +2,7 @@ import { Component, Pipe, PipeTransform, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
-
-import { Http } from "@angular/http";
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { AuthService } from '../auth.service';
@@ -19,8 +18,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class ProfileComponent implements OnInit {
 
-	map: any = { stroke: { "color": "#6060FB", "weight": 4 }, zoom: 16 }
-	userHaveNoVideos: boolean = false;
+	public map: any = { stroke: { 'color': '#6060FB', 'weight': 4 }, zoom: 16 }
+	userHaveNoVideos = false;
 	videoRoute: any = [];
 	uid: string;
 	videoId: string;
@@ -37,12 +36,12 @@ export class ProfileComponent implements OnInit {
 
 	constructor(private db: AngularFireDatabase,
 		private route: ActivatedRoute,
-		public http: Http,
+		public http: HttpClient,
 		private router: Router,
 		private auth: AuthService,
 		private afAuth: AngularFireAuth) {
 
-		//get Auth state
+		// get Auth state
 		afAuth.authState.subscribe(user => {
 			if (!user) {
 				this.firebaseUser = null;
@@ -57,49 +56,38 @@ export class ProfileComponent implements OnInit {
 			this.userHaveNoVideos = false;
 			this.videoRoute = [];
 			this.uid = params['uid'];
-			if (typeof params['videoId'] == 'undefined') {
-				var url =
-					environment.firebase.databaseURL + "/clips/" +
+			this.videoId = params['videoId'];
+
+			if (typeof params['videoId'] === 'undefined') {
+				const url =
+					environment.firebase.databaseURL + '/clips/' +
 					this.uid +
 					'.json?limitToLast=1&orderBy="$key"';
 				this.http
 					.get(url)
-					.map(response => response.json())
 					.subscribe(data => {
-						if (data)
+						if (data) {
 							this.router.navigate(['/profile/' + this.uid + '/' + Object.keys(data)[0]]);
-						else
+						} else {
 							this.userHaveNoVideos = true
+						}
 					},
 					error => {
 						this.userHaveNoVideos = true;
-						//TODO: log this
-						console.log("An error occurred when requesting clips.");
+						// TODO: log this
+						console.log('An error occurred when requesting clips.');
 					}
 
 					)
 
-			} else {
-
-				this.videoId = params['videoId'];
-
-				this.comments = {};
-
-				this.clips = db.list('/clips/' + this.uid, { preserveSnapshot: true });
-
-				this.clips.subscribe(snapshot => {
-					this.orderedClips = this.orderClipsByDate(snapshot);
-				});
-
-
-
 			}
 
 
-			if (params['uid'])
+			if (params['uid']) {
 				this.opData = db.object('userData/' + params['uid']);
+			}
 
-			this.ngOnInit()
+
 
 		});
 
@@ -108,89 +96,128 @@ export class ProfileComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		if (!this.videoId || !this.uid)
+
+
+		if (!this.videoId || !this.uid) {
 			return;
+		}
 
-		window.scrollTo(0, 0);
-		this.currentVideoRef = this.db.object('/clips/' + this.uid + '/' + this.videoId, { preserveSnapshot: true });
+		this.route.params.subscribe(params => {
+			console.log('switch')
+			this.comments = null
+			this.currentVideo = null
+			this.vgConfig = null
+			this.map.center = null;
+			this.map.path = null;
+
+			this.userHaveNoVideos = false;
+			this.videoRoute = [];
+			this.uid = params['uid'];
+			this.videoId = params['videoId'];
+
+			this.comments = {};
+
+			this.clips = this.db.list('/clips/' + this.uid, { preserveSnapshot: true });
+
+			this.clips.subscribe(snapshot => {
+				this.orderedClips = this.orderClipsByDate(snapshot);
+			});
 
 
-		this.currentVideoRef.subscribe(currentVideoSanp => {
-			let data = currentVideoSanp.val();
-			this.currentVideo = data
-			// if video does not exist
-			if (!data) {
-				this.router.navigate(['/page-not-found']);
-				return;
-			}
+			window.scrollTo(0, 0);
+
+			this.currentVideoRef = this.db.object('/clips/' + this.uid + '/' + this.videoId, { preserveSnapshot: true });
 
 
-
-			this.createVideoObj(data.clips.src, data.thumbs.src);
-			// concat old comments with new ones
-			Object.assign(this.comments, data.comments)
-			// load gps location
-			if (!data.gps)
-				return;
-
-			this.http
-				.get(data.gps.src)
-				.map(response => response.json())
-				.subscribe(data => {
-					var s = this.prepGeoJsonToGoogleMaps(
-						data
-					);
-					var middleRoad = Math.ceil(s.length / 2)
-					this.map['center'] = { latitude: s[middleRoad].latitude, longitude: s[middleRoad].longitude };
-					this.map['path'] = s;
-				},
-				error => {
-					this.userHaveNoVideos = true;
-					// TODO: log this
-					console.log("An error occurred when requesting clips.");
+			this.currentVideoRef.subscribe(currentVideoSanp => {
+				const data = currentVideoSanp.val();
+				this.currentVideo = data
+				// if video does not exists
+				if (!data) {
+					this.router.navigate(['/page-not-found']);
+					return;
 				}
 
-				)
 
-		})
+
+				this.createVideoObj(data.clips.src, data.thumbs.src);
+				// concat old comments with new ones
+				Object.assign(this.comments, data.comments)
+				// load gps location
+				if (!data.gps) {
+					return;
+				}
+
+				this.http
+					.get(data.gps.src)
+					.subscribe(data => {
+						const s = this.prepGeoJsonToGoogleMaps(
+							data
+						);
+						const middleRoad = Math.ceil(s.length / 2)
+						this.map['center'] = { latitude: s[middleRoad].latitude, longitude: s[middleRoad].longitude };
+						this.map['path'] = s;
+
+					},
+					error => {
+						this.userHaveNoVideos = true;
+						// TODO: log this
+						console.log('An error occurred when requesting clips.');
+					}
+
+					)
+
+			})
+
+		});
+
+
 
 
 	}
 
 	sideThreadByAuther = function (comments) {
-		if (!comments) return;
+		if (!comments) {
+			return
+		};
 
-		var previusKey = null;
+		let previusKey = null;
 		// angular.forEach(comments, function(k, key) {
-		for (let key in comments) {
+		for (const key in comments) {
+			if (key) {
 
-			if (!previusKey) {
+				if (!previusKey) {
+					previusKey = key;
+					return;
+				}
+				// if same author posted again
+				if (
+					comments[key].autherId === comments[previusKey].autherId
+				) {
+					this.conversationPreviusIsMine[previusKey] = true;
+				} else {
+					this.conversationPreviusIsMine[previusKey] = false;
+				}
 				previusKey = key;
-				return;
 			}
-			// if same author posted again
-			if (
-				comments[key].autherId == comments[previusKey].autherId
-			) {
-				this.conversationPreviusIsMine[previusKey] = true;
-			} else {
-				this.conversationPreviusIsMine[previusKey] = false;
-			}
-			previusKey = key;
 		};
 	};
 
 	orderClipsByDate = function (clips) {
-		var clipsBydate = {};
+		const clipsBydate = {};
+
 		// angular.forEach(clips, function(value, key) {
 		clips.forEach(value => {
 
-			let key: any = value.key
-			var d = new Date(key * 1000);
-			var iKey =
-				d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
+			const key: any = value.key
 
-			if (!clipsBydate[iKey]) clipsBydate[iKey] = {};
+			const d = new Date((value.val().timestamp ? value.val().timestamp : value.key) * 1000);
+			const iKey =
+				d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear();
+
+			if (!clipsBydate[iKey]) {
+				clipsBydate[iKey] = {};
+			}
 
 			clipsBydate[iKey][key] = value.val();
 		});
@@ -199,21 +226,21 @@ export class ProfileComponent implements OnInit {
 	};
 
 	preatifyDate = function (date) {
-		if (!date)
+		if (!date) {
 			return '';
+		}
 
-		var exp = date.split("-");
-		var d = new Date(exp[2], exp[1], exp[0], 0, 0, 0, 0);
-
+		const exp = date.split('-');
+		const d = new Date(exp[2], exp[1], exp[0], 0, 0, 0, 0);
 		return d;
 	};
 	// create the video object for videogular
 	createVideoObj = function (clipURL, posterURL) {
 		this.vgConfig = {
-			preload: "none",
-			sources: [{ src: clipURL, type: "video/mp4" }],
+			preload: 'none',
+			sources: [{ src: clipURL, type: 'video/mp4' }],
 			theme: {
-				url: "styles/videoPlayer.css"
+				url: 'styles/videoPlayer.css'
 			},
 			plugins: {
 				controls: {
@@ -231,8 +258,10 @@ export class ProfileComponent implements OnInit {
 
 	hasMoreToLoad = function () {
 
-		if (!this.comments || typeof this.comments == "undefined")
+		if (!this.comments || typeof this.comments === 'undefined') {
 			return false;
+		}
+
 
 		return this.currentVideo &&
 			this.currentVideo.cmntsCount >
@@ -241,15 +270,15 @@ export class ProfileComponent implements OnInit {
 			: false;
 	};
 	isOwner() {
-		return this.uid == this.firebaseUser.uid
+		return this.uid === this.firebaseUser.uid
 	}
 
 	commentFoucs = function () {
-		document.getElementById("replyBox").focus();
+		document.getElementById('replyBox').focus();
 	}
 	sendComment = function () {
 		if (!this.replyBox) {
-			alert("Please write something");
+			alert('Please write something');
 			return;
 		}
 
@@ -276,10 +305,10 @@ export class ProfileComponent implements OnInit {
 
 
 		this.http
-			.get(environment.firebase.databaseURL + "/conversations_video/" + this.uid + "/" + this.videoId + ".json")
+			.get(environment.firebase.databaseURL + '/conversations_video/' + this.uid + '/' + this.videoId + '.json')
 			.map(response => response.json())
 			.subscribe(data => {
-				var items = data;
+				const items = data;
 				this.comments = items;
 
 				this.conversationPreviusIsMine = [];
@@ -288,7 +317,7 @@ export class ProfileComponent implements OnInit {
 			},
 			error => {
 				// TODO: log this
-				console.log("An error occurred when requesting comments.");
+				console.log('An error occurred when requesting comments.');
 			}
 
 			)
@@ -298,34 +327,34 @@ export class ProfileComponent implements OnInit {
 
 	fbShare = function () {
 		window.open(
-			"https://www.facebook.com/sharer/sharer.php?u=https://dride.io/profile/" +
+			'https://www.facebook.com/sharer/sharer.php?u=https://dride.io/profile/' +
 			this.uid +
-			"/" +
+			'/' +
 			this.videoId,
-			"Facebook",
-			"toolbar=0,status=0,resizable=yes,width=" +
+			'Facebook',
+			'toolbar=0,status=0,resizable=yes,width=' +
 			500 +
-			",height=" +
+			',height=' +
 			600 +
-			",top=" +
+			',top=' +
 			(window.innerHeight - 600) / 2 +
-			",left=" +
+			',left=' +
 			(window.innerWidth - 500) / 2
 		);
 	};
 	twShare = function () {
-		var url = "https://dride.io/profile/" + this.uid + "/" + this.videoId;
-		var txt = encodeURIComponent("You need to see this! #dride " + url);
+		const url = 'https://dride.io/profile/' + this.uid + '/' + this.videoId;
+		const txt = encodeURIComponent('You need to see this! #dride ' + url);
 		window.open(
-			"https://www.twitter.com/intent/tweet?text=" + txt,
-			"Twitter",
-			"toolbar=0,status=0,resizable=yes,width=" +
+			'https://www.twitter.com/intent/tweet?text=' + txt,
+			'Twitter',
+			'toolbar=0,status=0,resizable=yes,width=' +
 			500 +
-			",height=" +
+			',height=' +
 			600 +
-			",top=" +
+			',top=' +
 			(window.innerHeight - 600) / 2 +
-			",left=" +
+			',left=' +
 			(window.innerWidth - 500) / 2
 		);
 	};
@@ -347,7 +376,7 @@ export class ProfileComponent implements OnInit {
 
 	prepGeoJsonToGoogleMaps = function (geoJson) {
 
-		let videoRoute = [];
+		const videoRoute = [];
 		Object.keys(geoJson).forEach(function (key) {
 			geoJson[key] = JSON.parse(geoJson[key]);
 
@@ -371,7 +400,6 @@ export class ProfileComponent implements OnInit {
 export class ShowClips {
 	transform(clips) {
 		return clips;
-
 	}
 }
 @Pipe({

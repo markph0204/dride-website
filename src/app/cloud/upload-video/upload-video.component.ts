@@ -116,7 +116,8 @@ export class UploadVideoComponent implements OnInit {
 						clips: { 'src': downloadURL },
 						thumbs: { 'src': 'https://firebasestorage.googleapis.com/v0/b/dride-2384f.appspot.com/o/assets%2Fplaceholder.png?alt=media&token=07c50ad0-781b-4266-a0c7-8cfcbd421c91' },
 						views: 0,
-						cmntsCount: 0
+						cmntsCount: 0,
+						timestamp: this.timestamp
 					});
 
 				});

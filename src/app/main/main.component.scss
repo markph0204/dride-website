@@ -162,7 +162,6 @@ $color: #333333,
     }
   }
   h1 {
-    margin-top: 18px;
     letter-spacing: 1px;
     color: #fff;
     font-size: 100px;
@@ -243,7 +242,7 @@ $color: #333333,
     background-color: #333;
   }
   .logo {
-    padding-top: 112px;
+    padding-top: 72px;
     font-size: 93px;
     span {
       color: #F06060;
@@ -257,18 +256,21 @@ $color: #333333,
   .slogen {
     color: #fff;
   }
+  .slogen {
+    font-size: 20px;
+  }
   .btn-red {
     background-color: #F06060;
     color: #fff;
-    font-family: Raleway;
     font-weight: 100;
     padding: 17px;
-    font-size: 25px;
     border-radius: 2px;
-    width: 254px;
+    font-family: 'Comfortaa';
+    font-size: 17px;
+    cursor: pointer;
   }
   .roundWrap {
-    margin-top: -160px;
+    margin-top: -60px;
     overflow: hidden;
     background-color: #f9f9f9;
   }
@@ -291,11 +293,11 @@ $color: #333333,
   background-color: #72c6ce;
   padding-bottom: 93px;
   .getDrideApp {
-    margin-top: 51px;
+    margin-top: 0;
     word-spacing: 10px;
   }
   .logo {
-    padding-top: 97px;
+    padding-top: 47px;
     font-size: 93px;
     margin-left: 23px;
     span {
@@ -310,26 +312,28 @@ $color: #333333,
     color: #fff;
   }
   .appImg {
-    margin-top: 81px;
+    margin-top: 31px;
+    width: 57% !important;
   }
 }
 
 .section5 {
   background-color: #f9f9f9;
+  min-height: 100vh;
   .content {
     background-color: #f3b562;
-    padding-top: 121px;
+    padding-top: 81px;
     color: #fff;
   }
   .logo {
+    padding-top: 0;
     font-size: 46px;
-    padding-top: 99px;
     letter-spacing: 5px;
-    margin-left: -19px;
     text-transform: uppercase;
   }
   .slogen {
     color: #fff;
+    font-size: 20px;
   }
   .roundWrap {
     margin-top: -140px;
@@ -346,9 +350,28 @@ $color: #333333,
     display: block;
   }
   .spacer {
-    height: 71px;
+    height: 20px;
     background-color: #f9f9f9;
   }
+  .btn-orange {
+    background-color: #f3b562;
+    color: #fff;
+    font-weight: 100;
+    padding: 17px;
+    border-radius: 2px;
+    font-family: 'Comfortaa';
+    font-size: 17px;
+    cursor: pointer;
+    position: relative;
+    top: -89px;
+  }
+  .icon-toyCar-1 {
+    top: 55px;
+    right: 41%;
+    position: relative;
+	color: #f3b562
+  }
+
 }
 
 .section6 {
@@ -548,20 +571,20 @@ app-cloud .icon-toyCar-1 {
       padding-top: 47px;
       font-size: 73px;
     }
-	h2{
-		    padding: 10px;
-	}
+    h2 {
+      padding: 10px;
+    }
   }
-  .section7{
-	  h2{
-		position: relative;
-    	top: 44px;
-	  }
+  .section7 {
+    h2 {
+      position: relative;
+      top: 44px;
+    }
   }
-  .subscribe{
-	      height: 200px;
-		  h3{
-			    padding-top: 17px !important;
-		  }
+  .subscribe {
+    height: 200px;
+    h3 {
+      padding-top: 17px !important;
+    }
   }
 }

@@ -1,4 +1,4 @@
-<div class="cloudMain greyBg">
+<div class="cloudMain greyBg" [ngClass]="{'notFull': !isFull}">
 	<div class="container-fluid">
 
 
@@ -17,11 +17,11 @@
 					<div class="col-md-offset-2 col-md-8 mx-auto">
 						<h2 *ngIf="isFull" class="bVideosT">Best Videos Today</h2>
 					</div>
-					<div *ngIf="hpClips.items">
+					<div *ngIf="hpClips.items" class="phpt">
 						<div class="whiteBg p-0 animBox mx-auto"
 							 *ngFor="let currentVideo of hpClips.items;  index as key"
-							 [ngClass]="{'col-md-offset-2 col-md-8': isFull, 'col-md-9 col-sm-12': !isFull}">
-							<span class="icon-toyCar-1 float-right"></span>
+							 [ngClass]="{'col-md-offset-2 col-md-8': isFull, 'col-md-7 col-sm-12': !isFull}">
+							<span *ngIf="isFull" class="icon-toyCar-1 float-right"></span>
 							<div class="box mainVid">
 
 								<!-- <p class="dateLabel float-right">{{currentVideo.videoId | date:'MM-dd-yyyy'}}</p>	 -->
