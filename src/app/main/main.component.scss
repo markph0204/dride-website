@@ -133,7 +133,6 @@ $color: #333333,
     padding-top: 75vh;
     font-size: 69px;
     letter-spacing: 6px;
-    margin-left: 16px;
   }
   .preOrderBtn {
     margin-bottom: 40px;
@@ -218,7 +217,6 @@ $color: #333333,
     width: 140px;
     border: 0;
     margin-top: 22px;
-    margin-left: -9px;
     font-family: Comfortaa;
     font-size: 17px;
     border-radius: 2px;
@@ -238,12 +236,12 @@ $color: #333333,
 .section4 {
   background-color: #f9f9f9;
   .h {
-    height: 298px;
+    height: 68px;
     background-color: #333;
   }
   .logo {
-    padding-top: 72px;
-    font-size: 93px;
+    padding-top: 32px;
+    font-size: 63px;
     span {
       color: #F06060;
       font-size: 39px;
@@ -263,7 +261,6 @@ $color: #333333,
     background-color: #F06060;
     color: #fff;
     font-weight: 100;
-    padding: 17px;
     border-radius: 2px;
     font-family: 'Comfortaa';
     font-size: 17px;
@@ -357,21 +354,21 @@ $color: #333333,
     background-color: #f3b562;
     color: #fff;
     font-weight: 100;
-    padding: 17px;
+    width: 140px;
     border-radius: 2px;
     font-family: 'Comfortaa';
     font-size: 17px;
     cursor: pointer;
     position: relative;
     top: -89px;
+    margin-left: 39px;
   }
   .icon-toyCar-1 {
-    top: 55px;
+    top: 46px;
     right: 41%;
     position: relative;
-	color: #f3b562
+    color: #f3b562
   }
-
 }
 
 .section6 {
@@ -381,7 +378,7 @@ $color: #333333,
     color: #fff;
   }
   .logo {
-    padding-top: 97px;
+    padding-top: 127px;
     font-size: 93px;
     span {
       font-size: 39px;
@@ -395,8 +392,14 @@ $color: #333333,
     border: 0;
     cursor: pointer;
     color: #fff;
-    font-size: 19px;
     font-weight: 100;
+    width: 140px;
+    border-radius: 2px;
+    font-family: 'Comfortaa';
+    font-size: 17px;
+    margin-left: -1px;
+    top: -59px;
+    position: relative;
   }
   min-height: 50vh;
 }
@@ -445,11 +448,29 @@ $color: #333333,
     height: 71px;
     background-color: #f9f9f9;
   }
+  .r {
+	padding: 60px;
+    h3 {
+      font-size: 21px;
+      padding-bottom: 7px;
+      border-bottom: 2px solid #333;
+      span {
+        padding-left: 21px;
+        position: relative;
+        top: 9px;
+        right: -44px;
+        font-size: 26px;
+      }
+    }
+    p {
+      color: #909090;
+    }
+  }
 }
 
 .subscribe {
   background-color: #333;
-  height: 400px;
+  height: 270px;
   .submitted img {
     margin-top: 13px;
   }
@@ -541,29 +562,61 @@ app-cloud .icon-toyCar-1 {
     width: 221% !important;
     margin-left: -60% !important;
   }
+  .section1{
+	.logo{
+		padding-top: 69vh;
+	}
+	h2{
+		font-size: 17px;
+		width: 300px;
+		margin: auto auto;
+		line-height: 23px;
+	}
+  }
   .section3 {
-    min-height: 81vh;
-    h1 {
-      margin-top: -42px;
+    min-height: 93vh;
+    .logo {
       letter-spacing: 1px;
       color: #fff;
       font-size: 70px;
       padding-left: 18px;
+	  padding-top: 28px;
     }
+	h2{
+		font-size: 17px;
+	}
     .roundWrap {
       margin-top: -270px;
     }
+	.curedHeaderWrap{
+		height: 155px;
+	}
   }
   .spacerImg {
     height: 21vh;
   }
+  .section5{
+	  .logo{
+		padding-top: 53px;
+		font-size: 37px;
+		line-height: 48px;
+	  }
+	  h2{
+		width: 300px;
+		margin: auto auto;
+		line-height: 25px;
+	  }
+	  .roundWrap{
+		margin-top: -50px;
+	  }
+  }
   .section4 {
     .logo {
-      padding-top: 42px;
-      font-size: 63px;
+		padding-top: 36px;
+		font-size: 53px;
     }
     .roundWrap {
-      margin-top: -260px;
+    	margin-top: -68px;
     }
   }
   .section9 {
@@ -575,16 +628,42 @@ app-cloud .icon-toyCar-1 {
       padding: 10px;
     }
   }
+  .section6{
+	  .logo{
+		font-size: 73px;
+	  }
+	  .slogen{
+		font-size: 20px;
+		line-height: 25px;
+		width: 80%;
+	  }
+  }
   .section7 {
     h2 {
       position: relative;
       top: 44px;
+	  font-size: 20px;
     }
+	h3{
+		font-size: 15px !important;
+		padding-bottom: 0 !important;
+		span{
+			top: 2px !important;
+			right: -9px !important;
+		}
+	}
+	a{
+		padding-bottom: 0 !important;
+	}
+	.gettingStarted{
+		margin-top: -41px;
+	}
   }
   .subscribe {
     height: 200px;
     h3 {
       padding-top: 17px !important;
+	  font-size: 20px !important;
     }
   }
 }

@@ -15,69 +15,70 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+	selector: 'app-product',
+	templateUrl: './product.component.html',
+	styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
 
-  productData: FirebaseObjectObservable<any[]>;
-  mainImageIndex: string = "0"
-  public firebaseUser: any;
+	productData: FirebaseObjectObservable<any[]>;
+	mainImageIndex = '0'
+	public firebaseUser: any;
 
-  constructor(db: AngularFireDatabase, 
-              private route: ActivatedRoute, 
-              private auth: AuthService, 
-              private afAuth: AngularFireAuth, 
-              private modalService: BsModalService) {
+	constructor(db: AngularFireDatabase,
+		private route: ActivatedRoute,
+		private auth: AuthService,
+		private afAuth: AngularFireAuth,
+		private modalService: BsModalService) {
 
 
 
-    afAuth.authState.subscribe(user => {
-      if (!user) {
-        this.firebaseUser = null;        
-        return;
-      }
-      this.firebaseUser = user; 
-  
-    });
+		afAuth.authState.subscribe(user => {
+			if (!user) {
+				this.firebaseUser = null;
+				return;
+			}
+			this.firebaseUser = user;
+
+		});
 
 
 		this.route.params.subscribe(params => {
 
-      if (params['productSlug'])
-         this.productData = db.object('content/' + params['productSlug']);
+			if (params['productSlug']) {
+				this.productData = db.object('content/' + params['productSlug']);
+			}
 
 		});
 
-  }
+	}
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
-  /*
-  * Update current picture in gallery 
-  */
-  updateMainPicture(key){
-    this.mainImageIndex = key
-  }
-
-
-  purchase =function(){
+	/*
+	* Update current picture in gallery
+	*/
+	updateMainPicture(key) {
+		this.mainImageIndex = key
+	}
 
 
-          this.auth.verifyLoggedIn().then( res => {
-       
-
-              this.modalService.show(NgbdModalPayement);
+	purchase = function () {
 
 
-              //payment.makePayment($scope.data.price, $scope.data.key, $scope.data.actionBtn)
-              //TODO: track
-            
-          })
+		this.auth.verifyLoggedIn().then(res => {
 
-    }
+
+			this.modalService.show(NgbdModalPayement);
+
+
+			// payment.makePayment($scope.data.price, $scope.data.key, $scope.data.actionBtn)
+			// TODO: track
+
+		})
+
+	}
 
 
 

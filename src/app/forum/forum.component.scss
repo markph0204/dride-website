@@ -15,7 +15,6 @@
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         margin-bottom: 25px;
         background-color: #fff;
-        height: 113px;
         cursor: pointer;
         width: 100%;
         h2{
@@ -24,6 +23,7 @@
             margin-top: 18px;
             margin-left: 3px;
             margin-bottom: 10px;
+			line-height: 21px;
         }
 		.partRow2{
 			text-align: left;
