@@ -187,3 +187,10 @@
 		padding-bottom: 40px;
 	}
 }
+
+
+@media (min-width: 992px) and (max-width: 1300px) {
+	.docs h2{
+		    min-height: 68px;
+	}
+}

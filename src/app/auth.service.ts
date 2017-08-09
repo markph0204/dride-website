@@ -11,13 +11,15 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 
 import { UserService } from './user.service';
 
+import { MixpanelService } from './helpers/mixpanel.service';
+
 
 @Injectable()
 export class AuthService {
 
 	closeResult: string;
 
-	constructor(private modalService: BsModalService, public afAuth: AngularFireAuth) { }
+	constructor(private modalService: BsModalService, public afAuth: AngularFireAuth, public mixpanel: MixpanelService) { }
 
 	openLogin() {
 
@@ -46,6 +48,9 @@ export class AuthService {
 				if (!user) {
 					return this.openLogin()
 				}
+				// log user to mixpanel
+				this.mixpanel.logIn(user.uid)
+
 				resolve(user)
 
 			});
@@ -70,19 +75,20 @@ export class AuthService {
 export class NgbdModalLogin {
 	@Input() name;
 
-	isLoaded: boolean = false;
-	onWelcome: boolean = false;
-	anonymous: boolean = false;
+	isLoaded = false;
+	onWelcome = false;
+	anonymous = false;
 	public loginError: string;
 	userData: FirebaseListObservable<any[]>;
+	user: Observable<firebase.User>;
 
-
-	constructor(public activeModal: BsModalRef, public afAuth: AngularFireAuth, user: UserService, public db: AngularFireDatabase) {
+	constructor(public activeModal: BsModalRef,
+				public afAuth: AngularFireAuth,
+				user: UserService,
+				public db: AngularFireDatabase,
+				public mixpanel: MixpanelService) {
 		this.user = afAuth.authState;
 	}
-
-
-	user: Observable<firebase.User>;
 
 	closeModal = function () {
 		this.activeModal.hide();
@@ -111,25 +117,29 @@ export class NgbdModalLogin {
 		this.afAuth.auth.signInWithPopup(provider)
 			.catch(error => {
 				this.loginError = error.message;
-				console.log("Authentication failed:", error);
-				//TODO: Show friendly message and log
+				console.log('Authentication failed:', error);
+				// TODO: Show friendly message and log
 			});
 
 		this.afAuth.authState.subscribe(user => {
 
-			if (!user)
+			if (!user) {
 				return;
-			//TODO: //$mixpanel.track('successful login');
+			}
 
-			//ensure push token
-			//TODO: //pushNotification.getPushToken(res.uid)
+			this.mixpanel.track('successful login', provider);
+
+			// ensure push token
+			// TODO: //pushNotification.getPushToken(res.uid)
 
 			this.db.object('/userData/' + user.uid).subscribe(data => {
-				if (data.showedAnonymous == true) {
+				if (data.showedAnonymous === true) {
 					this.closeModal();
 				} else {
-					//first time logged in
-					// mixpanel.alias(data.uid)
+
+					// first time logged in
+					this.mixpanel.createMixpanelProfile(user)
+
 					this.onWelcome = true;
 					firebase.database().ref('userData').child(user.uid).update({ showedAnonymous: true });
 				}

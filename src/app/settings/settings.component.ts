@@ -6,7 +6,6 @@ import { PushNotificationsService } from '../push-notifications.service';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
-
 @Component({
 	selector: 'app-settings',
 	templateUrl: './settings.component.html',

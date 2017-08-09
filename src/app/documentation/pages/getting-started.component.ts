@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-getting-started',
-  templateUrl: './getting-started.component.html',
-  styleUrls: ['../documentation.component.scss']
+	selector: 'app-getting-started',
+	templateUrl: './getting-started.component.html',
+	styleUrls: ['../documentation.component.scss']
 })
 export class GettingStartedComponent implements OnInit {
 
-  constructor() { }
-  data: any = [];
-  ngOnInit() {
+	constructor() { }
+	data: any = [];
+	ngOnInit() {
 
-  	this.data = [
-				  	`dride/
+		this.data = [
+			`dride/
 ├── package.json
 │
 ├── node_modules/
@@ -30,9 +30,9 @@ export class GettingStartedComponent implements OnInit {
 ├── startup.js
 │
 └── ...`
-  	]
+		]
 
 
-  }
+	}
 
 }

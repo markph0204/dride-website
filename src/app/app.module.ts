@@ -11,7 +11,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
-
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -69,6 +68,9 @@ import { ProductComponent } from './store/product.component';
 import { ProfileComponent, ShowClips, KeysPipe } from './profile/profile.component';
 import { UploadVideoComponent } from './cloud/upload-video/upload-video.component';
 import { SettingsComponent } from './settings/settings.component';
+
+import { MixpanelService } from './helpers/mixpanel.service';
+
 
 
 const appRoutes: Routes = [
@@ -158,7 +160,7 @@ const appRoutes: Routes = [
 		InfiniteScrollModule,
 		UiSwitchModule
 	],
-	providers: [AuthService, UserService, SideNavComponent, PageService, CloudPaginationService, PushNotificationsService],
+	providers: [AuthService, UserService, SideNavComponent, PageService, CloudPaginationService, PushNotificationsService, MixpanelService],
 	bootstrap: [AppComponent],
 	entryComponents: [NgbdModalLogin,
 		NgbdModalAskInForum,

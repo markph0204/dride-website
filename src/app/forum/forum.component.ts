@@ -19,6 +19,8 @@ import {
 
 import { introAnim } from '../router.animations';
 
+import { MixpanelService } from '../helpers/mixpanel.service';
+
 @Component({
 	selector: 'app-forum',
 	templateUrl: './forum.component.html',
@@ -31,10 +33,14 @@ export class ForumComponent implements OnInit {
 
 	constructor(
 		private db: AngularFireDatabase,
-		private modalService: BsModalService
+		private modalService: BsModalService,
+		public mixpanel: MixpanelService
 	) { }
 
 	ngOnInit() {
+
+		this.mixpanel.track('Forum visit', {});
+
 		const r = {
 					query:
 					{
@@ -126,7 +132,7 @@ export class NgbdModalAskInForum {
 								['/thread/' + this.slugify(title, ref.key)],
 								{ relativeTo: this.route }
 							);
-							// TODO: //$mixpanel.track('posted a new post');
+							this.mixpanel.track('posted a new post', {});
 						});
 				});
 		});

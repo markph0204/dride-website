@@ -3,6 +3,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { Subscription } from 'rxjs/Rx';
 
+import { MixpanelService } from './helpers/mixpanel.service';
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
@@ -12,7 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	routerSubscription: Subscription;
 
 
-	constructor(private router: Router) {
+	constructor(private router: Router, public mixpanel: MixpanelService) {
 
 	}
 
@@ -21,6 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
 			this.routerSubscription = this.router.events
 				.filter(event => event instanceof NavigationEnd)
 				.subscribe(event => {
+					this.mixpanel.track(this.router.url, {});
 					window.scrollTo(0, 0);
 				});
 		}

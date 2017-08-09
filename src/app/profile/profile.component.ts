@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
 
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { MixpanelService } from '../helpers/mixpanel.service';
 
 @Component({
 	selector: 'app-profile',
@@ -39,7 +40,8 @@ export class ProfileComponent implements OnInit {
 		public http: HttpClient,
 		private router: Router,
 		private auth: AuthService,
-		private afAuth: AngularFireAuth) {
+		private afAuth: AngularFireAuth,
+		public mixpanel: MixpanelService) {
 
 		// get Auth state
 		afAuth.authState.subscribe(user => {
@@ -295,8 +297,7 @@ export class ProfileComponent implements OnInit {
 					this.loadMoreComments(this.videoId);
 					this.replyBox = '';
 				});
-			// TODO: track
-			// $mixpanel.track("posted a comment");
+			this.mixpanel.track('posted a comment', {});
 		})
 	};
 

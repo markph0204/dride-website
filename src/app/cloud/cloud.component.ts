@@ -9,6 +9,8 @@ import { CloudPaginationService } from '../cloud/cloud-pagination.service';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
+import { MixpanelService } from '../helpers/mixpanel.service';
+
 
 @Component({
 	selector: 'app-cloud',
@@ -27,7 +29,8 @@ export class CloudComponent implements OnInit {
 		private dCloud: CloudPaginationService,
 		private auth: AuthService,
 		private afAuth: AngularFireAuth,
-		private http: HttpClient) {
+		private http: HttpClient,
+		public mixpanel: MixpanelService) {
 
 
 		// get Auth state
@@ -151,8 +154,8 @@ export class CloudComponent implements OnInit {
 					this.loadMoreComments(op, videoId, index);
 					this.replyBox[index] = '';
 				});
-			// TODO: track
-			// $mixpanel.track("posted a comment");
+
+			this.mixpanel.track('posted a comment', {});
 		})
 
 

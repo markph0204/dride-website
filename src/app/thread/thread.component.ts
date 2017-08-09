@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
@@ -10,6 +10,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { introAnim } from '../router.animations';
 
+import { MixpanelService } from '../helpers/mixpanel.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ import { introAnim } from '../router.animations';
 	styleUrls: ['./thread.component.scss'],
 	animations: [ introAnim ]
 })
-export class ThreadComponent implements OnInit {
+export class ThreadComponent implements OnInit, OnDestroy {
 
 	currentThread: FirebaseObjectObservable<any[]>;
 	conversation: FirebaseListObservable<any[]>;
@@ -35,7 +36,8 @@ export class ThreadComponent implements OnInit {
 		private router: Router,
 		private auth: AuthService,
 		public user: UserService,
-		private afAuth: AngularFireAuth) {
+		private afAuth: AngularFireAuth,
+		public mixpanel: MixpanelService) {
 
 		afAuth.authState.subscribe(user => {
 			if (!user) {
@@ -112,7 +114,7 @@ export class ThreadComponent implements OnInit {
 			});
 
 			this.replyBox = '';
-			// TODO: //$mixpanel.track('posted a comment');
+			this.mixpanel.track('posted a comment', {});
 
 		})
 
