@@ -30,8 +30,6 @@ export class CloudComponent implements OnInit {
 		private http: HttpClient) {
 
 
-		this.hpClips = this.dCloud
-
 		// get Auth state
 		afAuth.authState.subscribe(user => {
 			if (!user) {
@@ -47,7 +45,10 @@ export class CloudComponent implements OnInit {
 
 	ngOnInit() {
 		// load first batch
-		// this.hpClips.nextPage()
+		this.dCloud.init(this.isFull);
+		console.log('helllo')
+
+		this.hpClips = this.dCloud
 
 	}
 

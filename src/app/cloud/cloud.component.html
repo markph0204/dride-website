@@ -9,7 +9,7 @@
 					infiniteScroll 
 					[infiniteScrollDistance]="2"
 					[infiniteScrollThrottle]="300" 
-					[scrollWindow]="!hpClips.busy"
+					[scrollWindow]="true"
 					(scrolled)="hpClips.nextPage()"
 					[infiniteScrollDisabled]="!isFull"
 					[immediateCheck]="true">

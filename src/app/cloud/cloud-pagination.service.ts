@@ -12,15 +12,28 @@ export class CloudPaginationService {
 	after = '9999999999999'; // highest key possible
 	before = '';
 	end = false;
+	isFull = true;
 
 	constructor(private http: HttpClient) {
-		this.nextPage();
 		this.busy = false;
+	}
+
+	init(isFull) {
+		this.isFull = isFull;
+		if (!this.isFull) {
+			this.items = [];
+			this.busy = false;
+			this.end = false;
+			this.after = '9999999999999'; // highest key possible
+			this.before = '';
+		}
+		this.nextPage();
 
 	}
 
 	nextPage = function () {
-		if (this.busy || this.end) {
+
+		if (this.busy || (this.isFull && this.end)) {
 			return
 		};
 
@@ -75,7 +88,7 @@ export class CloudPaginationService {
 						this.after = items[item].hpInsertTime;
 					}
 				}
-
+				console.log('bussy', this.busy )
 				this.busy = false;
 
 				if (this.after === this.before) {
@@ -86,7 +99,7 @@ export class CloudPaginationService {
 				this.before = this.after;
 				// remove last element because he is the first element from next batch
 				this.items.pop();
-
+				console.log('bussy', this.busy )
 
 			},
 			error => {
