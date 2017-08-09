@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { introAnim } from '../router.animations';
 import { HttpClientModule } from '@angular/common/http';
 
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
+
 
 
 @Component({

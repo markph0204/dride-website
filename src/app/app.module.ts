@@ -18,7 +18,6 @@ import 'firebase/storage';
 import 'firebase/messaging';
 
 
-import { TimeAgoPipe } from 'time-ago-pipe'
 import { TruncateModule } from 'ng2-truncate';
 import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import { VgCoreModule } from 'videogular2/core';
@@ -42,10 +41,8 @@ import { CloudComponent } from './cloud/cloud.component';
 import { CloudPaginationService } from './cloud/cloud-pagination.service';
 import { ForumComponent, NgbdModalAskInForum } from './forum/forum.component';
 import { NgbdModalPayement } from './store/payment.modal';
-import { ThreadComponent } from './thread/thread.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DocumentationComponent } from './documentation/documentation.component';
-import { Dride1Component } from './content/dride1/dride1.component';
 import { DocsMainComponent, ShowOnHomePage } from './documentation/pages/main.component';
 import { AdasComponent } from './documentation/pages/adas.component';
 import { AssistantComponent } from './documentation/pages/assistant.component';
@@ -59,8 +56,7 @@ import { SideNavComponent } from './documentation/layout/side-nav.component';
 import { PageService } from './documentation/pages.service';
 import { DocsPageDirective } from './documentation/pages.directive';
 
-import { CodeComponent } from './shared/code/code.component';
-import { AboutComponent } from './content/about/about.component';
+import { CodeComponent } from './helpers/code/code.component';
 import { NavComponent } from './layout/nav/nav.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { StoreComponent } from './store/store.component';
@@ -70,32 +66,10 @@ import { UploadVideoComponent } from './cloud/upload-video/upload-video.componen
 import { SettingsComponent } from './settings/settings.component';
 
 import { MixpanelService } from './helpers/mixpanel.service';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
-
-
-const appRoutes: Routes = [
-	{ path: '', component: MainComponent },
-	{ path: 'forum', component: ForumComponent },
-	{ path: 'thread', redirectTo: 'forum' },
-	{ path: 'thread/:slug', component: ThreadComponent },
-	{ path: 'forum/:slug', component: ThreadComponent },
-	{ path: 'about', component: AboutComponent, data: { state: 'about' }  },
-	{ path: 'features', component: Dride1Component, data: { state: 'features' } },
-	{ path: 'documentation', component: DocumentationComponent },
-	{ path: 'documentation/:slug', component: DocumentationComponent },
-	{ path: 'store', component: StoreComponent },
-	{ path: 'product/:productSlug', component: ProductComponent },
-	{ path: 'profile/:uid/:videoId', component: ProfileComponent },
-	{ path: 'profile/:uid', component: ProfileComponent },
-	{ path: 'cloud', component: CloudComponent },
-	{ path: 'cloud/uploadVideo', component: UploadVideoComponent },
-	{ path: 'settings', component: SettingsComponent },
-
-
-	{ path: 'page-not-found', component: PageNotFoundComponent },
-	// { path: '**', component: PageNotFoundComponent }
-];
-
+import { routing } from './app.routing';
+import { SharedModule } from './helpers/shared.module';
 
 
 @NgModule({
@@ -104,13 +78,11 @@ const appRoutes: Routes = [
 		MainComponent,
 		CloudComponent,
 		ForumComponent,
-		ThreadComponent,
 		PageNotFoundComponent,
 		NgbdModalLogin,
 		NgbdModalAskInForum,
 		NgbdModalPayement,
 		DocumentationComponent,
-		Dride1Component,
 		DocsMainComponent,
 		AdasComponent,
 		AssistantComponent,
@@ -124,7 +96,6 @@ const appRoutes: Routes = [
 		DocsPageDirective,
 		ShowOnHomePage,
 		CodeComponent,
-		AboutComponent,
 		NavComponent,
 		FooterComponent,
 		StoreComponent,
@@ -134,12 +105,11 @@ const appRoutes: Routes = [
 		KeysPipe,
 		UploadVideoComponent,
 		SettingsComponent,
-		TimeAgoPipe
 	],
 	imports: [
-		BrowserModule.withServerTransition({appId: 'dride'}),
+		BrowserModule.withServerTransition({ appId: 'dride' }),
 		BrowserAnimationsModule,
-		RouterModule.forRoot(appRoutes),
+		routing,
 		ModalModule.forRoot(),
 		BsDropdownModule.forRoot(),
 		CollapseModule.forRoot(),
@@ -158,9 +128,18 @@ const appRoutes: Routes = [
 			apiKey: environment.googleMapsApi
 		}),
 		InfiniteScrollModule,
-		UiSwitchModule
+		UiSwitchModule,
+		Ng2PageScrollModule,
+		SharedModule
 	],
-	providers: [AuthService, UserService, SideNavComponent, PageService, CloudPaginationService, PushNotificationsService, MixpanelService],
+	providers: [AuthService,
+		UserService,
+		SideNavComponent,
+		PageService,
+		CloudPaginationService,
+		PushNotificationsService,
+		MixpanelService
+		],
 	bootstrap: [AppComponent],
 	entryComponents: [NgbdModalLogin,
 		NgbdModalAskInForum,

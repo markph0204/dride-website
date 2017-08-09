@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'hljs',
-  template: `<div class="code-example">
+	selector: 'hljs',
+	template: `<div class="code-example">
 					<pre><code>{{code}}</code></pre>
 				</div>`,
-  styles: [`code{
+	styles: [`code{
 			    display: block;
 			    overflow-x: auto;
 			    padding: .5em;
@@ -30,11 +30,11 @@ import { Component, OnInit, Input } from '@angular/core';
 			`]
 })
 export class CodeComponent implements OnInit {
-  @Input() code: String;
+	@Input() code: String;
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
 }
