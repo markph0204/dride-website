@@ -3,7 +3,7 @@
 
     <!-- big D part -->
     <div class="row text-center {{'color-' + displayCard}} hidden-xs hidden-sm">
-      <div class="menu circle-container icon-bigD">
+      <div class="menu circle-container icon-bigD dpAnim" [ngClass]="'dbg' + currentElementInView">
 
         <span pageScroll href="#view7" class="iW dot6" on-mouseover="show[7] = true" on-mouseleave="show[7] = false">
             <span class="icon-docs node pull-right" [ngClass]="displayCard==7 ? 'active-7 icon-docs-full': 'icon-docs'"></span>
@@ -38,7 +38,7 @@
 
   </div>
   <div class="col-xl-6 col-lg-12 sep p-0">
-    <div id="view1" class="section1">
+    <div id="view1" in-viewport (inViewport)="action($event.value, 1)" class="section1">
       <div class="container-fluid text-center">
         <div class="col-xs-12 content text-center" [@introAnim]>
           <h1 class="logo">dride</h1>
@@ -50,7 +50,7 @@
 
       </div>
     </div>
-    <div id="view3" class="container-fluid text-center section3">
+    <div id="view3" in-viewport (inViewport)="action($event.value, 2)" class="container-fluid text-center section3">
       <div class="curedHeaderWrap">
         <div class="col-xs-12 content text-center">
           <h1 class="logo">dride<span>zero</span></h1>
@@ -78,7 +78,7 @@
 
     <div class="spacerImg"></div>
 
-    <div id="view4" class="container-fluid text-center section4 p-0">
+    <div id="view4" in-viewport (inViewport)="action($event.value, 3)" class="container-fluid text-center section4 p-0">
 
       <div class="col-xs-12 content text-center h">
         <h1 class="logo">dride<span>Cloud</span></h1>
@@ -96,7 +96,7 @@
     </div>
 
 
-    <div id="view9" class="container-fluid text-center section9">
+    <div id="view9" in-viewport (inViewport)="action($event.value, 4)" class="container-fluid text-center section9">
 
       <div class="appHead text-center">
         <h1 class="logo">dride<span>App</span></h1>
@@ -119,7 +119,7 @@
     </div>
 
 
-    <div id="view5" class="container-fluid text-center section5 p-0">
+    <div id="view5" in-viewport (inViewport)="action($event.value, 5)" class="container-fluid text-center section5 p-0">
 
       <div class="col-xs-12 content text-center">
         <h1 class="logo">Join The Discussion</h1>
@@ -139,7 +139,7 @@
     </div>
 
 
-    <div id="view6" class="container-fluid text-center section6 p-0">
+    <div id="view6" in-viewport (inViewport)="action($event.value, 6)" class="container-fluid text-center section6 p-0">
 
       <div class="col-xs-12 content text-center">
         <h2 class="logo">dride<span>Fleet</span></h2>
@@ -157,7 +157,7 @@
     </div>
 
 
-    <div id="view7" class="container-fluid text-center section7 p-0">
+    <div id="view7" in-viewport (inViewport)="action($event.value, 7)" class="container-fluid text-center section7 p-0">
       <div class="col-xs-12 content text-center">
         <h2>DEVELOPERS</h2>
       </div>
@@ -178,7 +178,7 @@
     </div>
 
 
-    <div id="view8" class="container-fluid subscribe section8 p-0">
+    <div id="view8" in-viewport (inViewport)="action($event.value, 8)" class="container-fluid subscribe section8 p-0">
       <div class="roundWrap">
         <div class="roundedBottom"></div>
       </div>

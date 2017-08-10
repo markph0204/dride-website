@@ -4,7 +4,9 @@ $color: #333333,
 #b68cbf,
 #F06060,
 #72C6CE,
-#4A6164;
+#4A6164,
+#ae79b3,
+#e9e9e9;
 @for $i from 1 through 7 {
   .bg-#{$i} {
     background-color: nth($color, $i);
@@ -43,6 +45,17 @@ $color: #333333,
   }
 }
 
+.dbg0:before{  color: nth($color, 1); }
+.dbg1:before{  color: nth($color, 6); }
+.dbg2:before{  color: nth($color, 5); }
+.dbg3:before{  color: nth($color, 5); }
+.dbg4:before{  color: nth($color, 6); }
+.dbg5:before{  color: nth($color, 3); }
+.dbg6:before{  color: nth($color, 8); }
+.dbg7:before{  color: nth($color, 1); }
+.dpAnim:before{
+	 transition: .6s;
+}
 .circle-container {
   @include on-circle($item-count: 8, $circle-size: 450px, $item-size: 6em);
   margin: 5em auto 0;
@@ -69,6 +82,7 @@ $color: #333333,
     left: 27%;
     position: fixed !important;
     top: 40%;
+	transition: .25s;
   }
   .labelNear {
     font-family: 'Comfortaa', cursive;

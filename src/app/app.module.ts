@@ -71,6 +71,9 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { routing } from './app.routing';
 import { SharedModule } from './helpers/shared.module';
 
+import { InViewport } from './helpers/in-viewport.directive';
+
+
 
 @NgModule({
 	declarations: [
@@ -105,6 +108,7 @@ import { SharedModule } from './helpers/shared.module';
 		KeysPipe,
 		UploadVideoComponent,
 		SettingsComponent,
+		InViewport
 	],
 	imports: [
 		BrowserModule.withServerTransition({ appId: 'dride' }),
