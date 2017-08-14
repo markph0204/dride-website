@@ -14,9 +14,20 @@ var mixpanel = Mixpanel.init('eae916fa09f65059630c5ae451682939');
 
 var FCM = require(__dirname + '/FCM/subscribe.js');
 var mailer = require(__dirname + '/mailer/send.js');
+var subscriber = require(__dirname + '/mailer/subscribe.js');
 var anonymizer = require(__dirname + '/user/anonymizer.js');
 var cloud = require(__dirname + '/cloud/cloud.js');
 
+
+/*
+*	HTTP endpoint to subscribe a user to mailing list
+*/
+exports.subscriber = functions.https.onRequest((req, res) => { 
+	if (req.query.email)
+		res.status(200).send({'status': subscriber.subscribeUser(req.query.email)});
+	else
+		res.status(200).send({'status': -1})
+});
 
 /*
  * Add updated cmntsCount to threads & update the description for the thread with the latest post
@@ -236,6 +247,7 @@ exports.generateThumbnail = functions.storage.object().onChange(event => {
         return;
     }
     // Exit if this is a move or deletion event.
+	console.log(event.data.resourceState)
     if (event.data.resourceState === 'not_exists') {
         console.log('This is a deletion event.');
         return;
@@ -259,35 +271,66 @@ exports.generateThumbnail = functions.storage.object().onChange(event => {
             return console.error('upload failed:', err + '--' + httpResponse);
         }
         console.log('Upload successful!  Server responded with:', body);
+
+		//track event
+		mixpanel.track('video_upoload', {
+			distinct_id: uid,
+			filename: filename
+		});
+
+
+		//notify user his video is live!
+		var db = admin.database();
+		admin.auth().getUser(uid).then(function(userRecord) {
+			db.ref('clips').child(uid).child(filename.split('.')[0]).once("value", function(snapshot) {
+				const user = userRecord.toJSON()
+				const clip = snapshot.val()
+				console.log(user)
+				//notify user his video is live!
+				var sendObj = {
+					"template_name": 'video-is-on',
+					"subject": "Your video is now on Dride Cloud",
+					"to" : [
+							{"email": user.email},
+							{"email": 'yossi@dride.io'},
+							],
+					"tags": ['video uploaded!'],
+					"global_merge_vars": [
+											{
+												"name": "FULL_NAME",
+												"content": user.displayName.split(' ')[0]
+											},
+											{
+												"name": "VIDEO_POSTER",
+												"content": clip.thumbs.src
+											},
+											{
+												"name": "VIDEO_LINK",
+												"content": 'https://dride.io/profile/'+uid+'/'+filename.split('.')[0]
+											}
+
+										]
+				};
+			mailer.send(sendObj);
+
+
+
+			}, function (errorObject) {
+			console.log("The read failed: " + errorObject.code);
+			});
+		}, function (errorObject) {
+		console.log("Error fetching user data: " + errorObject.code);
+		});
+
+
+
+
     });
 
 });
 
 
-// Load zone.js for the server.
-require('zone.js/dist/zone-node');
-const path = require('path');
 
 
-// Import renderModuleFactory from @angular/platform-server.
-const renderModuleFactory = require('@angular/platform-server').renderModuleFactory;
 
-// Import the AOT compiled factory for your AppServerModule.
-// This import will change with the hash of your built server bundle.
-const AppServerModuleNgFactory = require('./dist-server/main.a7ad34b20e2d30c271dd.bundle').AppServerModuleNgFactory;
 
-// Load the index.html file.
-const index = require('fs').readFileSync(path.resolve(__dirname, './dist-server/index.html'), 'utf8');
-
-let app = express();
-
-app.get('/', function(req, res) {
-  renderModuleFactory(AppServerModuleNgFactory, {document: index, url: '/'})
-      .then(function(html) {
-         res.send(html);
-      }).catch( function(e) {
-         console.log(e)
-      });
-});
-
-exports.ssr = functions.https.onRequest(app);

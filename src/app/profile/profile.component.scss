@@ -13,6 +13,9 @@
         width: 87px;
         height: 87px;
     }
+	.mh{
+		min-height: calc(100vh - 430px);
+	}
     .profilePic {
         position: relative;
         top: -70px;

@@ -12,6 +12,9 @@ import { introAnim } from '../router.animations';
 
 import { MixpanelService } from '../helpers/mixpanel.service';
 
+import { MetaService } from '@ngx-meta/core';
+
+
 
 @Component({
 	selector: 'app-thread',
@@ -37,7 +40,8 @@ export class ThreadComponent implements OnInit, OnDestroy {
 		private auth: AuthService,
 		public user: UserService,
 		private afAuth: AngularFireAuth,
-		public mixpanel: MixpanelService) {
+		public mixpanel: MixpanelService,
+		private readonly meta: MetaService) {
 
 		afAuth.authState.subscribe(user => {
 			if (!user) {
@@ -55,11 +59,12 @@ export class ThreadComponent implements OnInit, OnDestroy {
 		this.sub = this.route.params.subscribe(params => {
 			this.threadId = params['slug'].split('__').pop();
 
-
-
 			this.db.object('/threads/' + this.threadId, { preserveSnapshot: true }).subscribe(snapshot => {
 				if (!snapshot.val()) {
 					this.router.navigate(['/page-not-found'])
+				}else {
+					// set meta tags
+					this.meta.setTitle(snapshot.val().title);
 				}
 			});
 

@@ -3,25 +3,25 @@ import { SideNavComponent } from '../layout/side-nav.component';
 
 
 @Component({
-  selector: 'docs-main',
-  templateUrl: './main.component.html'
+	selector: 'docs-main',
+	templateUrl: './main.component.html'
 })
-export class DocsMainComponent  {
+export class DocsMainComponent {
 
-  public docMenu: any[]
+	public docMenu: any[]
 
-  constructor(sideNav: SideNavComponent) { 
-  	this.docMenu = sideNav.docMenu;
+	constructor(sideNav: SideNavComponent) {
+		this.docMenu = sideNav.docMenu;
 
-  }
+	}
 
 }
 
 @Pipe({
-    name: 'showOnHomePage'
+	name: 'showOnHomePage'
 })
 export class ShowOnHomePage implements PipeTransform {
-    transform(items: Array<any>): Array<any> {
-        return items.filter(item => item.hp === true);
-    }
+	transform(items: Array<any>): Array<any> {
+		return items.filter(item => item.hp === true);
+	}
 }

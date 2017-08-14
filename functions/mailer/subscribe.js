@@ -1,12 +1,16 @@
 var admin = require('firebase-admin');
-var config = require('config');
+const cors = require('cors')({origin: true});
+
 
 var Mailchimp = require('mailchimp-api-v3')
 var marked = require('marked');
 
+var env = require('../environments/environments.prod.js').env;
+
+
 
 var mailchimp = new Mailchimp(
-							  config.get('keys.mailchimp')
+							  env.mailchimp
 							 );
 
 
@@ -18,14 +22,21 @@ subscriber = {
      */
     subscribeUser: function(email) {
 
-		mailchimp.request({
-			method : 'get|post|put|patch|delete',
-			path : '/3.0/lists/a0b1ee944d/members/',
-			path_params : {
-							"email_address": "email",
-							"status": "subscribed"
-						}
+		return mailchimp.post({
+			path : '/lists/a0b1ee944d/members',
+			body : {
+				"email_address": email,
+				"status": "subscribed"
+			}
+			}).then((results) =>{
+				return 1;
 			})
+			.catch((err) =>{
+				console.log(err)
+				return -1;
+			})
+
+
     }
 
 }

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { introAnim } from '../router.animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 import { PageScrollConfig } from 'ng2-page-scroll';
 import { InViewport } from '../helpers/in-viewport.directive';
+import { environment } from '../../environments/environment';
+import { MixpanelService } from '../helpers/mixpanel.service';
 
 
 @Component({
@@ -22,7 +24,7 @@ export class MainComponent implements OnInit {
 	isLoaded = false
 	currentElementInView = 0
 
-	constructor() {
+	constructor(private http: HttpClient, public mixpanel: MixpanelService) {
 
 		PageScrollConfig.defaultDuration = 800;
 		PageScrollConfig.defaultEasingLogic = {
@@ -39,6 +41,7 @@ export class MainComponent implements OnInit {
 	action(event, pos) {
 		if (event) {
 			this.currentElementInView = pos - 1
+			this.show.fill(false)
 			this.show[pos] = true;
 		}
 	}
@@ -49,18 +52,12 @@ export class MainComponent implements OnInit {
 
 	sendDetails = function (email) {
 
-
-		this.preSubmit = false;
-		// TODO: subscibre users
-
-		// let url = 'https://mysubscriptionlist.us13.list-manage.com/subscribe/post-json?u=b0c935d6f51c1f7aaf1edd8ff&id=9d740459d3&subscribe=Subscribe&EMAIL=templth@yahoo.fr&c=JSONP_CALLBACK';
-		// jsonp.request(url, { method: 'Get' })
-		// 	.subscribe((res) => { this.result = res.json() });
-
-
-		// return this.http.get('https://api.dride.io/validator/subscribe.php?email=' + email).map(res =>  res.json())
-
-
+		// subscribe users
+		const url = environment.functionsURL + '/subscriber?email=' + email;
+		this.http.get(url).subscribe(data => {
+			this.preSubmit = false;
+			this.mixpanel.track('subscribed', {location: 'HP', email: email});
+		});
 
 	}
 }

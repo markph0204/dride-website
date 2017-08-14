@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MixpanelService } from '../../helpers/mixpanel.service';
 
 @Component({
 	selector: 'app-getting-started',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GettingStartedComponent implements OnInit {
 
-	constructor() { }
+	constructor(public mixpanel: MixpanelService) { }
 	data: any = [];
 	ngOnInit() {
 
@@ -32,6 +33,12 @@ export class GettingStartedComponent implements OnInit {
 └── ...`
 		]
 
+
+	}
+
+	track(what) {
+		alert('xx')
+		this.mixpanel.track('download ' + what, {});
 
 	}
 

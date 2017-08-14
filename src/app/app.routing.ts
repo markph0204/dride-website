@@ -15,29 +15,35 @@ import { ProfileComponent } from './profile/profile.component';
 import { UploadVideoComponent } from './cloud/upload-video/upload-video.component';
 import { SettingsComponent } from './settings/settings.component';
 
-
-const routes: Routes = [
-	{ path: '', component: MainComponent },
-	{ path: 'forum', component: ForumComponent },
-	{ path: 'thread', redirectTo: 'forum' },
-	{ path: 'thread/:slug', loadChildren: './thread/thread.module#ThreadModule' },
-	{ path: 'forum/:slug', loadChildren: './thread/thread.module#ThreadModule' },
-	{ path: 'about', loadChildren: './content/about/about.module#AboutModule'  },
-	{ path: 'features', loadChildren: './content/dride1/dride1.module#Dride1Module' },
-	{ path: 'documentation', component: DocumentationComponent },
-	{ path: 'documentation/:slug', component: DocumentationComponent },
-	{ path: 'store', component: StoreComponent },
-	{ path: 'product/:productSlug', component: ProductComponent },
-	{ path: 'profile/:uid/:videoId', component: ProfileComponent },
-	{ path: 'profile/:uid', component: ProfileComponent },
-	{ path: 'cloud', component: CloudComponent },
-	{ path: 'cloud/uploadVideo', component: UploadVideoComponent },
-	{ path: 'settings', component: SettingsComponent },
+import { MetaGuard } from '@ngx-meta/core';
 
 
-	{ path: 'page-not-found', component: PageNotFoundComponent },
-	// { path: '**', component: PageNotFoundComponent }
-];
+const routes: Routes = [{
+	path: '',
+	canActivateChild: [MetaGuard],
+	children: [
+		{ path: '', component: MainComponent, data: { meta: {title: 'Home', description: 'Dride is a connected dashcam with safetry alerts and apps.'}}},
+		{ path: 'forum', component: ForumComponent, data: { meta: {title: 'Forum', description: 'A community page for Dride users'}}},
+		{ path: 'thread', redirectTo: 'forum' },
+		{ path: 'thread/:slug', loadChildren: './thread/thread.module#ThreadModule' },
+		{ path: 'forum/:slug', loadChildren: './thread/thread.module#ThreadModule' },
+		{ path: 'about', loadChildren: './content/about/about.module#AboutModule', data: { meta: {title: 'About', description: 'About Dride'}}  },
+		{ path: 'features', loadChildren: './content/dride1/dride1.module#Dride1Module', data: { meta: {title: 'Features', description: 'Dride Features'}} },
+		{ path: 'documentation', component: DocumentationComponent, data: { meta: {title: 'Documentation', description: 'How to build a Dride or a Dride app'}} },
+		{ path: 'documentation/:slug', component: DocumentationComponent },
+		{ path: 'store', component: StoreComponent, data: { meta: {title: 'Store', description: 'Buy A Connected Dash cam'}} },
+		{ path: 'product/:productSlug', component: ProductComponent },
+		{ path: 'profile/:uid/:videoId', component: ProfileComponent },
+		{ path: 'profile/:uid', component: ProfileComponent, data: { meta: {title: 'Profile'}} },
+		{ path: 'cloud', component: CloudComponent, data: { meta: {title: 'Home', description: 'Best Dash Cam Videos Every Day.'}} },
+		{ path: 'cloud/uploadVideo', component: UploadVideoComponent },
+		{ path: 'settings', component: SettingsComponent, data: { meta: {title: 'Settings', description: 'Manage your Dride account'}} },
+
+
+		{ path: 'page-not-found', component: PageNotFoundComponent },
+		// { path: '**', component: PageNotFoundComponent }
+	]
+}];
 
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

@@ -17,6 +17,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import 'firebase/storage';
 import 'firebase/messaging';
 
+import { MetaModule, MetaLoader, MetaStaticLoader, PageTitlePositioning } from '@ngx-meta/core';
+
 
 import { TruncateModule } from 'ng2-truncate';
 import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
@@ -74,6 +76,19 @@ import { SharedModule } from './helpers/shared.module';
 import { InViewport } from './helpers/in-viewport.directive';
 
 
+
+export function metaFactory(): MetaLoader {
+	return new MetaStaticLoader({
+		pageTitlePositioning: PageTitlePositioning.PrependPageTitle,
+		pageTitleSeparator: ' | ',
+		applicationName: 'Dride',
+		defaults: {
+			title: 'Dride',
+			description: 'Mighty Mouse is an animated superhero mouse character',
+			'og:image': 'http://localhost:4200/pic3.c633e5ca1b88b3499d11.jpg',
+		}
+	});
+}
 
 @NgModule({
 	declarations: [
@@ -134,7 +149,11 @@ import { InViewport } from './helpers/in-viewport.directive';
 		InfiniteScrollModule,
 		UiSwitchModule,
 		Ng2PageScrollModule,
-		SharedModule
+		SharedModule,
+		MetaModule.forRoot({
+			provide: MetaLoader,
+			useFactory: (metaFactory)
+		})
 	],
 	providers: [AuthService,
 		UserService,
@@ -143,7 +162,7 @@ import { InViewport } from './helpers/in-viewport.directive';
 		CloudPaginationService,
 		PushNotificationsService,
 		MixpanelService
-		],
+	],
 	bootstrap: [AppComponent],
 	entryComponents: [NgbdModalLogin,
 		NgbdModalAskInForum,

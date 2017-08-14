@@ -43,6 +43,21 @@ router-outlet { display:block; }
 .icon-medal:before {
   content: "\e91f";
 }
+.icon-zero:before {
+  content: "\e92b";
+}
+.icon-forum:before {
+  content: "\e928";
+}
+.icon-fleet:before {
+  content: "\e929";
+}
+.icon-dride:before {
+  content: "\e92a";
+}
+.icon-share-outline:before {
+  content: "\e926";
+}
 .icon-twitterMedium:before {
   content: "\e923";
 }
@@ -129,12 +144,15 @@ router-outlet { display:block; }
 }
 .icon-like:before {
   content: "\e910";
+  color: #666;
 }
 .icon-edit:before {
   content: "\e911";
+  color: #666;
 }
 .icon-share:before {
   content: "\e912";
+  color: #666;
 }
 .icon-twitter:before {
   content: "\e90e";
@@ -148,6 +166,9 @@ router-outlet { display:block; }
 .icon-bigD:before {
   content: "\e900";
 }
+.icon-menu:before {
+  content: "\e927";
+}
 .icon-chevron-thin-right:before {
   content: "\e91d";
 }
@@ -157,6 +178,7 @@ router-outlet { display:block; }
 .icon-trophy:before {
   content: "\e99e";
 }
+
 
 
 .disabled {
@@ -363,9 +385,6 @@ main{
     transform: translate(-50%, -50%);
 }
 
-.node:before {
-    font-size: 30px;
-}
 
 
 .h75 {

@@ -45,17 +45,42 @@ $color: #333333,
   }
 }
 
-.dbg0:before{  color: nth($color, 1); }
-.dbg1:before{  color: nth($color, 6); }
-.dbg2:before{  color: nth($color, 5); }
-.dbg3:before{  color: nth($color, 5); }
-.dbg4:before{  color: nth($color, 6); }
-.dbg5:before{  color: nth($color, 3); }
-.dbg6:before{  color: nth($color, 8); }
-.dbg7:before{  color: nth($color, 1); }
-.dpAnim:before{
-	 transition: .6s;
+.dbg0:before {
+  color: nth($color, 1);
 }
+
+.dbg1:before {
+  color: nth($color, 6);
+}
+
+.dbg2:before {
+  color: nth($color, 5);
+}
+
+.dbg3:before {
+  color: nth($color, 5);
+}
+
+.dbg4:before {
+  color: nth($color, 6);
+}
+
+.dbg5:before {
+  color: nth($color, 3);
+}
+
+.dbg6:before {
+  color: nth($color, 8);
+}
+
+.dbg7:before {
+  color: nth($color, 1);
+}
+
+.dpAnim:before {
+  transition: .6s;
+}
+
 .circle-container {
   @include on-circle($item-count: 8, $circle-size: 450px, $item-size: 6em);
   margin: 5em auto 0;
@@ -82,7 +107,13 @@ $color: #333333,
     left: 27%;
     position: fixed !important;
     top: 40%;
-	transition: .25s;
+    transition: .25s;
+  }
+  .node:before {
+    font-size: 25px;
+  }
+  .icon-docs:before {
+    font-size: 32px !important;
   }
   .labelNear {
     font-family: 'Comfortaa', cursive;
@@ -310,7 +341,6 @@ $color: #333333,
   .logo {
     padding-top: 47px;
     font-size: 93px;
-    margin-left: 23px;
     span {
       font-size: 39px;
       position: relative;
@@ -349,7 +379,6 @@ $color: #333333,
   .roundWrap {
     margin-top: -140px;
     overflow: hidden;
-    background-color: #f9f9f9;
   }
   .roundedBottom {
     height: 304px;
@@ -463,7 +492,7 @@ $color: #333333,
     background-color: #f9f9f9;
   }
   .r {
-	padding: 60px;
+    padding: 60px;
     h3 {
       font-size: 21px;
       padding-bottom: 7px;
@@ -571,21 +600,26 @@ app-cloud .icon-toyCar-1 {
   color: #F06060;
 }
 
+@media (max-width: 320px) {
+	.xqa{
+			font-size: 16px !important;
+	}
+}
 @media (max-width: 992px) {
   .roundedBottom {
     width: 221% !important;
     margin-left: -60% !important;
   }
-  .section1{
-	.logo{
-		padding-top: 69vh;
-	}
-	h2{
-		font-size: 17px;
-		width: 300px;
-		margin: auto auto;
-		line-height: 23px;
-	}
+  .section1 {
+    .logo {
+      padding-top: 69vh;
+    }
+    h2 {
+      font-size: 17px;
+      width: 300px;
+      margin: auto auto;
+      line-height: 23px;
+    }
   }
   .section3 {
     min-height: 93vh;
@@ -594,43 +628,44 @@ app-cloud .icon-toyCar-1 {
       color: #fff;
       font-size: 70px;
       padding-left: 18px;
-	  padding-top: 28px;
+      padding-top: 28px;
     }
-	h2{
-		font-size: 17px;
-	}
+    h2 {
+      font-size: 17px;
+    }
     .roundWrap {
       margin-top: -270px;
     }
-	.curedHeaderWrap{
-		height: 155px;
-	}
+    .curedHeaderWrap {
+      height: 155px;
+    }
   }
   .spacerImg {
     height: 21vh;
   }
-  .section5{
-	  .logo{
-		padding-top: 53px;
-		font-size: 37px;
-		line-height: 48px;
-	  }
-	  h2{
-		width: 300px;
-		margin: auto auto;
-		line-height: 25px;
-	  }
-	  .roundWrap{
-		margin-top: -50px;
-	  }
+  .section5 {
+    .logo {
+      padding-top: 53px;
+      font-size: 31px;
+      line-height: 48px;
+    }
+    h2 {
+      width: 300px;
+      margin: auto auto;
+      line-height: 25px;
+	  font-size: 17px;
+    }
+    .roundWrap {
+      margin-top: -50px;
+    }
   }
   .section4 {
     .logo {
-		padding-top: 36px;
-		font-size: 53px;
+      padding-top: 36px;
+      font-size: 53px;
     }
     .roundWrap {
-    	margin-top: -68px;
+      margin-top: -68px;
     }
   }
   .section9 {
@@ -642,42 +677,42 @@ app-cloud .icon-toyCar-1 {
       padding: 10px;
     }
   }
-  .section6{
-	  .logo{
-		font-size: 73px;
-	  }
-	  .slogen{
-		font-size: 20px;
-		line-height: 25px;
-		width: 80%;
-	  }
+  .section6 {
+    .logo {
+      font-size: 73px;
+    }
+    .slogen {
+      font-size: 20px;
+      line-height: 25px;
+      width: 80%;
+    }
   }
   .section7 {
     h2 {
       position: relative;
       top: 44px;
-	  font-size: 20px;
+      font-size: 20px;
     }
-	h3{
-		font-size: 15px !important;
-		padding-bottom: 0 !important;
-		span{
-			top: 2px !important;
-			right: -9px !important;
-		}
-	}
-	a{
-		padding-bottom: 0 !important;
-	}
-	.gettingStarted{
-		margin-top: -41px;
-	}
+    h3 {
+      font-size: 15px !important;
+      padding-bottom: 0 !important;
+      span {
+        top: 2px !important;
+        right: -9px !important;
+      }
+    }
+    a {
+      padding-bottom: 0 !important;
+    }
+    .gettingStarted {
+      margin-top: -41px;
+    }
   }
   .subscribe {
     height: 200px;
     h3 {
       padding-top: 17px !important;
-	  font-size: 20px !important;
+      font-size: 20px;
     }
   }
 }

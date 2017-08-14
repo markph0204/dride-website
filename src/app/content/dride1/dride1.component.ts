@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/map';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -19,18 +20,12 @@ export class Dride1Component implements OnInit {
 
 	sendDetails = function (email) {
 
-
-		this.preSubmit = false;
-		// TODO: subscibre users
-
-		// let url = 'https://mysubscriptionlist.us13.list-manage.com/subscribe/post-json?u=b0c935d6f51c1f7aaf1edd8ff&id=9d740459d3&subscribe=Subscribe&EMAIL=templth@yahoo.fr&c=JSONP_CALLBACK';
-		// jsonp.request(url, { method: 'Get' })
-		// 	.subscribe((res) => { this.result = res.json() });
-
-
-		// return this.http.get('https://api.dride.io/validator/subscribe.php?email=' + email).map(res =>  res.json())
-
-
+		// subscribe users
+		const url = environment.functionsURL + '/subscriber?email=' + email;
+		this.http.get(url).subscribe(data => {
+			this.preSubmit = false;
+			this.mixpanel.track('subscribed', {location: 'dride1', email: email});
+		});
 
 	}
 

@@ -39,8 +39,6 @@ export class ForumComponent implements OnInit {
 
 	ngOnInit() {
 
-		this.mixpanel.track('Forum visit', {});
-
 		const r = {
 					query:
 					{

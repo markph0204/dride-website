@@ -6,28 +6,28 @@
       <div class="menu circle-container icon-bigD dpAnim" [ngClass]="'dbg' + currentElementInView">
 
         <span pageScroll href="#view7" class="iW dot6" on-mouseover="show[7] = true" on-mouseleave="show[7] = false">
-            <span class="icon-docs node pull-right" [ngClass]="displayCard==7 ? 'active-7 icon-docs-full': 'icon-docs'"></span>
+            <span class="icon-docs node pull-right"></span>
         	<label class="labelNear" [hidden]="displayCard!=7 && !show[7]">SDK</label>
         </span>
-        <span pageScroll href="#view9" class="iW dot5" on-mouseover="show[6] = true" on-mouseleave="show[6] = false">
-            <span class="icon-app node pull-right " [ngClass]="displayCard==6 ? 'active-6 icon-app-full': 'dicon-app'"></span>
-        	<label class="labelNear" [hidden]="displayCard!=6 && !show[6]">App</label>
+        <span pageScroll href="#view6" class="iW dot4" on-mouseover="show[6] = true" on-mouseleave="show[6] = false">
+            <span class="icon-fleet node pull-right"></span>
+        	<label class="labelNear" [hidden]="displayCard!=6 && !show[6]">Fleet</label>
         </span>
-        <span pageScroll href="#view6" class="iW dot4" on-mouseover="show[5] = true" on-mouseleave="show[5] = false">
-            <span class="icon-wifi node pull-right" [ngClass]="displayCard==5 ? 'active-5 icon-wifi-full': 'icon-wifi'"></span>
-        	<label class="labelNear" [hidden]="displayCard!=5 && !show[5]">Connected</label>
+        <span pageScroll href="#view5" class="iW dot3" on-mouseover="show[5] = true" on-mouseleave="show[5] = false">
+            <span class="icon-forum node pull-right"></span>
+        	<label class="labelNear" [hidden]="displayCard!=5 && !show[5]">Forum</label>
         </span>
-        <span pageScroll href="#view5" class="iW dot3" on-mouseover="show[4] = true" on-mouseleave="show[4] = false">
-            <span class="icon-camera node pull-right" [ngClass]="displayCard==4 ? 'active-4 icon-camera-full': 'icon-camera'"></span>
-        	<label class="labelNear" [hidden]="displayCard!=4 && !show[4]">Safety</label>
+		<span pageScroll href="#view9" class="iW dot5" on-mouseover="show[4] = true" on-mouseleave="show[4] = false">
+            <span class="icon-app node pull-right " ></span>
+        	<label class="labelNear" [hidden]="displayCard!=4 && !show[4]">App</label>
         </span>
-        <span pageScroll href="#view4" class="iW dot2" on-mouseover="show[3] = true" on-mouseleave="show[3] = false">
-            <span class="icon-mic node pull-right" [ngClass]="displayCard==3 ? 'active-3 icon-mic-full': 'icon-mic'"></span>
-        	<label class="labelNear" [hidden]="displayCard!=3 && !show[3]">Virtual Assistant</label>
+        <span pageScroll href="#view4" class="iW dot1" on-mouseover="show[3] = true" on-mouseleave="show[3] = false">
+            <span class="icon-cloud node pull-right"></span>
+        	<label class="labelNear" [hidden]="displayCard!=2 && !show[3]">Cloud</label>
         </span>
-        <span pageScroll href="#view4" class="iW dot1" on-mouseover="show[2] = true" on-mouseleave="show[2] = false">
-            <span class="icon-cloud node pull-right" [ngClass]="displayCard==2 ? 'active-2 icon-cloud-full': 'icon-cloud'"></span>
-        	<label class="labelNear" [hidden]="displayCard!=2 && !show[2]">Cloud</label>
+        <span pageScroll href="#view1" class="iW dot1" on-mouseover="show[1] = true" on-mouseleave="show[1] = false">
+            <span class="node pull-right icon-dride" ></span>
+        	<label class="labelNear" [hidden]="displayCard!=2 && !show[1]">Dride</label>
         </span>
         <div class="innerLogo" pageScroll href="#view1">dride</div>
       </div>
@@ -50,7 +50,7 @@
 
       </div>
     </div>
-    <div id="view3" in-viewport (inViewport)="action($event.value, 2)" class="container-fluid text-center section3">
+    <!--<div id="view3" in-viewport (inViewport)="action($event.value, 2)" class="container-fluid text-center section3">
       <div class="curedHeaderWrap">
         <div class="col-xs-12 content text-center">
           <h1 class="logo">dride<span>zero</span></h1>
@@ -74,9 +74,9 @@
 
 
       </div>
-    </div>
+    </div>-->
 
-    <div class="spacerImg"></div>
+    <!--<div class="spacerImg"></div>-->
 
     <div id="view4" in-viewport (inViewport)="action($event.value, 3)" class="container-fluid text-center section4 p-0">
 
@@ -185,7 +185,7 @@
       <div class="text-center preOrderFooter buy">
 
         <div *ngIf="preSubmit">
-          <h3>Subscribe for updates</h3>
+          <h3 class="xqa">Subscribe for updates</h3>
 
 
           <div class="row pt-2 px-5">

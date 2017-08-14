@@ -49,7 +49,6 @@ export class CloudComponent implements OnInit {
 	ngOnInit() {
 		// load first batch
 		this.dCloud.init(this.isFull);
-		console.log('helllo')
 
 		this.hpClips = this.dCloud
 

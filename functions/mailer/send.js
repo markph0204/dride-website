@@ -37,6 +37,7 @@ mailer = {
         var thread = threadSnap.val()
 
             var sendObj = {
+				"template_name": 'update-user',
                 "topicURL": "https://dride.io/thread/" + topicId,
                 "fname": conv.auther,
                 "title": thread.title,
@@ -47,7 +48,33 @@ mailer = {
                 "timestamp": conv.timestamp,
                 "type": 'forum',
                 "to" : [],
-                "tags": ['forum comment']
+                "tags": ['forum comment'],
+				"global_merge_vars": [
+										{
+											"name": "FULL_NAME",
+											"content": conv.auther
+										},
+										{
+											"name": "TITLE",
+											"content": thread.title
+										},
+										{
+											"name": "PROFILE_PIC",
+											"content": conv.pic
+										},
+										{
+											"name": "BODY",
+											"content": marked(conv.body)
+										},
+										{
+											"name": "TOPIC_URL",
+											"content": "https://dride.io/thread/" + topicId
+										},
+										{
+											"name": "TYPE",
+											"content": 'forum'
+										}
+									]
             };
 
             //update subscribers on a new post
@@ -84,7 +111,7 @@ mailer = {
     send: function(sendObj) {
 
 
-        var template_name = "update-user";
+        var template_name = sendObj.template_name;
         var template_content = [];
 
         var message = {
@@ -93,7 +120,7 @@ mailer = {
             "from_name": "Dride",
             "to": sendObj.to,
             "headers": {
-                "Reply-To": "message.reply@example.com"
+                "Reply-To": "hellp@dride.io"
             },
             "important": false,
             "track_opens": null,
@@ -109,32 +136,7 @@ mailer = {
             "return_path_domain": null,
             "merge": true,
             "merge_language": "mailchimp",
-            "global_merge_vars": [
-                                {
-                                    "name": "FULL_NAME",
-                                    "content": sendObj.fname
-                                },
-                                {
-                                    "name": "TITLE",
-                                    "content": sendObj.title
-                                },
-                                {
-                                    "name": "PROFILE_PIC",
-                                    "content": sendObj.profilePic
-                                },
-                                {
-                                    "name": "BODY",
-                                    "content": sendObj.body
-                                },
-                                {
-                                    "name": "TOPIC_URL",
-                                    "content": sendObj.topicURL
-                                },
-                                {
-                                    "name": "TYPE",
-                                    "content": sendObj.type
-                                }
-                                ],
+            "global_merge_vars": sendObj.global_merge_vars,
 
             "tags": sendObj.tags,
             "google_analytics_domains": [

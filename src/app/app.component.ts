@@ -5,6 +5,10 @@ import { Subscription } from 'rxjs/Rx';
 
 import { MixpanelService } from './helpers/mixpanel.service';
 
+import { MetaService } from '@ngx-meta/core';
+
+
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
