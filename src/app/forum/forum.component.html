@@ -1,18 +1,18 @@
 <div class="container-fluid forum" [ngClass]="{'greyBg vh': isFull}">
     <div class="container">
         <div class="clear spacer25"></div>
-        <div class="col-md-8 col-xs-12" *ngIf="isFull">
+        <div class="col-xs-12" *ngIf="isFull">
             <ul class="sorter">
                 <li class="selected">New</li>
                 <li class="disabled">Trending</li>
                 <li class="disabled">Most Viewed</li>
             </ul>
         </div>
-        <div class="col-md-2 col-xs-12 float-right" *ngIf="isFull">
+        <div class="float-right" *ngIf="isFull">
             <button class="btn btn-dride-black ask" (click)="ask()">Ask A Question</button>
         </div>
         <div class="clear spacer25"></div>
-        <div class="col-md-12">
+        <div class="col-md-12 p-0">
             <div class="posts">
                 <a class="post animBox row mx-auto" *ngFor="let post of threads | async" routerLink="/forum/{{post.slug}}" [@introAnim]>
                     <div class="col-md-2 hidden-sm-down usr pad10 partRow1">

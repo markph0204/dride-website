@@ -12,10 +12,14 @@ import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable }
 import { AngularFireAuth } from 'angularfire2/auth';
 import { MixpanelService } from '../helpers/mixpanel.service';
 
+import { introAnim } from '../router.animations';
+
+
 @Component({
 	selector: 'app-profile',
 	templateUrl: './profile.component.html',
-	styleUrls: ['./profile.component.scss']
+	styleUrls: ['./profile.component.scss'],
+	animations: [ introAnim ]
 })
 export class ProfileComponent implements OnInit {
 

@@ -5,11 +5,14 @@ import { Router } from '@angular/router';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { UserService } from '../../user.service';
+import { introAnim } from '../../router.animations';
 
 @Component({
 	selector: 'app-nav',
 	templateUrl: './nav.component.html',
-	styleUrls: ['./nav.component.scss']
+	styleUrls: ['./nav.component.scss'],
+	animations: [ introAnim ]
+
 })
 export class NavComponent implements OnInit {
 

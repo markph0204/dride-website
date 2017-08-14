@@ -1,5 +1,6 @@
 .profile {
     color: #666666;
+	margin-top: -100px;
     .headerBg {
         background-color: #333;
         background-image: url(../../assets/images/profile/defaultBg.jpg);
@@ -38,6 +39,9 @@
         position: relative;
         top: 160px;
     }
+	vg-controls{
+		background: linear-gradient(to top, rgba(0, 0, 0, 0.71) 0%, transparent 100%);
+	}
     ui-gmap-google-map{
         display: inherit;
     }

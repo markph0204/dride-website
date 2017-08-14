@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { introAnim } from '../router.animations';
 import { HttpClient } from '@angular/common/http';
 

@@ -1,12 +1,13 @@
-<nav class="navbar navbar-toggleable-md navbar-light pt-0" [ngClass]="{'fixed-top': isFixed}" >
+<div class="darkOverlay" *ngIf="showOverlay"></div>
+<nav class="navbar navbar-toggleable-md navbar-light pt-0" [ngClass]="{'fixed-top fl': isFixed}" >
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" (click)="isCollapsed = !isCollapsed"
         aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" routerLink="/">dride</a>
     <div class="collapse navbar-collapse" (collapsed)="setHeight(el, 0);showOverlay = false" (expanded)="setHeight(el, 0);setHeight(el, el.scrollHeight);showOverlay = true"
-        [collapse]="isCollapsed" #el>
-        <ul class="nav mt-lg-0">
+        [collapse]="isCollapsed" #el [@introAnim]>
+        <ul class="nav mt-lg-0 mr-lg-auto">
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="isCollapsed = true">
                 <a class="nav-link" routerLink="/">Home</a>
             </li>
@@ -52,6 +53,3 @@
         </div>
     </div>
 </nav>
-
-
-<div class="darkOverlay" *ngIf="showOverlay"></div>
