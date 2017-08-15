@@ -58,19 +58,19 @@ $color: #333333,
 }
 
 .dbg3:before {
-  color: nth($color, 5);
-}
-
-.dbg4:before {
   color: nth($color, 6);
 }
 
-.dbg5:before {
+.dbg4:before {
   color: nth($color, 3);
 }
 
-.dbg6:before {
+.dbg5:before {
   color: nth($color, 8);
+}
+
+.dbg6:before {
+  color: nth($color, 1);
 }
 
 .dbg7:before {
@@ -110,20 +110,19 @@ $color: #333333,
     transition: .25s;
   }
   .node:before {
-    font-size: 25px;
+    font-size: 21px;
   }
   .icon-docs:before {
-    font-size: 32px !important;
+    font-size: 28px !important;
   }
   .labelNear {
     font-family: 'Comfortaa', cursive;
     padding-right: 10px;
     padding-top: 6px;
-    font-size: 17px;
+    margin-top: -24px;
+    margin-right: 67px;
     font-weight: 100;
     text-align: right;
-    margin-top: -29px;
-    margin-right: 62px;
     width: 160px;
     float: right;
   }
@@ -646,14 +645,14 @@ app-cloud .icon-toyCar-1 {
   .section5 {
     .logo {
       padding-top: 53px;
-      font-size: 31px;
+      font-size: 21px;
       line-height: 48px;
     }
     h2 {
       width: 300px;
       margin: auto auto;
       line-height: 25px;
-	  font-size: 17px;
+	  font-size: 17px !important;
     }
     .roundWrap {
       margin-top: -50px;

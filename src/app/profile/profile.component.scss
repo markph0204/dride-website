@@ -1,6 +1,5 @@
 .profile {
     color: #666666;
-	margin-top: -100px;
     .headerBg {
         background-color: #333;
         background-image: url(../../assets/images/profile/defaultBg.jpg);
@@ -244,7 +243,11 @@
     }
 }
 
-
+@media (max-width: 990px) {
+    .profile{
+		margin-top: -100px;
+	}
+}
 @media (max-width: 442px) {
     .profile{
         .videogular-container {

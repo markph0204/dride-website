@@ -1,10 +1,12 @@
 .loginBox, .modalUI {
 
+
     .modal-header {
-        background-image: url('../../../images/popUpHeader.svg');
+        background-image: url('../../../../../assets/images/popUpHeader.svg');
         background-position-y: -17px;
         background-repeat: no-repeat;
         background-size: cover;
+		background-position: center;
         height: 133px;
         width: 100.1%;
         color: #fff;
@@ -14,7 +16,7 @@
     .modal-title {
         text-align: center;
         font-size: 28px;
-        color: #fff;
+        color: #F06060;
         margin-top: 10px !important;
     }
 
@@ -25,22 +27,18 @@
 
     .modal-body {
         background-color: #fff;
-        margin-top: -14px;
+        margin-top: 8px;
         margin-bottom: 40px;
-        height: 228px;
-    }
-    h2{
-        margin-top: 20px;
     }
 
+    h2{
+        margin-top: 19px;
+    }
     input:focus,
     button:focus {
         border: 0;
         box-shadow: none;
         outline: none;
-    }
-    .closeModal{
-        cursor: pointer;
     }
     .padWrap {
         padding: 0 15px;
@@ -64,13 +62,6 @@
         font-weight: 100;
         margin-top: 30px;
         margin-bottom: 30px;
-        font-family: Comfortaa;
-    }
-    .has-danger input{
-        background-color: #fff1f1;
-    }
-    .sideIcon {
-        float: left;
     }
     .socialButtons {
         width: 90%;
@@ -82,18 +73,20 @@
         font-weight: 300;
         height: 45px;
         cursor: pointer;
+		padding-top: 13px;
     }
     .sideIcon {
-        color: #fff;
-        height: 45px;
-        width: 45px;
-        position: absolute;
-        padding-top: 11px;
-        left: 43px;
-        margin-top: -13px;
-        border-top-left-radius: 4px;
-        border-bottom-left-radius: 4px;
-        font-size: 24px;
+		color: #fff;
+		height: 45px;
+		width: 45px;
+		padding-top: 11px;
+		margin-top: -13px;
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+		font-size: 24px;
+		display: block;
+		float: left;
+		margin-left: -16px;
     }
     .socialButtons .icon-facebook {
         background-color: #3B57A3;
@@ -106,7 +99,7 @@
     }
     .icon-toyCar-1 {
         position: relative;
-        top: -9px;
+        top: 11px;
         left: 13px;
         color: #f06060;
     }
@@ -137,12 +130,18 @@
         margin: auto auto;
     }
     .closeModal{
-        margin-top: -59px;
-        color: #bfbfbf;
+        margin-top: -67px;
+        color: #fff;
+        cursor: pointer;
     }
 
-    .btn-dride-center{
-        top: -14px;
-        font-family: Comfortaa;
-    }
+}
+
+
+@media (max-width: 992px) {
+
+	.f50{
+		font-size: 32px !important;
+	}
+
 }

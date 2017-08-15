@@ -243,9 +243,19 @@
     			height: 165px !important;
 			}
 		}
+		@media (max-width: 400px) {
+			.bx{
+    			    height: 85px !important;
+			}
+			.forkUs {
+				max-width: 250px !important;
+				max-height: 250px;
+			}
+		}
         .forkUs {
             margin: auto auto;
             margin-top: 10px;
+			max-width: 325px;
             img {
                 max-width: 37%;
                 margin-top: 71px;

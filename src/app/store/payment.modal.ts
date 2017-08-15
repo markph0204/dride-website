@@ -7,8 +7,8 @@ import { MixpanelService } from '../helpers/mixpanel.service';
 
 @Component({
 	selector: 'ngbd-modal-content',
-	templateUrl: '../../assets/templates/modal/payment/modal.html',
-	styleUrls: ['../../assets/templates/modal/payment/modal.scss']
+	templateUrl: '../layout/templates/modal/payment/modal.html',
+	styleUrls: ['../layout/templates/modal/payment/modal.scss']
 })
 export class NgbdModalPayement {
 	@Input() name;

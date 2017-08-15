@@ -194,3 +194,10 @@
 		    min-height: 68px;
 	}
 }
+
+@media (max-width: 400px){
+
+	.docs h1{
+		font-size: 20px !important;
+	}
+}

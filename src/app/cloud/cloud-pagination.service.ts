@@ -88,7 +88,6 @@ export class CloudPaginationService {
 						this.after = items[item].hpInsertTime;
 					}
 				}
-				console.log('bussy', this.busy )
 				this.busy = false;
 
 				if (this.after === this.before) {
@@ -99,7 +98,6 @@ export class CloudPaginationService {
 				this.before = this.after;
 				// remove last element because he is the first element from next batch
 				this.items.pop();
-				console.log('bussy', this.busy )
 
 			},
 			error => {

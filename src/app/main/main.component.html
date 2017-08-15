@@ -78,15 +78,15 @@
 
     <!--<div class="spacerImg"></div>-->
 
-    <div id="view4" in-viewport (inViewport)="action($event.value, 3)" class="container-fluid text-center section4 p-0">
+    <div id="view4"  class="container-fluid text-center section4 p-0">
 
       <div class="col-xs-12 content text-center h">
-        <h1 class="logo">dride<span>Cloud</span></h1>
+        <h1 class="logo" in-viewport (inViewport)="action($event.value, 3)">dride<span>Cloud</span></h1>
       </div>
       <div class="roundWrap">
         <div class="roundedBottom"></div>
       </div>
-      <div class="spacer"></div>
+      <div class="spacer" in-viewport (inViewport)="action($event.value, 3)"></div>
       <app-cloud [isFull]="false"></app-cloud>
 
 
@@ -96,7 +96,7 @@
     </div>
 
 
-    <div id="view9" in-viewport (inViewport)="action($event.value, 4)" class="container-fluid text-center section9">
+    <div id="view9" class="container-fluid text-center section9">
 
       <div class="appHead text-center">
         <h1 class="logo">dride<span>App</span></h1>
@@ -105,7 +105,7 @@
 
       <img src="../../assets/images/app.png" alt="app" class="appImg img-fluid" />
 
-      <div class="getDrideApp text-center">
+      <div class="getDrideApp text-center" in-viewport (inViewport)="action($event.value, 4)">
         <a href="https://itunes.apple.com/us/app/dride/id1185398002?ls=1&mt=8" target="_BLANK">
 					<img src="../../assets/images/ios.png" alt="app store" />
 				</a>
@@ -119,7 +119,7 @@
     </div>
 
 
-    <div id="view5" in-viewport (inViewport)="action($event.value, 5)" class="container-fluid text-center section5 p-0">
+    <div id="view5"class="container-fluid text-center section5 p-0">
 
       <div class="col-xs-12 content text-center">
         <h1 class="logo">Join The Discussion</h1>
@@ -128,10 +128,10 @@
       <div class="roundWrap">
         <div class="roundedBottom"></div>
       </div>
-      <div class="spacer"></div>
+      <div class="spacer" ></div>
       <app-forum [isFull]="false"></app-forum>
 
-      <button routerLink="/forum" type="button" class="btn btn-orange mt-3 mb-5 pl-0 pr-0">Go to Forum</button>
+      <button in-viewport (inViewport)="action($event.value, 5)" routerLink="/forum" type="button" class="btn btn-orange mt-3 mb-5 pl-0 pr-0">Go to Forum</button>
 
       <span class="icon-toyCar-1" [ngClass]="{'animatedCar': isLoaded}"></span>
 
@@ -139,7 +139,7 @@
     </div>
 
 
-    <div id="view6" in-viewport (inViewport)="action($event.value, 6)" class="container-fluid text-center section6 p-0">
+    <div id="view6" class="container-fluid text-center section6 p-0">
 
       <div class="col-xs-12 content text-center">
         <h2 class="logo">dride<span>Fleet</span></h2>
@@ -147,7 +147,7 @@
         <div class="spcaer"></div>
         <div class="actions">
 
-          <button routerLink="/store" type="button" class="btn mt-3 mb-5 pl-0 pr-0">Learn More</button>
+          <button in-viewport (inViewport)="action($event.value, 6)" routerLink="/store" type="button" class="btn mt-3 mb-5 pl-0 pr-0">Learn More</button>
         </div>
       </div>
 
@@ -157,7 +157,7 @@
     </div>
 
 
-    <div id="view7" in-viewport (inViewport)="action($event.value, 7)" class="container-fluid text-center section7 p-0">
+    <div id="view7" class="container-fluid text-center section7 p-0">
       <div class="col-xs-12 content text-center">
         <h2>DEVELOPERS</h2>
       </div>
@@ -165,7 +165,7 @@
         <div class="roundedBottom"></div>
       </div>
 
-      <div class="row whiteBg m-0 pt-5 pb-5">
+      <div class="row whiteBg m-0 pt-5 pb-5" in-viewport (inViewport)="action($event.value, 7)">
         <a routerLink="/documentation/getting_started" class="r col-md-6 col-xs-12 gettingStarted text-left">
           <h3 class="d-inline-flex">Getting started <span class="icon-toyCar-1"></span></h3>
           <p class="pt-3">Learn more about how to build a Dride tpday. We'll cover the basics and get you started from the ground up.</p>
@@ -178,13 +178,13 @@
     </div>
 
 
-    <div id="view8" in-viewport (inViewport)="action($event.value, 8)" class="container-fluid subscribe section8 p-0">
+    <div id="view8" class="container-fluid subscribe section8 p-0">
       <div class="roundWrap">
         <div class="roundedBottom"></div>
       </div>
       <div class="text-center preOrderFooter buy">
 
-        <div *ngIf="preSubmit">
+        <div *ngIf="preSubmit" in-viewport (inViewport)="action($event.value, 8)">
           <h3 class="xqa">Subscribe for updates</h3>
 
 

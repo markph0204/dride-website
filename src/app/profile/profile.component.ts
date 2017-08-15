@@ -109,7 +109,6 @@ export class ProfileComponent implements OnInit {
 		}
 
 		this.route.params.subscribe(params => {
-			console.log('switch')
 			this.comments = null
 			this.currentVideo = null
 			this.vgConfig = null
@@ -237,8 +236,7 @@ export class ProfileComponent implements OnInit {
 		}
 
 		const exp = date.split('-');
-		const d = new Date(exp[2], exp[1], exp[0], 0, 0, 0, 0);
-		return d;
+		return new Date(exp[2], exp[1], exp[0], 0, 0, 0, 0).getTime();
 	};
 	// create the video object for videogular
 	createVideoObj = function (clipURL, posterURL) {
@@ -276,7 +274,7 @@ export class ProfileComponent implements OnInit {
 			: false;
 	};
 	isOwner() {
-		return this.uid === this.firebaseUser.uid
+		return this.firebaseUser && this.uid === this.firebaseUser.uid
 	}
 
 	commentFoucs = function () {

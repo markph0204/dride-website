@@ -63,8 +63,8 @@ export class ForumComponent implements OnInit {
 
 @Component({
 	selector: 'ngbd-modal-content',
-	templateUrl: '../../assets/templates/modal/askInForum/modal.html',
-	styleUrls: ['../../assets/templates/modal/askInForum/modal.scss']
+	templateUrl: '../layout/templates/modal/askInForum/modal.html',
+	styleUrls: ['../layout/templates/modal/askInForum/modal.scss']
 })
 export class NgbdModalAskInForum {
 	@Input() name;

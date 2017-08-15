@@ -78,7 +78,7 @@
                                 <div class="desc">
                                     <p><b>License Plate: </b> {{currentVideo.plates}}</p>
                                     <p><b>Description: </b> {{currentVideo.description}}</p>
-                                    <p class="dateLabel">{{currentVideo.timestamp * 1000 | date:'medium'}}</p>
+                                    <p *ngIf="currentVideo.timestamp" class="dateLabel">{{currentVideo.timestamp * 1000 | date:'medium'}}</p>
                                 </div>
 
                                 <div class="clear"></div>
@@ -128,7 +128,7 @@
                     <div class="col-md-4" *ngIf="orderedClips">
 
                             <div *ngFor="let clipsInDay of orderedClips | keys;" >
-                             	<p class="dvdrOfClips">{{preatifyDate(clipsInDay)  | date:'MMM d y' }}</p>
+                             	<p *ngIf="clipsInDay" class="dvdrOfClips">{{preatifyDate(clipsInDay)  | date:'MMM d y' }}</p>
 
                                 <div *ngFor="let clip of orderedClips[clipsInDay]| keys;" class="box moreClips">
 

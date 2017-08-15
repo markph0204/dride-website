@@ -37,9 +37,7 @@ export class GettingStartedComponent implements OnInit {
 	}
 
 	track(what) {
-		alert('xx')
 		this.mixpanel.track('download ' + what, {});
-
 	}
 
 }

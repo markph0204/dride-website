@@ -27,9 +27,10 @@
 .loginBox, .modalUI {
 
     .modal-header {
-        background-image: url('../../../images/popUpHeader.svg');
+        background-image: url('../../../../../assets/images/popUpHeader.svg');
         background-repeat: no-repeat;
         background-size: cover;
+		background-position: center;
         height: 133px;
         width: 100.1%;
         color: #fff;

@@ -69,8 +69,8 @@ export class AuthService {
 
 @Component({
 	selector: 'ngbd-modal-content',
-	templateUrl: '../assets/templates/modal/login/modal.html',
-	styleUrls: ['../assets/templates/modal/login/modal.scss']
+	templateUrl: './layout/templates/modal/login/modal.html',
+	styleUrls: ['./layout/templates/modal/login/modal.scss']
 })
 export class NgbdModalLogin {
 	@Input() name;
