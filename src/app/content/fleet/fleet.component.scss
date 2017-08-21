@@ -1,0 +1,86 @@
+.fleet{
+	.pic_1 {
+	  background-image: url('../../../assets/images/fleet.png');
+	  height: 35vh;
+	  background-size: cover;
+	}
+
+	.slogen {
+	  color: #fff;
+	}
+
+	.logo {
+	padding-top: 63px;
+	font-size: 106px;
+	text-transform: inherit;
+	  span {
+		font-size: 46px;
+		position: relative;
+		left: 4px;
+		letter-spacing: 2px;
+		font-family: Raleway;
+		text-transform: lowercase;
+	  }
+	}
+	.mt2{
+		margin-top: 160px;
+	}
+	.mct{
+		margin-top: 66px;
+		p{
+			padding: 86px;
+			font-size: 27px;
+			color: #444;
+		}
+	}
+
+	.textBlock{
+		h2{
+			padding: 61px;
+			padding-top: 91px;
+			font-size: 54px;
+			padding-bottom: 0;
+		}
+		p{
+			font-size: 34px;
+			padding: 63px;
+			padding-top: 24px;
+			font-family: Raleway;
+			font-weight: 100;
+			line-height: normal;
+		}
+	}
+
+	.picConteiner{
+		position: relative;
+		img {  
+			width: auto;
+			height: auto;
+			position: absolute;  
+			top: 0;  
+			bottom: 0;  
+			left: 0;  
+			right: 0;  
+			margin: auto;
+			height: 100%;
+			width: 80%;
+		}
+	}
+	.mw{
+		max-width: 50%;
+	}
+	.contact{
+		text-align: center;
+		background-color: #333;
+		height: 154px;
+		color: #fff;
+		padding-top: 42px;
+		h3{
+			text-transform: inherit;
+		}
+		h4{
+			color: #f06060;
+			text-transform: inherit;
+		}
+	}
+}

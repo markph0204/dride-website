@@ -16,7 +16,7 @@ cloud = {
                 var clipObj = snapshot.val()
 
                 //remove from HP if needed
-                if (clipObj.hpRef){
+                if (clipObj && clipObj.hpRef){
                     var ref = db.ref("clips_homepage").child(clipObj.hpRef)
                     ref.remove()
                 }

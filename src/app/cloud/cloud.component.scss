@@ -289,6 +289,20 @@
 
 }
 
+@media (max-width: 320px) {
+
+	.actions{
+ 		padding-left: 0;
+	}
+	.cmntsBox {
+		.bubble{
+			padding: 0 !important;
+		}
+		.pl{
+			opacity: 0;
+		}
+	}
+}
 @media (min-width: 1404px){
 
 	.halfPageCloud{
