@@ -29,6 +29,7 @@ const routes: Routes = [{
 		{ path: 'forum/:slug', loadChildren: './thread/thread.module#ThreadModule' },
 		{ path: 'about', loadChildren: './content/about/about.module#AboutModule', data: { meta: {title: 'About', description: 'About Dride'}}  },
 		{ path: 'fleet', loadChildren: './content/fleet/fleet.module#FleetModule', data: { meta: {title: 'Fleet', description: 'Use Dride with your fleet'}}  },
+		{ path: '3rd-party-manufacturers', loadChildren: './content/3rd-party/3rd-party.module#TPartyModule', data: { meta: {title: 'Fleet', description: 'Use Dride with your fleet'}}  },
 		{ path: 'features', loadChildren: './content/dride1/dride1.module#Dride1Module', data: { meta: {title: 'Features', description: 'Dride Features'}} },
 		{ path: 'documentation', component: DocumentationComponent, data: { meta: {title: 'Documentation', description: 'How to build a Dride or a Dride app'}} },
 		{ path: 'documentation/:slug', component: DocumentationComponent },
