@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
+
+import * as Raven from 'raven-js';
+
 
 // BS4 plugins
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -89,6 +92,17 @@ export function metaFactory(): MetaLoader {
 		}
 	});
 }
+
+Raven
+.config('https://937047e5361c41349ef8dc829947575d@sentry.io/215964')
+.install();
+
+export class RavenErrorHandler implements ErrorHandler {
+	handleError(err: any): void {
+		Raven.captureException(err);
+	}
+}
+
 
 @NgModule({
 	declarations: [

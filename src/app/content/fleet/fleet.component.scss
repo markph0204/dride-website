@@ -2,7 +2,16 @@
 	.pic_1 {
 	  background-image: url('../../../assets/images/fleet.png');
 	  height: 35vh;
-	  background-size: cover;
+	  background-position: center;
+	  background-attachment: fixed;
+	  background-size: contain;
+	  background-repeat: no-repeat;
+	  background-position-y: 0;
+	  @media (max-width: 400px) {
+		background-attachment: initial !important;
+		background-size: cover;
+		background-position: right;
+	  }
 	}
 
 	.slogen {
@@ -52,6 +61,7 @@
 			padding: 86px;
 			font-size: 27px;
 			color: #444;
+			font-weight: 100;
 		}
 
 
@@ -77,6 +87,7 @@
 			font-size: 54px;
 			padding-bottom: 0;
 			text-align: left;
+			padding-right: 0;
 		}
 		p{
 			font-size: 26px;
@@ -84,9 +95,15 @@
 			padding-top: 24px;
 			font-family: Raleway;
 			font-weight: 100;
-			line-height: normal;
+			line-height: 39px;
+			padding-right: 0;
 		}
-
+		@media (max-width: 500px) {
+			h2{
+				font-size: 33px !important;
+				text-align: center;
+			}
+		}
 		@media (max-width: 1150px) {
 			h2{
 				padding: 5px;

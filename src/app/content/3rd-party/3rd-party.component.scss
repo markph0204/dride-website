@@ -1,14 +1,27 @@
 .fleet{
 	.pic_1 {
-	  background-color: #488394;
+	  background-image: url('../../../assets/images/bg4.jpg');
 	  height: 35vh;
-	  background-size: cover;
+	  background-position: center;
+	  background-attachment: fixed;
+	  background-size: contain;
+	  background-repeat: no-repeat;
+	  background-position-y: 0;
+	  @media (max-width: 400px) {
+		background-attachment: initial !important;
+		background-size: cover;
+		background-position: right;
+	  }
 	}
+
 
 	.slogen {
 	  color: #fff;
 	}
-
+	.imfx{
+		width: 57% !important;
+		padding-top: 130px !important;
+	}
 	.logo {
 	padding-top: 63px;
 	font-size: 106px;
@@ -24,9 +37,15 @@
 
 	  @media (max-width: 400px) {
 		  font-size: 86px;
+		  span{
+			font-size: 19px;
+		  }
 	  }
 	}
-
+	.x12{
+		padding-top: 84px;
+		height: 100%;
+	}
 	@media (max-width: 765px) {
 		.firBox{
 			margin-top: -110px;
@@ -52,14 +71,15 @@
 			padding: 86px;
 			font-size: 27px;
 			color: #444;
+			font-weight: 100;
 		}
 
 
-		@media (max-width: 600px) {
-			
+		@media (max-width: 768px) {
 			p{
 				padding: 36px !important;
-				font-size: 20px;
+				font-size: 20px !important;
+				padding: 20px !important;
 			}
 		}
 	}
@@ -84,7 +104,13 @@
 			padding-top: 24px;
 			font-family: Raleway;
 			font-weight: 100;
-			line-height: normal;
+			line-height: 39px;
+		}
+
+		@media (max-width: 500px) {
+			h2{
+				font-size: 33px !important;
+			}
 		}
 
 		@media (max-width: 1150px) {
@@ -106,14 +132,12 @@
 		img {  
 			width: auto;
 			height: auto;
-			position: absolute;  
 			top: 0;  
 			bottom: 0;  
 			left: 0;  
 			right: 0;  
 			margin: auto;
-			height: 100%;
-			width: 80%;
+
 		}
 	}
 	.mw{
