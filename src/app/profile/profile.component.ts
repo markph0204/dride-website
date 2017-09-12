@@ -176,9 +176,6 @@ export class ProfileComponent implements OnInit {
 
 		});
 
-
-
-
 	}
 
 	getNextViewCount(views) {
