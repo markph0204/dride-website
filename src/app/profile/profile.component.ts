@@ -143,7 +143,7 @@ export class ProfileComponent implements OnInit {
 					return;
 				}
 				// increase views counter
-				this.db.object('/clips/' + this.uid + '/' + this.videoId).update({views: this.currentVideo.views + 1})
+				this.db.object('/clips/' + this.uid + '/' + this.videoId).update({views: this.getNextViewCount(this.currentVideo.views)})
 
 				this.createVideoObj(data.clips.src, data.thumbs.src);
 				// concat old comments with new ones
@@ -179,6 +179,10 @@ export class ProfileComponent implements OnInit {
 
 
 
+	}
+
+	getNextViewCount(views) {
+		return views ? views + 1 : 1;
 	}
 
 	sideThreadByAuther = function (comments) {

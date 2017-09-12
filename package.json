@@ -6,6 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod && ng build --prod --app 1 --output-hashing=none",
+    "release": "ng build --prod --sourcemaps && firebase deploy --only hosting && sentry-cli releases -o dride-inc -p dride-app files 2.0 upload-sourcemaps --url-prefix / dist",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
