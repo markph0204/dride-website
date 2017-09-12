@@ -10,6 +10,7 @@ import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable }
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { MixpanelService } from '../helpers/mixpanel.service';
+import { VgAPI } from 'videogular2/core';
 
 
 @Component({
@@ -54,6 +55,13 @@ export class CloudComponent implements OnInit {
 
 	}
 
+	onPlayerReady(api: VgAPI, videoId: string) {
+		api.getDefaultMedia().subscriptions.playing.subscribe(
+			() => {
+				this.mixpanel.track('playVideoOnHP', {vid: videoId})
+			}
+		);
+	}
 
 	fbShare = function (uid, videoId) {
 		window.open(

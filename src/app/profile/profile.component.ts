@@ -13,6 +13,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { MixpanelService } from '../helpers/mixpanel.service';
 
 import { introAnim } from '../router.animations';
+import 'rxjs/add/operator/take';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class ProfileComponent implements OnInit {
 	clips: FirebaseListObservable<any>;
 	orderedClips: any;
 	currentVideoRef: FirebaseObjectObservable<any>;
+	currentVideoRefLive: FirebaseObjectObservable<any>;
 	currentVideo: any;
 	conversationPreviusIsMine: any = [];
 	comments: any = {};
@@ -81,13 +83,12 @@ export class ProfileComponent implements OnInit {
 					error => {
 						this.userHaveNoVideos = true;
 						// TODO: log this
-						console.log('An error occurred when requesting clips.');
+						console.error('An error occurred when requesting clips.');
 					}
 
 					)
 
 			}
-
 
 			if (params['uid']) {
 				this.opData = db.object('userData/' + params['uid']);
@@ -131,19 +132,18 @@ export class ProfileComponent implements OnInit {
 
 			window.scrollTo(0, 0);
 
-			this.currentVideoRef = this.db.object('/clips/' + this.uid + '/' + this.videoId, { preserveSnapshot: true });
 
-
-			this.currentVideoRef.subscribe(currentVideoSanp => {
+			this.db.object('/clips/' + this.uid + '/' + this.videoId, { preserveSnapshot: true }).take(1).subscribe(currentVideoSanp => {
 				const data = currentVideoSanp.val();
 				this.currentVideo = data
+
 				// if video does not exists
 				if (!data) {
 					this.router.navigate(['/page-not-found']);
 					return;
 				}
-
-
+				// increase views counter
+				this.db.object('/clips/' + this.uid + '/' + this.videoId).update({views: this.currentVideo.views + 1})
 
 				this.createVideoObj(data.clips.src, data.thumbs.src);
 				// concat old comments with new ones

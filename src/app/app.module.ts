@@ -93,15 +93,15 @@ export function metaFactory(): MetaLoader {
 	});
 }
 
-Raven
-.config('https://937047e5361c41349ef8dc829947575d@sentry.io/215964')
-.install();
+// Raven
+// .config('https://937047e5361c41349ef8dc829947575d@sentry.io/215964')
+// .install();
 
-export class RavenErrorHandler implements ErrorHandler {
-	handleError(err: any): void {
-		Raven.captureException(err);
-	}
-}
+// export class RavenErrorHandler implements ErrorHandler {
+// 	handleError(err: any): void {
+// 		Raven.captureException(err);
+// 	}
+// }
 
 
 @NgModule({
