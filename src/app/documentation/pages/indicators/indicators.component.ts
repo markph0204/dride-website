@@ -13,19 +13,18 @@ export class IndicatorsComponent implements OnInit {
 
 LED Indicators explained
 
-| STATUS                   | COMMAND | DESCRIPTION
-|--------------------------|---------|----------------
-| Device Start Up			| welcome | Fade on/off white light
-| Device paired with BLE 	| isPaired  | Fade on/off blue light
-| Downloading video		    | isDownloading | White flash on/off continuous
-| Device done downloading   | done | Clears any LED activity
-| Button pressed while paired | buttonPress | Green on one time
-| Button pressed while not connnected | buttonPressOffline | Red on one time
-| Error has been caused 	| error | Red on
+| Description                         | Command       | Color    | Action
+|-------------------------------------|---------------|----------------|------------
+| Device Start Up			                | welcome       | White  | Fade on/off
+| User needs to login    	            | needToLogin   | Yellow | Fade on/off
+| Device paired with BLE 	            | isPaired      | White  | Fade on/off
+| Device needs to be paired with BLE  | needToPair 	  | Red    | Blink
+| Wating for video    	              | isWaiting     | White  | Flash on/off continuous
+| Downloading video		                | isDownloading | White  | Flash on/off continuous
+| Button pressed while paired         | buttonPress   | White  | White on one time
+| Error has been caused 	            | error         | Red    | Blink
+| **Clear all**                       | done          | White | Clears any LED activity
 
-NOTE:
-
-* **Done** (Reset) is not working at this time
 
 You may test/run the LED by executing at command line
 
